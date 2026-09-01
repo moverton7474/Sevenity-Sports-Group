@@ -11,11 +11,18 @@ A single static page. No build step, no dependencies, no framework.
 
 ```
 public/
-  index.html    the entire site — markup, styles, and the Brand Intelligence
-                Engine, all inline so the page is self-contained
-  favicon.svg   brand-blue mark
-  logo.png      the Sevenity mark, 72x72 (also embedded in index.html as a
-                data URI so the page never blocks on a second request)
+  index.html    markup, styles and the Brand Intelligence Engine, all inline
+  og.jpg        1200x630 social card
+  img/          photography and marks lifted from the official deck
+    mark.png          the Sevenity logo (line-art basketball with the 7)
+    favicon-*.png     64 / 192 / 512 icons built from the mark
+    chase-*.jpg       founder portrait and training shot
+    athlete-*.jpg     Ben Tuck, Jahmar Maurice, Will Myles, Ramone Seals
+    seals-*.jpg       transfer-portal entry and FIU commitment
+    logo-*.png        agency and brand marks
+    coaches-map.jpg, scouts.jpg, player-development.jpg,
+    clean-energy-activation.jpg, will-myles-analytics.jpg
+  favicon.svg   earlier hand-drawn mark, kept but no longer referenced
   robots.txt
 vercel.json     static config: outputDirectory, clean URLs, security headers
 ```
@@ -56,11 +63,12 @@ build.
 
 ## Known gaps
 
-- **`og.png` is not in the repo yet.** The Open Graph and Twitter `image` tags
-  were removed rather than left pointing at a missing file. Add
-  `public/og.png` (1200x630) and restore `og:image`, `og:image:width`,
-  `og:image:height`, `og:image:alt` and `twitter:image` together.
-- **Logo is a 72px raster.** Fine at its 26px display slot; get the original
-  vector from Chase before using the mark anywhere large.
-- **Portfolio names in the Track Record section** need written clearance for
-  public commercial use.
+- **Logo is a 498px raster**, extracted from the official deck PDF. Good for
+  every size the site uses. A true vector from the original designer
+  (Kristiana Flowers, via Canva) would still be better for print.
+- **Third-party marks and athlete likenesses** — Clean Energy, Jersey Mike's,
+  WME Basketball, Top Dawg Entertainment, and photographs of four named
+  athletes appear on a public commercial page. Written clearance is still
+  outstanding. See `ops/` for the running list.
+- **The Will Myles analytics screenshot** shows his personal Instagram
+  dashboard. It needs his explicit sign-off.
