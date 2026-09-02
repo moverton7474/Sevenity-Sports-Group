@@ -242,6 +242,75 @@ footer a{color:var(--ink-3)}
 @media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:1fr}}
 @media(max-width:620px){.figs.c2{grid-template-columns:1fr}.logowall img{height:40px}}
 </style>
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sevenitysportsgroup.com/#org",
+      "name": "Sevenity Sports Group",
+      "url": "https://sevenitysportsgroup.com/",
+      "logo": "https://sevenitysportsgroup.com/img/mark.png",
+      "image": "https://sevenitysportsgroup.com/og.jpg",
+      "email": "chase@sevenitysportsgroup.com",
+      "description": "Athlete development and advisory firm in Atlanta. Basketball training, NIL and brand partnerships, content, transfer-portal consulting, and Brand Intelligence sponsor targeting.",
+      "areaServed": "US",
+      "address": {"@type": "PostalAddress", "addressLocality": "Atlanta", "addressRegion": "GA", "addressCountry": "US"},
+      "founder": {"@id": "https://sevenitysportsgroup.com/#chase"},
+      "sameAs": ["https://www.instagram.com/sevenitysports/"],
+      "knowsAbout": ["Basketball player development","Name Image and Likeness","Athlete brand partnerships","Transfer portal consulting","Sports marketing analytics"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sevenitysportsgroup.com/#chase",
+      "name": "Chase Clemmons",
+      "jobTitle": "Founder",
+      "worksFor": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kennesaw State University"},
+      "sameAs": ["https://www.instagram.com/chaseclemmons_/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sevenitysportsgroup.com/#site",
+      "url": "https://sevenitysportsgroup.com/",
+      "name": "Sevenity Sports Group",
+      "publisher": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Service",
+      "name": "Basketball Training",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "areaServed": "Atlanta, GA",
+      "offers": [
+        {"@type": "Offer", "name": "Individual session", "price": "65", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Five-session package", "price": "250", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Sevenity Pro Session", "price": "130", "priceCurrency": "USD", "description": "Professional-level training with live defenders and rebounders."},
+        {"@type": "Offer", "name": "Unlimited monthly training", "price": "500", "priceCurrency": "USD"}
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Content Creation",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "offers": [
+        {"@type": "Offer", "name": "Workout video", "price": "100", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Photography", "price": "40", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Video and photography bundle", "price": "130", "priceCurrency": "USD"}
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Brand Intelligence",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "description": "Sponsor targeting built from how an athlete's audience behaves \u2014 send-to-comment ratio, save behaviour and category fit \u2014 rather than follower count."
+    }
+  ]
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <nav>
@@ -273,7 +342,7 @@ footer a{color:var(--ink-3)}
     <div class="tool-bar">
       <span class="dot" aria-hidden="true"></span>
       <span class="ttl">Brand Intelligence Engine &middot; v1</span>
-      <span class="hint">Runs in your browser. Nothing is sent anywhere.</span>
+      <span class="hint">Runs in your browser. Your numbers never leave this page.</span>
     </div>
     <div class="tool-grid">
       <form class="panel-in" id="scanForm" autocomplete="off">
@@ -978,6 +1047,8 @@ footer a{color:var(--ink-3)}
       return;
     }
     render(d, analyze(d));
+    /* Counts that a scan happened. No field values are read or transmitted. */
+    if (window.va) { try { window.va('event', { name: 'scan_run' }); } catch (err) {} }
   });
 
   document.getElementById('demoBtn').addEventListener('click', function(){
