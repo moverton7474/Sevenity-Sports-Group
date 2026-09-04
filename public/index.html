@@ -262,6 +262,14 @@ footer a{color:var(--ink-3)}
 .capture .crow{display:flex;flex-wrap:wrap;gap:.6rem}
 .capture input{flex:1 1 11rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .9rem/1.5 var(--f-b);padding:.55rem .7rem}
 .capture input:focus{outline:2px solid var(--accent);outline-offset:1px}
+
+/* ---------- video ---------- */
+.vid{margin:2rem 0 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface-2);position:relative}
+.vid video,.vid img{display:block;width:100%;height:auto}
+.vid figcaption{font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);padding:.75rem 1rem;border-top:1px solid var(--line-2);background:var(--surface)}
+.vid .badge{position:absolute;top:.7rem;left:.7rem;font-family:var(--f-m);font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;background:rgba(6,10,16,.72);color:#F2F4F7;padding:.28rem .55rem;border-radius:99px;backdrop-filter:blur(4px)}
+.founder-vid{margin:0 0 1.5rem;position:relative}
+.founder-vid video{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);border-radius:var(--r);background:#000}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -481,6 +489,11 @@ footer a{color:var(--ink-3)}
         <p>We benchmark off median performance with a bonus tied to the proven ceiling — the structure that survives a brand's audit. Then we work the list: outreach, negotiation, activation, reporting.</p>
       </div>
     </div>
+    <figure class="vid" id="engineDemo">
+      <span class="badge">The read &middot; 9 seconds</span>
+      <img src="/img/engine-poster.webp" alt="The Brand Intelligence Engine showing a completed read: 19.5% engagement, an 18.2:1 send-to-comment ratio, a Forwarder audience type, and ranked sponsor categories." width="900" height="562" loading="lazy" decoding="async">
+      <figcaption>What the Engine returns &mdash; audience type, the ratio that drives it, a rate range, and ranked sponsor categories</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -717,7 +730,7 @@ footer a{color:var(--ink-3)}
         <span>Build the brand.</span>
         <span>Create the opportunity.</span>
       </div>
-      <figure class="fpic" style="margin-top:1.8rem">
+      <figure class="fpic founder-vid" id="founderMedia" style="margin-top:1.8rem">
         <img src="/img/chase-portrait.webp" alt="Chase Clemmons in a Kennesaw State uniform holding a basketball" width="720" height="1080" loading="lazy" decoding="async">
       </figure>
     </div>
@@ -1227,6 +1240,61 @@ footer a{color:var(--ink-3)}
       if(sel.options[i].text === want){ sel.selectedIndex = i; break; }
     }
   });
+
+
+  /* ---------- video ----------
+     The demo loop swaps in only when it scrolls into view, so it costs nothing
+     on first paint. The founder slot upgrades itself the moment a file exists at
+     /video/chase-intro.mp4 — drop one in and it appears, no code change. */
+  function playable(el){
+    var v = document.createElement('video');
+    v.muted = true; v.playsInline = true; v.loop = true;
+    v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    return v;
+  }
+
+  var demo = document.getElementById('engineDemo');
+  if(demo && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        io.disconnect();
+        var img = demo.querySelector('img');
+        var v = playable();
+        v.poster = '/img/engine-poster.webp';
+        v.width = 900; v.height = 562;
+        v.setAttribute('aria-label', img ? img.alt : 'Brand Intelligence Engine demonstration');
+        ['/video/engine.mp4','/video/engine.webm'].forEach(function(src){
+          var s = document.createElement('source');
+          s.src = src; s.type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+          v.appendChild(s);
+        });
+        v.addEventListener('loadeddata', function(){
+          if(img && img.parentNode) img.parentNode.replaceChild(v, img);
+          var play = v.play(); if(play && play.catch) play.catch(function(){});
+        }, { once: true });
+        v.addEventListener('error', function(){ /* keep the poster image */ }, { once: true });
+        v.load();
+      });
+    }, { rootMargin: '200px' });
+    io.observe(demo);
+  }
+
+  var fm = document.getElementById('founderMedia');
+  if(fm && window.fetch){
+    fetch('/video/chase-intro.mp4', { method: 'HEAD' }).then(function(r){
+      if(!r.ok) return;
+      var img = fm.querySelector('img');
+      var v = document.createElement('video');
+      v.controls = true; v.preload = 'none'; v.playsInline = true;
+      v.setAttribute('playsinline',''); v.poster = '/img/chase-portrait.webp';
+      v.setAttribute('aria-label','Chase Clemmons on what Sevenity does');
+      var s = document.createElement('source'); s.src = '/video/chase-intro.mp4'; s.type = 'video/mp4';
+      v.appendChild(s);
+      if(img && img.parentNode) img.parentNode.replaceChild(v, img);
+    }).catch(function(){});
+  }
 
 
 })();
