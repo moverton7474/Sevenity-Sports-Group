@@ -241,6 +241,27 @@ footer a{color:var(--ink-3)}
 .fpic img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;border:1px solid var(--line);border-radius:var(--r)}
 @media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:1fr}}
 @media(max-width:620px){.figs.c2{grid-template-columns:1fr}.logowall img{height:40px}}
+
+/* ---------- lead form ---------- */
+.lead{margin-top:1.6rem;text-align:left;max-width:34rem;margin-left:auto;margin-right:auto}
+.lead .lrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+@media(max-width:560px){.lead .lrow{grid-template-columns:1fr}}
+.lead label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
+.lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
+.lead textarea{min-height:5.5rem;resize:vertical}
+.lead input:focus,.lead select:focus,.lead textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.lead .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.lead .lfoot{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.1rem}
+.lead .note-sm{font-size:.78rem;color:var(--ink-3);margin:.8rem 0 0;line-height:1.5}
+.lmsg{margin-top:.9rem;font-size:.9rem;border-radius:var(--r);padding:.7rem .85rem;display:none}
+.lmsg.ok{display:block;background:var(--accent-quiet);color:var(--ink);border:1px solid var(--accent)}
+.lmsg.err{display:block;background:var(--surface-2);color:var(--ink);border:1px solid var(--rose)}
+.capture{margin-top:1.4rem;border:1px solid var(--accent);border-radius:var(--r);background:var(--accent-quiet);padding:1.1rem 1.2rem}
+.capture h4{margin:0 0 .3rem;font-family:var(--f-d);font-weight:700;font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
+.capture p{margin:0 0 .9rem;font-size:.88rem;color:var(--ink-2)}
+.capture .crow{display:flex;flex-wrap:wrap;gap:.6rem}
+.capture input{flex:1 1 11rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .9rem/1.5 var(--f-b);padding:.55rem .7rem}
+.capture input:focus{outline:2px solid var(--accent);outline-offset:1px}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -315,7 +336,7 @@ footer a{color:var(--ink-3)}
 <body>
 <nav>
   <div class="nav-in">
-    <a class="brand" href="#top"><img src="/img/mark.png" width="26" height="26" loading="eager" decoding="async" alt="Sevenity Sports Group">SEVENITY</a>
+    <a class="brand" href="#top"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="Sevenity Sports Group">SEVENITY</a>
     <div class="nav-links">
       <a href="#tool">Brand Intelligence</a>
       <a href="#difference">Why Sevenity</a>
@@ -572,9 +593,9 @@ footer a{color:var(--ink-3)}
     </div>
 
     <div class="figs c3">
-      <figure><div class="media"><img src="/img/player-development.jpg" alt="On-court player development session" width="660" height="1434" loading="lazy" decoding="async"></div><figcaption><b>Player development</b>On-court training</figcaption></figure>
-      <figure><div class="media"><img src="/img/clean-energy-activation.jpg" alt="Athlete unboxing a Clean Energy product delivery during an NIL activation" width="900" height="600" loading="lazy" decoding="async"></div><figcaption><b>NIL brand activation</b>Clean Energy partnership</figcaption></figure>
-      <figure><div class="media"><img src="/img/will-myles-analytics.jpg" alt="Instagram professional dashboard for athlete Will Myles showing 1.1 million views in 30 days" width="700" height="1050" loading="lazy" decoding="async"></div><figcaption><b>Social growth &amp; branding</b>1.1M views in 30 days</figcaption></figure>
+      <figure><div class="media"><img src="/img/player-development.webp" alt="On-court player development session" width="660" height="1434" loading="lazy" decoding="async"></div><figcaption><b>Player development</b>On-court training</figcaption></figure>
+      <figure><div class="media"><img src="/img/clean-energy-activation.webp" alt="Athlete unboxing a Clean Energy product delivery during an NIL activation" width="900" height="600" loading="lazy" decoding="async"></div><figcaption><b>NIL brand activation</b>Clean Energy partnership</figcaption></figure>
+      <figure><div class="media"><img src="/img/will-myles-analytics.webp" alt="Instagram professional dashboard for athlete Will Myles showing 1.1 million views in 30 days" width="700" height="1050" loading="lazy" decoding="async"></div><figcaption><b>Social growth &amp; branding</b>1.1M views in 30 days</figcaption></figure>
     </div>
   </div>
 </section>
@@ -599,7 +620,7 @@ footer a{color:var(--ink-3)}
             <tr><td>Unlimited training</td><td>$500&#8202;/&#8202;mo</td></tr>
           </tbody>
         </table>
-        <div class="foot"><a class="btn ghost" href="#contact">Book training</a></div>
+        <div class="foot"><a class="btn ghost" href="#contact" data-interest="Basketball training">Book training</a></div>
       </div>
       <div class="pcard">
         <h3>Content Creation</h3>
@@ -611,7 +632,7 @@ footer a{color:var(--ink-3)}
             <tr><td>Video + photo bundle</td><td>$130</td></tr>
           </tbody>
         </table>
-        <div class="foot"><a class="btn ghost" href="#contact">Book a shoot</a></div>
+        <div class="foot"><a class="btn ghost" href="#contact" data-interest="Content &amp; photography">Book a shoot</a></div>
       </div>
       <div class="pcard feat">
         <h3>Advisory &amp; Brand Intelligence</h3>
@@ -624,11 +645,11 @@ footer a{color:var(--ink-3)}
           <li>Transfer-portal consulting</li>
           <li>Ongoing advisory retainer</li>
         </ul>
-        <div class="foot"><a class="btn" href="#contact">Request a proposal</a></div>
+        <div class="foot"><a class="btn" href="#contact" data-interest="Brand Intelligence report">Request a proposal</a></div>
       </div>
     </div>
     <figure class="band">
-      <img src="/img/chase-training.jpg" alt="Chase Clemmons running a basketball training session" width="1600" height="900" loading="lazy" decoding="async">
+      <img src="/img/chase-training.webp" alt="Chase Clemmons running a basketball training session" width="1600" height="900" loading="lazy" decoding="async">
       <figcaption>Sevenity Pro Session &middot; professional-level training with live defenders and rebounders</figcaption>
     </figure>
   </div>
@@ -649,10 +670,10 @@ footer a{color:var(--ink-3)}
     </dl>
 
     <div class="figs c4 port">
-      <figure><div class="media"><img src="/img/athlete-ben-tuck.jpg" alt="Ben Tuck celebrating on court" width="560" height="655" loading="lazy" decoding="async"></div><figcaption><b>Ben Tuck</b>Development &amp; branding</figcaption></figure>
-      <figure><div class="media"><img src="/img/athlete-jahmar-maurice.jpg" alt="Jahmar Maurice bringing the ball up court" width="560" height="538" loading="lazy" decoding="async"></div><figcaption><b>Jahmar Maurice</b>Development &amp; branding</figcaption></figure>
-      <figure><div class="media"><img src="/img/athlete-will-myles.jpg" alt="Will Myles in game action" width="560" height="788" loading="lazy" decoding="async"></div><figcaption><b>Will Myles</b>Development &amp; branding</figcaption></figure>
-      <figure><div class="media"><img src="/img/athlete-ramone-seals.jpg" alt="Ramone Seals in an FIU uniform" width="560" height="869" loading="lazy" decoding="async"></div><figcaption><b>Ramone Seals</b>Transfer positioning</figcaption></figure>
+      <figure><div class="media"><img src="/img/athlete-ben-tuck.webp" alt="Ben Tuck celebrating on court" width="560" height="655" loading="lazy" decoding="async"></div><figcaption><b>Ben Tuck</b>Development &amp; branding</figcaption></figure>
+      <figure><div class="media"><img src="/img/athlete-jahmar-maurice.webp" alt="Jahmar Maurice bringing the ball up court" width="560" height="538" loading="lazy" decoding="async"></div><figcaption><b>Jahmar Maurice</b>Development &amp; branding</figcaption></figure>
+      <figure><div class="media"><img src="/img/athlete-will-myles.webp" alt="Will Myles in game action" width="560" height="788" loading="lazy" decoding="async"></div><figcaption><b>Will Myles</b>Development &amp; branding</figcaption></figure>
+      <figure><div class="media"><img src="/img/athlete-ramone-seals.webp" alt="Ramone Seals in an FIU uniform" width="560" height="869" loading="lazy" decoding="async"></div><figcaption><b>Ramone Seals</b>Transfer positioning</figcaption></figure>
     </div>
 
     <div class="sec-head" style="margin-top:3.2rem">
@@ -661,8 +682,8 @@ footer a{color:var(--ink-3)}
       <p>Ramone Seals entered the portal out of Kennesaw State and landed at FIU. Positioning work moved the opportunity range from roughly $15K into six figures.</p>
     </div>
     <div class="figs c2">
-      <figure><div class="media"><img src="/img/seals-portal.jpg" alt="News graphic announcing that sophomore Ramone Seals entered the transfer portal" width="720" height="952" loading="lazy" decoding="async"></div><figcaption><b>Entering the portal</b>Kennesaw State</figcaption></figure>
-      <figure><div class="media"><img src="/img/seals-fiu.jpg" alt="Commitment graphic for Ramone Seals at Florida International University" width="720" height="900" loading="lazy" decoding="async"></div><figcaption><b>Committed</b>Florida International</figcaption></figure>
+      <figure><div class="media"><img src="/img/seals-portal.webp" alt="News graphic announcing that sophomore Ramone Seals entered the transfer portal" width="720" height="952" loading="lazy" decoding="async"></div><figcaption><b>Entering the portal</b>Kennesaw State</figcaption></figure>
+      <figure><div class="media"><img src="/img/seals-fiu.webp" alt="Commitment graphic for Ramone Seals at Florida International University" width="720" height="900" loading="lazy" decoding="async"></div><figcaption><b>Committed</b>Florida International</figcaption></figure>
     </div>
 
     <div class="sec-head" style="margin-top:3.2rem">
@@ -671,16 +692,16 @@ footer a{color:var(--ink-3)}
       <p>Agency relationships, brand partners, a nationwide network of college coaching staffs, and direct access to NBA and college scouting.</p>
     </div>
     <div class="logowall">
-      <img src="/img/logo-wme.png" alt="WME Basketball" width="225" height="225" loading="lazy" decoding="async">
-      <img src="/img/logo-tde.png" alt="Top Dawg Entertainment" width="300" height="300" loading="lazy" decoding="async">
-      <img src="/img/logo-agency.png" alt="Agency partner" width="300" height="200" loading="lazy" decoding="async">
-      <img src="/img/logo-clean-energy.png" alt="Clean Energy" width="420" height="210" loading="lazy" decoding="async">
-      <img src="/img/logo-jersey-mikes.png" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy" decoding="async">
+      <img src="/img/logo-wme.webp" alt="WME Basketball" width="225" height="225" loading="lazy" decoding="async">
+      <img src="/img/logo-tde.webp" alt="Top Dawg Entertainment" width="300" height="300" loading="lazy" decoding="async">
+      <img src="/img/logo-agency.webp" alt="Agency partner" width="300" height="200" loading="lazy" decoding="async">
+      <img src="/img/logo-clean-energy.webp" alt="Clean Energy" width="420" height="210" loading="lazy" decoding="async">
+      <img src="/img/logo-jersey-mikes.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy" decoding="async">
     </div>
     <p class="note">Agency, brand, and institution marks identify organizations Sevenity has worked with or maintains relationships with. They do not imply sponsorship or endorsement of Sevenity Sports Group.</p>
     <div class="figs c2" style="margin-top:1.6rem">
-      <figure><div class="media"><img src="/img/coaches-map.jpg" alt="Map of the United States covered in college program logos" width="1000" height="620" loading="lazy" decoding="async"></div><figcaption><b>College coaches</b>Nationwide staff network</figcaption></figure>
-      <figure><div class="media"><img src="/img/scouts.jpg" alt="A scout taking notes courtside at a basketball game" width="784" height="524" loading="lazy" decoding="async"></div><figcaption><b>Scouting access</b>NBA &amp; college</figcaption></figure>
+      <figure><div class="media"><img src="/img/coaches-map.webp" alt="Map of the United States covered in college program logos" width="1000" height="620" loading="lazy" decoding="async"></div><figcaption><b>College coaches</b>Nationwide staff network</figcaption></figure>
+      <figure><div class="media"><img src="/img/scouts.webp" alt="A scout taking notes courtside at a basketball game" width="784" height="524" loading="lazy" decoding="async"></div><figcaption><b>Scouting access</b>NBA &amp; college</figcaption></figure>
     </div>
   </div>
 </section>
@@ -697,7 +718,7 @@ footer a{color:var(--ink-3)}
         <span>Create the opportunity.</span>
       </div>
       <figure class="fpic" style="margin-top:1.8rem">
-        <img src="/img/chase-portrait.jpg" alt="Chase Clemmons in a Kennesaw State uniform holding a basketball" width="720" height="1080" loading="lazy" decoding="async">
+        <img src="/img/chase-portrait.webp" alt="Chase Clemmons in a Kennesaw State uniform holding a basketball" width="720" height="1080" loading="lazy" decoding="async">
       </figure>
     </div>
     <div>
@@ -716,11 +737,35 @@ footer a{color:var(--ink-3)}
       <div class="lab">Start here</div>
       <h2 style="margin-top:.8rem">Run the scan. Then let's talk about what to do with it.</h2>
       <p>The scan above is free and takes a minute. If the read looks right, the next step is a full Brand Intelligence report — the ranked target list, the conflicts, the rate benchmark, and the outreach plan.</p>
-      <div class="cta-row">
-        <a class="btn" href="mailto:chase@sevenitysportsgroup.com?subject=Brand%20Intelligence%20inquiry">Request a proposal</a>
-        <a class="btn ghost" href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">DM @sevenitysports</a>
-        <a class="btn ghost" href="#tool">Back to the scanner</a>
-      </div>
+      <form class="lead" id="leadForm" novalidate>
+        <div class="lrow">
+          <div><label for="lf-name">Your name</label><input type="text" id="lf-name" name="name" autocomplete="name" required></div>
+          <div><label for="lf-email">Email</label><input type="email" id="lf-email" name="email" autocomplete="email" required></div>
+        </div>
+        <div class="lrow">
+          <div><label for="lf-handle">Instagram handle</label><input type="text" id="lf-handle" name="handle" placeholder="@yourhandle"></div>
+          <div><label for="lf-interest">What do you need?</label>
+            <select id="lf-interest" name="interest">
+              <option>Brand Intelligence report</option>
+              <option>Basketball training</option>
+              <option>Content &amp; photography</option>
+              <option>NIL &amp; brand partnerships</option>
+              <option>Transfer portal consulting</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </div>
+        <label for="lf-message">Anything Chase should know</label>
+        <textarea id="lf-message" name="message" placeholder="Where you play, what you're working toward, what you want out of this."></textarea>
+        <div class="hp" aria-hidden="true"><label for="lf-company">Company</label><input type="text" id="lf-company" name="company" tabindex="-1" autocomplete="off"></div>
+        <div class="lfoot">
+          <button class="btn" type="submit" id="lf-submit">Send to Chase</button>
+          <a class="btn ghost" href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">DM @sevenitysports</a>
+          <a class="btn ghost" href="#tool">Back to the scanner</a>
+        </div>
+        <div class="lmsg" id="lf-msg" role="status" aria-live="polite"></div>
+        <p class="note-sm">Goes straight to Chase's inbox and nowhere else. If you ran a scan above, its numbers come with it so he can pick up where you left off. Prefer email? <a href="mailto:chase@sevenitysportsgroup.com">chase@sevenitysportsgroup.com</a>.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -728,7 +773,7 @@ footer a{color:var(--ink-3)}
 <footer>
   <div class="wrap foot-in">
     <div style="flex:1;min-width:14rem">
-      <div class="brand" style="margin-bottom:.5rem"><img src="/img/mark.png" width="26" height="26" loading="eager" decoding="async" alt="">SEVENITY SPORTS GROUP</div>
+      <div class="brand" style="margin-bottom:.5rem"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">SEVENITY SPORTS GROUP</div>
       <div>Athlete Development &amp; Advisory &middot; Atlanta, GA</div>
     </div>
     <div>Training &middot; Opportunities &middot; Strategy</div>
@@ -977,11 +1022,19 @@ footer a{color:var(--ink-3)}
 
     h += '<div class="res-actions">';
     h += '<button class="btn" type="button" id="copyBtn">Copy this report</button>';
-    h += '<a class="btn ghost" href="#contact">Take it further with Sevenity</a>';
+    h += '<a class="btn ghost" href="#contact" data-interest="Brand Intelligence report">Take it further with Sevenity</a>';
     h += '</div>';
     h += '<p class="disc">Scores rank sponsor <em>categories</em> by fit, not named brands by availability. Named examples are illustrations of each category, not existing Sevenity relationships or endorsements. Rate ranges are negotiation benchmarks, not quotes.</p>';
 
+    h += '<div class="capture"><h4>Want Chase to read this with you?</h4>'
+       + '<p>Send this scan straight to him. He replies with what he would actually do about it \u2014 the target list, the conflicts, and what your rate should be.</p>'
+       + '<form class="crow" id="capForm"><input type="email" id="cap-email" placeholder="you@email.com" aria-label="Your email" required>'
+       + '<input type="text" id="cap-name" placeholder="Your name" aria-label="Your name" required>'
+       + '<button class="btn" type="submit" id="cap-submit">Send my scan</button></form>'
+       + '<div class="lmsg" id="cap-msg" role="status" aria-live="polite"></div></div>';
+
     out.innerHTML = h;
+    window.__lastScan = d;
 
     document.getElementById('copyBtn').addEventListener('click', function(){
       var t = 'BRAND INTELLIGENCE SCAN — Sevenity Sports Group\n';
@@ -1067,6 +1120,115 @@ footer a{color:var(--ink-3)}
     render(d, analyze(d));
     document.getElementById('out').scrollIntoView({block:'nearest'});
   });
+  /* ---------- lead capture ----------
+     Posts to /api/lead, which emails Chase and stores nothing.
+     Degrades to the mailto link in the form footnote if this fails. */
+  var __t0 = Date.now();
+
+  function scanPayload(){
+    var d = window.__lastScan;
+    if(!d) return null;
+    var o = {};
+    if(d.handle)            o['Handle']         = d.handle;
+    if(d.followers != null) o['Followers']      = String(d.followers);
+    if(d.likes != null)     o['Avg likes']      = String(d.likes);
+    if(d.comments != null)  o['Avg comments']   = String(d.comments);
+    if(d.sends != null)     o['Avg sends']      = String(d.sends);
+    if(d.level)             o['Tier']           = d.level;
+    if(d.market)            o['Market']         = d.market;
+    if(d.ownsMerch != null) o['Own merch line'] = d.ownsMerch ? 'Yes' : 'No';
+    if(d.pillars && d.pillars.join) o['Pillars'] = d.pillars.join(', ');
+    return Object.keys(o).length ? o : null;
+  }
+
+  function say(el, text, ok){
+    if(!el) return;
+    el.textContent = text;
+    el.className = 'lmsg ' + (ok ? 'ok' : 'err');
+  }
+
+  function send(payload, btn, msgEl, okText){
+    var label = btn ? btn.textContent : '';
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+    return fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if(r.ok && j.ok){
+          say(msgEl, okText, true);
+          if(window.va){ try { window.va('event', { name: 'lead_sent' }); } catch(e){} }
+          return true;
+        }
+        say(msgEl, j.error || "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up.", false);
+        return false;
+      });
+    }).catch(function(){
+      say(msgEl, "That didn't send — you may be offline. Email chase@sevenitysportsgroup.com directly.", false);
+      return false;
+    }).then(function(done){
+      if(btn){ btn.disabled = false; btn.textContent = label; }
+      return done;
+    });
+  }
+
+  var leadForm = document.getElementById('leadForm');
+  if(leadForm){
+    leadForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var msgEl = document.getElementById('lf-msg');
+      var name  = document.getElementById('lf-name').value.trim();
+      var email = document.getElementById('lf-email').value.trim();
+      if(!name)  { say(msgEl, 'Add your name so Chase knows who he is replying to.', false); return; }
+      if(!email) { say(msgEl, 'Add an email so Chase can reply.', false); return; }
+      send({
+        name: name,
+        email: email,
+        handle: document.getElementById('lf-handle').value.trim(),
+        interest: document.getElementById('lf-interest').value,
+        message: document.getElementById('lf-message').value.trim(),
+        company: document.getElementById('lf-company').value,
+        elapsed: Date.now() - __t0,
+        scan: scanPayload()
+      }, document.getElementById('lf-submit'), msgEl,
+         "Sent. Chase has it, along with your scan if you ran one — he replies from chase@sevenitysportsgroup.com.")
+      .then(function(ok){ if(ok) leadForm.reset(); });
+    });
+  }
+
+  /* the post-scan capture form is rendered after a scan, so bind by delegation */
+  document.addEventListener('submit', function(e){
+    if(!e.target || e.target.id !== 'capForm') return;
+    e.preventDefault();
+    var msgEl = document.getElementById('cap-msg');
+    var name  = document.getElementById('cap-name').value.trim();
+    var email = document.getElementById('cap-email').value.trim();
+    if(!name || !email){ say(msgEl, 'Name and email, then it goes straight to Chase.', false); return; }
+    send({
+      name: name,
+      email: email,
+      interest: 'Brand Intelligence report',
+      message: 'Sent from the Brand Intelligence Engine result.',
+      elapsed: Date.now() - __t0,
+      scan: scanPayload()
+    }, document.getElementById('cap-submit'), msgEl,
+       "Sent — Chase has your scan and will come back to you.");
+  });
+
+  /* CTAs that name a service pre-select it in the form */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[data-interest]') : null;
+    if(!a) return;
+    var sel = document.getElementById('lf-interest');
+    if(!sel) return;
+    var want = a.getAttribute('data-interest');
+    for(var i = 0; i < sel.options.length; i++){
+      if(sel.options[i].text === want){ sel.selectedIndex = i; break; }
+    }
+  });
+
+
 })();
 </script>
 
