@@ -162,6 +162,10 @@ input::placeholder{color:var(--ink-3)}
 /* services */
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
 .svc-card{background:var(--surface);padding:1.4rem 1.45rem;display:flex;flex-direction:column}
+#services .svc-card{color:inherit;text-decoration:none;cursor:pointer;transition:background .15s ease}
+#services .svc-card:hover{background:var(--surface-2)}
+#services .svc-card:hover .svc-link{color:var(--accent)}
+.svc-card .svc-link{margin-top:auto;padding-top:.9rem;font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
 .svc-card .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.13em;color:var(--accent-ink);margin-bottom:.7rem}
 .svc-card ul{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .svc-card li{font-size:.86rem;color:var(--ink-2);padding-left:.85rem;position:relative}
@@ -407,7 +411,7 @@ footer a{color:var(--ink-3)}
       <p>Five service lines, one plan. Athletes can start anywhere and add as they grow.</p>
     </div>
     <div class="svc">
-      <div class="svc-card">
+      <a class="svc-card" href="#contact" data-interest="Basketball training">
         <div class="n">01 &middot; ON COURT</div>
         <h3>Player Development</h3>
         <p>Individualized basketball training built around where an athlete actually needs to improve.</p>
@@ -418,8 +422,9 @@ footer a{color:var(--ink-3)}
           <li>Written personal development plans</li>
           <li>Sevenity Pro Session — pro-level reps</li>
         </ul>
-      </div>
-      <div class="svc-card">
+        <div class="svc-link">See pricing &amp; inquire &rarr;</div>
+      </a>
+      <a class="svc-card" href="#contact" data-interest="Athlete consulting">
         <div class="n">02 &middot; STRATEGY</div>
         <h3>Athlete Consulting</h3>
         <p>The decisions that shape a career, made with someone who has been on the other side of them.</p>
@@ -429,8 +434,9 @@ footer a{color:var(--ink-3)}
           <li>Athlete positioning</li>
           <li>Professional preparation</li>
         </ul>
-      </div>
-      <div class="svc-card">
+        <div class="svc-link">See pricing &amp; inquire &rarr;</div>
+      </a>
+      <a class="svc-card" href="#contact" data-interest="NIL &amp; brand partnerships">
         <div class="n">03 &middot; THE DIFFERENTIATOR</div>
         <h3>NIL &amp; Brand Intelligence</h3>
         <p>Sponsor targeting built from audience behavior, then worked end to end until it is signed.</p>
@@ -441,8 +447,9 @@ footer a{color:var(--ink-3)}
           <li>Rate benchmarking and deal structure</li>
           <li>Brand outreach and activation management</li>
         </ul>
-      </div>
-      <div class="svc-card">
+        <div class="svc-link">See pricing &amp; inquire &rarr;</div>
+      </a>
+      <a class="svc-card" href="#contact" data-interest="Content &amp; photography">
         <div class="n">04 &middot; ASSETS</div>
         <h3>Content Creation</h3>
         <p>A digital portfolio that looks like the level the athlete is trying to reach.</p>
@@ -452,8 +459,9 @@ footer a{color:var(--ink-3)}
           <li>Social content built for the algorithm</li>
           <li>Brand partnership deliverables</li>
         </ul>
-      </div>
-      <div class="svc-card">
+        <div class="svc-link">See pricing &amp; inquire &rarr;</div>
+      </a>
+      <a class="svc-card" href="#contact" data-interest="Transfer portal consulting">
         <div class="n">05 &middot; MOVEMENT</div>
         <h3>Transfer Portal Consulting</h3>
         <p>Positioning, valuation, and navigation for athletes exploring a move.</p>
@@ -463,7 +471,8 @@ footer a{color:var(--ink-3)}
           <li>Coach and program targeting</li>
           <li>Timeline and communication management</li>
         </ul>
-      </div>
+        <div class="svc-link">See pricing &amp; inquire &rarr;</div>
+      </a>
     </div>
 
     <div class="figs c3">
@@ -735,6 +744,7 @@ footer a{color:var(--ink-3)}
             <select id="lf-interest" name="interest">
               <option>Brand Intelligence report</option>
               <option>Basketball training</option>
+              <option>Athlete consulting</option>
               <option>Content &amp; photography</option>
               <option>NIL &amp; brand partnerships</option>
               <option>Transfer portal consulting</option>
