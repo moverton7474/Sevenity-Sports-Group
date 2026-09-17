@@ -366,64 +366,6 @@ footer a{color:var(--ink-3)}
     <a class="btn ghost" href="#services">See the services</a>
   </div>
 
-  <!-- ============ TOOL ============ -->
-  <div class="tool" id="tool">
-    <div class="tool-bar">
-      <span class="dot" aria-hidden="true"></span>
-      <span class="ttl">Brand Intelligence Engine &middot; v1</span>
-      <span class="hint">Runs in your browser. Your numbers never leave this page.</span>
-    </div>
-    <div class="tool-grid">
-      <form class="panel-in" id="scanForm" autocomplete="off">
-        <div class="fld">
-          <label for="handle">Athlete handle</label>
-          <input type="text" id="handle" placeholder="@yourhandle" value="">
-        </div>
-        <div class="fld row2">
-          <div>
-            <label for="followers">Followers</label>
-            <input type="number" id="followers" min="0" step="100" value="12000">
-          </div>
-          <div>
-            <label for="level">Level</label>
-            <select id="level">
-              <option value="hs">High school</option>
-              <option value="college" selected>College</option>
-              <option value="portal">Transfer portal</option>
-              <option value="pro">Pro / overseas</option>
-            </select>
-          </div>
-        </div>
-        <div class="fld">
-          <span class="lgl">Typical post — last 5</span>
-          <div class="row2" style="margin-bottom:.7rem">
-            <div><label for="likes" style="letter-spacing:.06em">Avg likes</label><input type="number" id="likes" min="0" value="900"></div>
-            <div><label for="comments" style="letter-spacing:.06em">Avg comments</label><input type="number" id="comments" min="0" value="24"></div>
-          </div>
-          <div class="row2">
-            <div><label for="sends" style="letter-spacing:.06em">Avg sends / DM shares</label><input type="number" id="sends" min="0" value="180"></div>
-            <div><label for="market" style="letter-spacing:.06em">Home market</label><input type="text" id="market" placeholder="Atlanta, GA" value="Atlanta, GA"></div>
-          </div>
-        </div>
-        <div class="fld">
-          <span class="lgl">Content pillars — pick what you actually post</span>
-          <div class="chips" id="pillars"></div>
-        </div>
-        <div class="fld">
-          <label class="chk"><input type="checkbox" id="ownsMerch"> <span>I sell my own merch or apparel line</span></label>
-        </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn" type="submit">Run scan</button>
-          <button class="btn ghost" type="button" id="demoBtn">Load example</button>
-        </div>
-      </form>
-
-      <div class="panel-out" id="out" aria-live="polite">
-        <div class="empty">Pick your pillars and run the scan.<br>You'll get an audience read, ranked sponsor categories, and the conflicts to watch for.</div>
-      </div>
-    </div>
-  </div>
-  <p class="note">This engine scores sponsor <em>categories</em> against an athlete's audience behavior. It is a starting read, not a placement. Turning a category into a signed deal is the advisory work — that's the conversation.</p>
 </div>
 
 <!-- ============ FOUNDER ============ -->
@@ -438,7 +380,10 @@ footer a{color:var(--ink-3)}
         <span>Create the opportunity.</span>
       </div>
       <figure class="fpic founder-vid" id="founderMedia" style="margin-top:1.8rem">
-        <img src="/img/chase-portrait.webp" alt="Chase Clemmons in a Kennesaw State uniform holding a basketball" width="720" height="1080" loading="lazy" decoding="async">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+          <img src="/img/chase-portrait.webp" alt="Chase Clemmons in a Kennesaw State uniform holding a basketball" width="720" height="1080" loading="lazy" decoding="async">
+          <img src="/img/chase-suit.webp" alt="Chase Clemmons in a black tuxedo" width="720" height="977" loading="lazy" decoding="async" style="object-position:top center">
+        </div>
       </figure>
     </div>
     <div>
@@ -519,9 +464,9 @@ footer a{color:var(--ink-3)}
     </div>
 
     <div class="figs c3">
-      <figure><div class="media"><img src="/img/player-development.webp" alt="On-court player development session" width="660" height="1434" loading="lazy" decoding="async"></div><figcaption><b>Player development</b>On-court training</figcaption></figure>
+      <figure><div class="media"><img src="/img/player-development.webp" alt="Instagram professional dashboard for athlete Will Myles showing 1.1 million views in 30 days" width="660" height="1434" loading="lazy" decoding="async"></div><figcaption><b>Social growth &amp; branding</b>1.1M views in 30 days</figcaption></figure>
       <figure><div class="media"><img src="/img/clean-energy-activation.webp" alt="Athlete unboxing a Clean Energy product delivery during an NIL activation" width="900" height="600" loading="lazy" decoding="async"></div><figcaption><b>NIL brand activation</b>Clean Energy partnership</figcaption></figure>
-      <figure><div class="media"><img src="/img/will-myles-analytics.webp" alt="Instagram professional dashboard for athlete Will Myles showing 1.1 million views in 30 days" width="700" height="1050" loading="lazy" decoding="async"></div><figcaption><b>Social growth &amp; branding</b>1.1M views in 30 days</figcaption></figure>
+      <figure><div class="media"><img src="/img/will-myles-analytics.webp" alt="On-court player development session" width="700" height="1050" loading="lazy" decoding="async"></div><figcaption><b>Player development</b>On-court training</figcaption></figure>
     </div>
   </div>
 </section>
@@ -748,6 +693,27 @@ footer a{color:var(--ink-3)}
   </div>
 </section>
 
+<!-- ============ COMMUNITY ============ -->
+<section id="community">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lab">Community</div>
+      <h2>The platform is for more than the highlight reel.</h2>
+    </div>
+    <div class="founder" style="margin-top:2rem">
+      <div>
+        <figure style="margin:0">
+          <img src="/img/shoe-drive-flyer.webp" alt="Sevenity Sports Group Shoe Drive flyer, supporting Salvation Army kids" width="1000" height="1293" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r)">
+        </figure>
+      </div>
+      <div>
+        <p>On September 16, Sevenity ran a shoe drive for kids in the Salvation Army's program, with a goal of 50 pairs donated. Every athlete in the network was asked to bring at least two pairs of gently used shoes and hand them personally to the child receiving them.</p>
+        <p>The shoes were never really the point. It's about showing athletes early — before the follower count, before the NIL deal — that a platform comes with a responsibility, and that giving back to the community is part of the job, not an afterthought.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CTA ============ -->
 <section id="contact">
   <div class="wrap">
@@ -785,6 +751,73 @@ footer a{color:var(--ink-3)}
         <p class="note-sm">Goes straight to Chase's inbox and nowhere else. If you ran a scan above, its numbers come with it so he can pick up where you left off. Prefer email? <a href="mailto:chase@sevenitysportsgroup.com">chase@sevenitysportsgroup.com</a>.</p>
       </form>
     </div>
+  </div>
+</section>
+
+<!-- ============ TOOL SECTION ============ -->
+<section id="brand-tool">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lab">Brand Intelligence Engine</div>
+      <h2>Try it yourself.</h2>
+    </div>
+    <div class="tool" id="tool">
+    <div class="tool-bar">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="ttl">Brand Intelligence Engine &middot; v1</span>
+      <span class="hint">Runs in your browser. Your numbers never leave this page.</span>
+    </div>
+    <div class="tool-grid">
+      <form class="panel-in" id="scanForm" autocomplete="off">
+        <div class="fld">
+          <label for="handle">Athlete handle</label>
+          <input type="text" id="handle" placeholder="@yourhandle" value="">
+        </div>
+        <div class="fld row2">
+          <div>
+            <label for="followers">Followers</label>
+            <input type="number" id="followers" min="0" step="100" value="12000">
+          </div>
+          <div>
+            <label for="level">Level</label>
+            <select id="level">
+              <option value="hs">High school</option>
+              <option value="college" selected>College</option>
+              <option value="portal">Transfer portal</option>
+              <option value="pro">Pro / overseas</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld">
+          <span class="lgl">Typical post — last 5</span>
+          <div class="row2" style="margin-bottom:.7rem">
+            <div><label for="likes" style="letter-spacing:.06em">Avg likes</label><input type="number" id="likes" min="0" value="900"></div>
+            <div><label for="comments" style="letter-spacing:.06em">Avg comments</label><input type="number" id="comments" min="0" value="24"></div>
+          </div>
+          <div class="row2">
+            <div><label for="sends" style="letter-spacing:.06em">Avg sends / DM shares</label><input type="number" id="sends" min="0" value="180"></div>
+            <div><label for="market" style="letter-spacing:.06em">Home market</label><input type="text" id="market" placeholder="Atlanta, GA" value="Atlanta, GA"></div>
+          </div>
+        </div>
+        <div class="fld">
+          <span class="lgl">Content pillars — pick what you actually post</span>
+          <div class="chips" id="pillars"></div>
+        </div>
+        <div class="fld">
+          <label class="chk"><input type="checkbox" id="ownsMerch"> <span>I sell my own merch or apparel line</span></label>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn" type="submit">Run scan</button>
+          <button class="btn ghost" type="button" id="demoBtn">Load example</button>
+        </div>
+      </form>
+
+      <div class="panel-out" id="out" aria-live="polite">
+        <div class="empty">Pick your pillars and run the scan.<br>You'll get an audience read, ranked sponsor categories, and the conflicts to watch for.</div>
+      </div>
+    </div>
+  </div>
+    <p class="note">This engine scores sponsor <em>categories</em> against an athlete's audience behavior. It is a starting read, not a placement. Turning a category into a signed deal is the advisory work — that's the conversation.</p>
   </div>
 </section>
 
