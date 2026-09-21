@@ -42,31 +42,31 @@
   --r:8px; --max:74rem;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{
   margin:0;color:var(--ink);font-family:var(--f-b);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
-  overflow:hidden;
   background-color:#2e2c2d;
   background-image:radial-gradient(ellipse at 50% 42%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);
+  background-attachment:fixed;
+  background-size:cover;
 }
 .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
 a{color:var(--ink)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 h1,h2,h3{font-family:var(--f-serif);font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.15;text-wrap:balance;margin:0;color:var(--ink)}
 
-/* whole page = exactly one screen */
-.page{height:100vh;height:100dvh;display:flex;flex-direction:column}
+/* whole page — fits one screen when possible, may scroll a little for the reel */
+.page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
 
 /* nav — light frosted bar, centered links */
 nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,70,120,.16)}
 .nav-in{max-width:var(--max);margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:center;position:relative}
-.nav-links{display:flex;flex-wrap:wrap;gap:1.8rem;justify-content:center;align-items:center}
-.nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#343539;text-decoration:none;font-size:.92rem}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;align-items:center}
+.nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#343539;text-decoration:none;font-size:.9rem}
 .nav-links a:hover{opacity:.6}
 .nav-toggle{display:none;background:transparent;border:1px solid rgba(60,40,90,.3);border-radius:6px;padding:.5rem 1rem;font-family:var(--f-serif);font-size:.85rem;color:#343539;cursor:pointer}
-@media(max-width:900px){
+@media(max-width:960px){
   .nav-in{justify-content:flex-start}
   .nav-toggle{display:inline-flex;align-items:center}
   .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(250,248,253,.98);border-bottom:1px solid rgba(90,70,120,.16);padding:.5rem 0;max-height:calc(100vh - 3.2rem);overflow:auto}
@@ -74,23 +74,30 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
   .nav-links a{padding:.7rem 1.5rem;width:100%;box-sizing:border-box;text-align:center}
 }
 
-/* stage — title + link grid, centered in the remaining viewport */
-.stage{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem 1.25rem;gap:clamp(1.1rem,3.4vh,2.4rem)}
+/* stage — title + reel + link grid, centered in the viewport */
+.stage{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem 1.25rem 1.5rem;gap:clamp(.9rem,2.6vh,1.6rem)}
 .title-hero-text{font-family:var(--f-baskerville);font-style:italic;font-weight:400;text-transform:uppercase;color:#343539;letter-spacing:.22em;line-height:1.16;margin:0}
 .title-hero-text span{display:block;font-size:clamp(1.5rem,6.2vw,4rem)}
 @media(max-width:640px){.title-hero-text{letter-spacing:.11em}}
 @media(max-width:420px){.title-hero-text{letter-spacing:.06em}}
 
+/* reel — Instagram embed(s), directly under the title */
+.reel-wrap{display:flex;flex-direction:column;align-items:center;gap:.45rem;width:100%}
+.reel-frame{width:100%;max-width:400px;min-width:280px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 10px 34px rgba(0,0,0,.28)}
+.reel-frame iframe{display:block}
+.reel-fallback{font-family:var(--f-m);font-size:.68rem;letter-spacing:.04em;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.reel-fallback:hover{color:var(--ink)}
+
 /* link grid — one box per nav item except Home */
-.link-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.6rem;width:100%;max-width:84rem}
-.link-box{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:.85rem .8rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.25rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .18s ease,background .18s ease,border-color .18s ease;text-align:left}
+.link-grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:.5rem;width:100%;max-width:92rem}
+.link-box{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:.7rem .65rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.2rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .18s ease,background .18s ease,border-color .18s ease;text-align:left}
 .link-box:hover{transform:translateY(-3px);background:var(--glass-2);border-color:rgba(255,255,255,.4)}
-.link-box .qn{font-family:var(--f-m);font-size:.6rem;letter-spacing:.14em;color:var(--gold)}
-.link-box h3{font-size:.85rem;letter-spacing:.005em;margin:0;line-height:1.2}
-.link-box span.desc{font-size:.68rem;color:var(--ink-3);line-height:1.3}
-@media(max-width:1100px){.link-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:700px){.link-grid{grid-template-columns:repeat(2,1fr)}.link-box span.desc{display:none}.link-box{padding:.65rem .7rem}}
-@media(max-height:640px){.link-box span.desc{display:none}.link-box{padding:.6rem .7rem}}
+.link-box .qn{font-family:var(--f-m);font-size:.56rem;letter-spacing:.12em;color:var(--gold)}
+.link-box h3{font-size:.74rem;letter-spacing:0;margin:0;line-height:1.2}
+.link-box span.desc{font-size:.62rem;color:var(--ink-3);line-height:1.28}
+@media(max-width:1200px){.link-grid{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:700px){.link-grid{grid-template-columns:repeat(2,1fr)}.link-box span.desc{display:none}.link-box{padding:.6rem .65rem}}
+@media(max-height:640px){.link-box span.desc{display:none}.link-box{padding:.55rem .65rem}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -146,6 +153,8 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
       <a href="services.html">Services</a>
       <a href="services.html#pricing">Pricing</a>
       <a href="brand-intelligence.html">Brand Intelligence</a>
+      <a href="book-training.html">Book Training</a>
+      <a href="book-content.html">Book Content</a>
       <a href="community.html">Community</a>
       <a href="https://www.instagram.com/sevenitysports" target="_blank" rel="noopener">Instagram</a>
       <a href="contact.html">Contact</a>
@@ -155,6 +164,10 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
 
 <main class="stage">
   <h1 class="title-hero-text"><span>Sevenity</span><span>Sports Group</span></h1>
+
+  <div class="reel-wrap" id="reelWrap">
+    <a class="reel-fallback" id="reelFallback" href="https://www.instagram.com/reel/Db3YV1_urQu/" target="_blank" rel="noopener">Watch on Instagram</a>
+  </div>
 
   <div class="link-grid">
     <a class="link-box" href="why-sevenity.html">
@@ -177,18 +190,28 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
       <h3>Brand Intelligence</h3>
       <span class="desc">Free tool: see which sponsors your audience actually fits.</span>
     </a>
-    <a class="link-box" href="community.html">
+    <a class="link-box" href="book-training.html">
       <span class="qn">05</span>
+      <h3>Book Training</h3>
+      <span class="desc">Book and pay for a session, or request one.</span>
+    </a>
+    <a class="link-box" href="book-content.html">
+      <span class="qn">06</span>
+      <h3>Book Content</h3>
+      <span class="desc">Book and pay for a shoot, or request one.</span>
+    </a>
+    <a class="link-box" href="community.html">
+      <span class="qn">07</span>
       <h3>Community</h3>
       <span class="desc">Camps, shoe drives, and giving back in Atlanta.</span>
     </a>
     <a class="link-box" href="https://www.instagram.com/sevenitysports" target="_blank" rel="noopener">
-      <span class="qn">06</span>
+      <span class="qn">08</span>
       <h3>Instagram</h3>
       <span class="desc">Follow @sevenitysports.</span>
     </a>
     <a class="link-box" href="contact.html">
-      <span class="qn">07</span>
+      <span class="qn">09</span>
       <h3>Contact</h3>
       <span class="desc">Tell Sevenity what you're building.</span>
     </a>
@@ -196,6 +219,7 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
 </main>
 </div>
 
+<script src="/js/reels-config.js"></script>
 <script>
 (function(){
   "use strict";
@@ -209,6 +233,36 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
     Array.prototype.forEach.call(links.querySelectorAll('a'), function(a){
       a.addEventListener('click', function(){ links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
     });
+  }
+
+  // Instagram reel embed(s) — driven by window.SEVENITY_REELS (public/js/reels-config.js).
+  // Add more reels later just by adding another URL to that array.
+  var wrap = document.getElementById('reelWrap');
+  var fallback = document.getElementById('reelFallback');
+  var reels = window.SEVENITY_REELS || [];
+  if(wrap && reels.length){
+    if(fallback) fallback.href = reels[0];
+    reels.forEach(function(url){
+      var frame = document.createElement('div');
+      frame.className = 'reel-frame';
+      var bq = document.createElement('blockquote');
+      bq.className = 'instagram-media';
+      bq.setAttribute('data-instgrm-permalink', url);
+      bq.setAttribute('data-instgrm-version', '14');
+      bq.style.margin = '0';
+      bq.style.width = '100%';
+      bq.style.background = '#FFF';
+      bq.style.border = '0';
+      frame.appendChild(bq);
+      wrap.insertBefore(frame, fallback);
+    });
+    var s = document.createElement('script');
+    s.src = 'https://www.instagram.com/embed.js';
+    s.async = true;
+    s.onload = function(){ if(window.instgrm){ window.instgrm.Embeds.process(); } };
+    document.body.appendChild(s);
+  } else if(wrap){
+    wrap.style.display = 'none';
   }
 })();
 </script>
