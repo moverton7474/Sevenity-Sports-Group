@@ -1,11 +1,11 @@
 /**
  * Sevenity lead intake.
  *
- * Receives a contact or scan-follow-up submission and emails it to Chase.
+ * Receives a contact or scan-follow-up submission and emails it to Sevenity.
  * Nothing is stored anywhere — the email is the record and the mailbox is the CRM.
  * See ops/SEVENITY-DATA-LAYER-DECISION.md for why there is no database here.
  *
- * Reply-To is set to the athlete, so Chase answers by hitting reply.
+ * Reply-To is set to the athlete, so Sevenity answers by hitting reply.
  */
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
   const from = process.env.LEAD_FROM;
   if (!apiKey || !to || !from) {
     console.error('lead: missing RESEND_API_KEY / LEAD_TO / LEAD_FROM');
-    return res.status(500).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
+    return res.status(500).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
   }
 
   let body = req.body;
@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
   const message = clean(body.message, 4000);
   const scan = body.scan && typeof body.scan === 'object' ? body.scan : null;
 
-  if (!name) return res.status(400).json({ error: 'Add your name so Chase knows who he is replying to.' });
+  if (!name) return res.status(400).json({ error: "Add your name so we know who we're replying to." });
   if (!looksLikeEmail(email)) return res.status(400).json({ error: 'That email address does not look right — check it and try again.' });
 
   const scanRows = scan
@@ -115,11 +115,11 @@ module.exports = async function handler(req, res) {
     });
     if (!r.ok) {
       console.error('lead: resend rejected', r.status, (await r.text()).slice(0, 400));
-      return res.status(502).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
+      return res.status(502).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
     }
   } catch (err) {
     console.error('lead: resend threw', err && err.message);
-    return res.status(502).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
+    return res.status(502).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
   }
 
   return res.status(200).json({ ok: true });

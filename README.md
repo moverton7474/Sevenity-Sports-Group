@@ -19,7 +19,7 @@ public/
     chase-*.jpg       founder portrait and training shot
     athlete-*.jpg     Ben Tuck, Jahmar Maurice, Will Myles, Ramone Seals
     seals-*.jpg       transfer-portal entry and FIU commitment
-    logo-*.png        agency and brand marks
+    logo-*.png        brand partner marks (Clean Energy, Jersey Mike's)
     coaches-map.jpg, scouts.jpg, player-development.jpg,
     clean-energy-activation.jpg, will-myles-analytics.jpg
   favicon.svg   earlier hand-drawn mark, kept but no longer referenced
@@ -67,8 +67,7 @@ build.
   every size the site uses. A true vector from the original designer
   (Kristiana Flowers, via Canva) would still be better for print.
 - **Third-party marks and athlete likenesses** — Clean Energy, Jersey Mike's,
-  WME Basketball, Top Dawg Entertainment, and photographs of four named
-  athletes appear on a public commercial page. Written clearance is still
-  outstanding. See `ops/` for the running list.
+  and photographs of four named athletes appear on a public commercial page.
+  Written clearance is still outstanding.
 - **The Will Myles analytics screenshot** shows his personal Instagram
   dashboard. It needs his explicit sign-off.

@@ -2,7 +2,7 @@
  * Watchdog for the lead path.
  *
  * /api/lead is the only route between a visitor and revenue. If it breaks the
- * failure is SILENT — from Chase's side a broken form is indistinguishable from
+ * failure is SILENT — from Sevenity's side a broken form is indistinguishable from
  * nobody being interested, so he would stop trusting the site rather than report
  * a bug. This checks the things that actually break, on a schedule, and emails
  * only when something is wrong.
@@ -95,7 +95,7 @@ module.exports = async function handler(req, res) {
           subject: 'Sevenity — the lead form is not working',
           text:
             `The contact form on sevenitysportsgroup.com is currently failing.\n\n${lines}\n\n` +
-            `Until this is fixed, anyone who fills in the form gets an error and Chase receives nothing.\n\n` +
+            `Until this is fixed, anyone who fills in the form gets an error and Sevenity receives nothing.\n\n` +
             `Checked at ${new Date().toISOString()}\nDetail: https://sevenitysportsgroup.com/api/health`,
         }),
       });
