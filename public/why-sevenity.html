@@ -86,12 +86,6 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.88);backdrop-f
 .back-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;background:var(--glass-2);border:1px solid var(--line);color:var(--ink);font-family:var(--f-m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.05rem;border-radius:999px;text-decoration:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .back-top:hover{background:rgba(255,255,255,.16)}
 
-.btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
-.btn:hover{opacity:.85;transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
-.btn.sm{font-size:.79rem;padding:.5rem 1rem}
-
 /* photo grids */
 .figs{display:grid;gap:1.1rem;margin-top:2rem}
 .figs.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -115,24 +109,6 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.88);backdrop-f
 .logowall .logotile{background:#fff;border-radius:var(--r);padding:1rem 1.3rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
 .logowall img{height:56px;width:auto;display:block;object-fit:contain}
 @media(max-width:620px){.logowall img{height:44px}}
-
-/* founder / about */
-.founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:2.6rem;align-items:start}
-@media(max-width:820px){.founder{grid-template-columns:1fr;gap:1.6rem}}
-.fpic{margin:0}
-.fpic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top center;border:1px solid var(--line);border-radius:var(--r)}
-.creed{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:clamp(1.3rem,3vw,2rem);letter-spacing:.01em;line-height:1.2;margin:1.5rem 0 0;text-transform:uppercase}
-.creed span{display:block;color:var(--ink-3)}
-.creed span:first-child{color:var(--gold)}
-
-/* contact tiles */
-.direct{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:2rem}
-.direct div{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.3rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.direct dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem}
-.direct dd{margin:0;font-size:1rem;color:var(--ink)}
-.direct dd a{text-decoration:none;border-bottom:1px solid var(--line)}
-.direct dd a:hover{border-color:var(--ink)}
-.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
 .foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -174,6 +150,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="why-sevenity.html">Why Sevenity</a>
+      <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="services.html#pricing">Pricing</a>
       <a href="brand-intelligence.html">Brand Intelligence</a>
@@ -245,40 +222,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     <div class="figs c2">
       <figure><div class="media"><img src="/img/seals-portal.webp" alt="News graphic announcing that sophomore Ramone Seals entered the transfer portal" width="720" height="952" loading="lazy" decoding="async"></div><figcaption><b>Entering the portal</b>Kennesaw State</figcaption></figure>
       <figure><div class="media"><img src="/img/seals-fiu.webp" alt="Commitment graphic for Ramone Seals at Florida International University" width="720" height="900" loading="lazy" decoding="async"></div><figcaption><b>Committed</b>Florida International</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="lab">The Founder</span>
-      <h2 style="margin-top:.7rem">About &amp; Contact</h2>
-    </div>
-    <div class="founder">
-      <figure class="fpic">
-        <img src="/img/chase-suit-hd.webp" alt="Chase Clemmons in a black tuxedo" width="1150" height="1560" loading="lazy" decoding="async">
-      </figure>
-      <div>
-        <h3 style="font-size:1.4rem">Chase Clemmons</h3>
-        <p style="margin-top:.8rem">Chase Clemmons is the founder of Sevenity Sports Group, an athlete development and advisory firm focused on performance and strategy. He's a former Kennesaw State collegiate athlete and Sports Management graduate who built Sevenity around the thing he could not find as a player: one person responsible for the whole picture.</p>
-        <p>He has been the athlete trying to hold a trainer, a content creator, and a recruiting timeline together at the same time — and he knows which of those actually moves a career forward. Sevenity works across high school, college, transfer-portal, and emerging athletes, with training, positioning, and brand strategy handled by one team instead of three.</p>
-        <div class="creed">
-          <span>Develop the athlete.</span>
-          <span>Build the brand.</span>
-          <span>Create the opportunity.</span>
-        </div>
-
-        <dl class="direct">
-          <div><dt>Email</dt><dd><a href="mailto:sevenitysportsgroup@gmail.com">sevenitysportsgroup@gmail.com</a></dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:+14706012934">470-601-2934</a></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">@sevenitysports</a></dd></div>
-        </dl>
-        <div class="cta-row">
-          <a class="btn" href="contact.html">Send a message</a>
-          <a class="btn ghost" href="https://www.instagram.com/chaseclemmons_/" target="_blank" rel="noopener">@chaseclemmons_ on Instagram</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>

@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#5b8ee7">
-<title>Services &amp; Pricing — Sevenity Sports Group</title>
-<meta name="description" content="Basketball training, personal development plans, athlete consulting and advisory, and content and personal branding — services and pricing from Sevenity Sports Group.">
-<link rel="canonical" href="https://sevenitysportsgroup.com/services.html">
+<title>About &amp; Contact — Sevenity Sports Group</title>
+<meta name="description" content="Meet Chase Clemmons, founder of Sevenity Sports Group, and get in touch by email, phone, or Instagram.">
+<link rel="canonical" href="https://sevenitysportsgroup.com/about.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sevenitysportsgroup.com/services.html">
+<meta property="og:url" content="https://sevenitysportsgroup.com/about.html">
 <meta property="og:site_name" content="Sevenity Sports Group">
-<meta property="og:title" content="Services &amp; Pricing — Sevenity Sports Group">
-<meta property="og:description" content="Four service lines, one plan: training, consulting, content and branding. See what's included and what it costs.">
+<meta property="og:title" content="About &amp; Contact — Sevenity Sports Group">
+<meta property="og:description" content="Meet the founder behind Sevenity Sports Group, and get in touch.">
 <meta property="og:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Sevenity Sports Group — athlete development and advisory.">
 <meta name="twitter:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Services &amp; Pricing — Sevenity Sports Group">
-<meta name="twitter:description" content="Four service lines, one plan: training, consulting, content and branding. See what's included and what it costs.">
+<meta name="twitter:title" content="About &amp; Contact — Sevenity Sports Group">
+<meta name="twitter:description" content="Meet the founder behind Sevenity Sports Group, and get in touch.">
 <link rel="icon" href="/img/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,7 @@
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
   --amber:#F5C24B; --rose:#F2706A;
   --f-serif:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --f-baskerville:var(--f-serif);
   --f-d:var(--f-serif);
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
@@ -85,27 +86,28 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.88);backdrop-f
 .btn:hover{opacity:.85;transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
-.btn.sm{font-size:.79rem;padding:.5rem 1rem}
 
-/* services grid — text only */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.1rem}
-.svc-card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.svc-body{padding:1.5rem 1.5rem 1.6rem}
-.svc-body .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;color:var(--gold);margin-bottom:.55rem}
-.svc-body h3{margin-bottom:.5rem}
-.svc-body p{font-size:.88rem;margin:0}
+/* founder / about */
+.founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:2.6rem;align-items:start}
+@media(max-width:820px){.founder{grid-template-columns:1fr;gap:1.6rem}}
+.fpic{margin:0}
+.fpic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top center;border:1px solid var(--line);border-radius:var(--r)}
+.creed{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:clamp(1.3rem,3vw,2rem);letter-spacing:.01em;line-height:1.2;margin:1.5rem 0 0;text-transform:uppercase}
+.creed span{display:block;color:var(--ink-3)}
+.creed span:first-child{color:var(--gold)}
 
-/* pricing */
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.1rem;margin-top:2.6rem}
-.pcard{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem 1.55rem;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.pcard.feat{border-color:var(--gold)}
-.pcard h3{margin-bottom:.3rem}
-.pcard .psub{font-size:.83rem;color:var(--ink-3);margin:0 0 1.1rem}
-.ptab{width:100%;border-collapse:collapse;font-size:.92rem}
-.ptab td{padding:.55rem 0;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
-.ptab td:last-child{text-align:right;font-family:var(--f-m);font-size:.86rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
-.ptab tr:last-child td{border-bottom:none}
-.pcard .foot{margin-top:1.2rem}
+/* contact tiles */
+.direct{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:2rem}
+.direct div{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.3rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.direct dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem}
+.direct dd{margin:0;font-size:1rem;color:var(--ink)}
+.direct dd a{text-decoration:none;border-bottom:1px solid var(--line)}
+.direct dd a:hover{border-color:var(--ink)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+
+/* back to top */
+.back-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;background:var(--glass-2);border:1px solid var(--line);color:var(--ink);font-family:var(--f-m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.05rem;border-radius:999px;text-decoration:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.back-top:hover{background:rgba(255,255,255,.16)}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
 .foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -127,26 +129,13 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       "sameAs": ["https://www.instagram.com/sevenitysports/"]
     },
     {
-      "@type": "Service",
-      "name": "Basketball Training",
-      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
-      "areaServed": "Atlanta, GA",
-      "offers": [
-        {"@type": "Offer", "name": "Individual session", "price": "65", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Five-session package", "price": "250", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Sevenity Pro Session", "price": "130", "priceCurrency": "USD", "description": "Professional-level training with live defenders and rebounders."},
-        {"@type": "Offer", "name": "Unlimited monthly training", "price": "500", "priceCurrency": "USD"}
-      ]
-    },
-    {
-      "@type": "Service",
-      "name": "Content Creation",
-      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
-      "offers": [
-        {"@type": "Offer", "name": "Videography", "price": "120", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Photography", "price": "50", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Video and photography bundle", "price": "150", "priceCurrency": "USD"}
-      ]
+      "@type": "Person",
+      "@id": "https://sevenitysportsgroup.com/#chase",
+      "name": "Chase Clemmons",
+      "jobTitle": "Founder",
+      "worksFor": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kennesaw State University"},
+      "sameAs": ["https://www.instagram.com/chaseclemmons_/"]
     }
   ]
 }
@@ -173,88 +162,46 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   </div>
 </nav>
 
-<div class="wrap hero">
-  <span class="lab">What We Do</span>
-  <h1>Four service lines, one plan.</h1>
+<div id="top" class="wrap hero">
+  <span class="lab">About Sevenity</span>
+  <h1>The person behind Sevenity Sports Group.</h1>
 </div>
 
-<section id="services">
+<section id="about">
   <div class="wrap">
     <div class="sec-head">
-      <p>Athletes can start anywhere and add as they grow.</p>
+      <span class="lab">The Founder</span>
+      <h2 style="margin-top:.7rem">About &amp; Contact</h2>
     </div>
+    <div class="founder">
+      <figure class="fpic">
+        <img src="/img/chase-suit-hd.webp" alt="Chase Clemmons in a black tuxedo" width="1150" height="1560" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <h3 style="font-size:1.4rem">Chase Clemmons</h3>
+        <p style="margin-top:.8rem">Chase Clemmons is the founder of Sevenity Sports Group, an athlete development and advisory firm focused on performance and strategy. He's a former Kennesaw State collegiate athlete and Sports Management graduate who built Sevenity around the thing he could not find as a player: one person responsible for the whole picture.</p>
+        <p>He has been the athlete trying to hold a trainer, a content creator, and a recruiting timeline together at the same time — and he knows which of those actually moves a career forward. Sevenity works across high school, college, transfer-portal, and emerging athletes, with training, positioning, and brand strategy handled by one team instead of three.</p>
+        <div class="creed">
+          <span>Develop the athlete.</span>
+          <span>Build the brand.</span>
+          <span>Create the opportunity.</span>
+        </div>
 
-    <div class="svc">
-      <div class="svc-card">
-        <div class="svc-body">
-          <div class="n">ON COURT</div>
-          <h3>Player Development</h3>
-          <p>Individualized basketball training built around where an athlete actually needs to improve — skill work, live defenders, and rebounding.</p>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-body">
-          <div class="n">ROADMAP</div>
-          <h3>Personal Development Plans</h3>
-          <p>A written, individualized plan for every athlete — the roadmap a trainer's rate card never includes.</p>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-body">
-          <div class="n">STRATEGY</div>
-          <h3>Athlete Consulting &amp; Advisory</h3>
-          <p>Career and opportunity planning, offer evaluation, and positioning from someone who has been on the other side of it.</p>
-        </div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-body">
-          <div class="n">ASSETS</div>
-          <h3>Content &amp; Personal Branding</h3>
-          <p>Videography, photography, and social content built to grow an athlete's brand and following.</p>
+        <dl class="direct">
+          <div><dt>Email</dt><dd><a href="mailto:sevenitysportsgroup@gmail.com">sevenitysportsgroup@gmail.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+14706012934">470-601-2934</a></dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">@sevenitysports</a></dd></div>
+        </dl>
+        <div class="cta-row">
+          <a class="btn" href="contact.html">Send a message</a>
+          <a class="btn ghost" href="https://www.instagram.com/chaseclemmons_/" target="_blank" rel="noopener">@chaseclemmons_ on Instagram</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pricing">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="lab">Pricing</span>
-      <h2 style="margin-top:.7rem">Training and content are rate-carded.</h2>
-      <p>Session work has a published price because it should.</p>
-    </div>
-
-    <div class="price-grid">
-      <div class="pcard">
-        <h3>Basketball Training</h3>
-        <p class="psub">Individual and recurring</p>
-        <table class="ptab">
-          <tbody>
-            <tr><td>Individual session</td><td>$65</td></tr>
-            <tr><td>5-session package</td><td>$250</td></tr>
-            <tr><td>Sevenity Pro Session</td><td>$130</td></tr>
-            <tr><td>Unlimited training</td><td>$500&#8202;/&#8202;mo</td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Sevenity Pro Session — professional-level training with live defenders and rebounders.</p>
-        <div class="foot"><a class="btn ghost sm" href="book-training.html">Book training</a></div>
-      </div>
-      <div class="pcard feat">
-        <h3>Content Creation</h3>
-        <p class="psub">Per session, on location</p>
-        <table class="ptab">
-          <tbody>
-            <tr><td>Videography</td><td>$120&#8202;/&#8202;session</td></tr>
-            <tr><td>Photography</td><td>$50&#8202;/&#8202;session</td></tr>
-            <tr><td>Video + photography bundle</td><td>$150&#8202;/&#8202;session</td></tr>
-          </tbody>
-        </table>
-        <div class="foot"><a class="btn sm" href="book-content.html">Book a shoot</a></div>
-      </div>
-    </div>
-  </div>
-</section>
+<a class="back-top" href="#top">&uarr; Top</a>
 
 <footer>
   <div class="wrap foot-in">
