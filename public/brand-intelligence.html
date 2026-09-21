@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5b8ee7">
+<title>Brand Intelligence — Sevenity Sports Group</title>
+<meta name="description" content="Sevenity's free Brand Intelligence Engine reads an athlete's audience behavior — sends per comment, engagement rate, and content pillars — and ranks sponsor categories by fit rather than follower count.">
+<link rel="canonical" href="https://sevenitysportsgroup.com/brand-intelligence.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sevenitysportsgroup.com/brand-intelligence.html">
+<meta property="og:site_name" content="Sevenity Sports Group">
+<meta property="og:title" content="Brand Intelligence — Sevenity Sports Group">
+<meta property="og:description" content="Run a free Brand Intelligence scan and see which sponsor categories your audience actually converts for.">
+<meta property="og:image" content="https://sevenitysportsgroup.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sevenity Sports Group — athlete development and advisory.">
+<meta name="twitter:image" content="https://sevenitysportsgroup.com/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brand Intelligence — Sevenity Sports Group">
+<meta name="twitter:description" content="Run a free Brand Intelligence scan and see which sponsor categories your audience actually converts for.">
+<link rel="icon" href="/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --glow:#6ba1e8; --blue:#5b8ee7; --mid:#3c3e50; --char:#2f2e35;
+  --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#A9B4C6;
+  --gold:#F2C879; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(242,200,121,.16);
+  --line:rgba(255,255,255,.18); --line-soft:rgba(255,255,255,.10); --line-2:var(--line-soft);
+  --glass:rgba(11,14,20,.46); --glass-2:rgba(11,14,20,.66); --glass-light:rgba(255,255,255,.08);
+  --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
+  --amber:#F5C24B; --rose:#F2706A;
+  --f-serif:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --f-d:var(--f-serif);
+  --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:8px; --max:74rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;color:var(--ink);font-family:var(--f-b);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  background-color:var(--char);
+  background-image:radial-gradient(circle at 50% 30%, var(--glow) 0%, var(--blue) 46%, #46567a 78%, var(--char) 100%);
+  background-attachment:fixed;
+  background-size:cover;
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.lab{font-family:var(--f-m);font-size:.66rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--f-serif);font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.15;text-wrap:balance;margin:0;color:var(--ink)}
+h2{font-size:clamp(1.9rem,4.4vw,3.1rem)}
+h3{font-size:1.2rem;letter-spacing:.005em}
+p{margin:0 0 1rem;color:var(--ink-2)}
+section{padding:3rem 0 5rem;scroll-margin-top:5.5rem}
+.sec-head{max-width:44rem;margin-bottom:2.6rem}
+.sec-head p{font-size:1.02rem;margin:.9rem 0 0}
+
+/* nav — light frosted bar, centered links */
+nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,70,120,.16)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:center;position:relative}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.8rem;justify-content:center;align-items:center}
+.nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#343539;text-decoration:none;font-size:.95rem}
+.nav-links a:hover{opacity:.6}
+.nav-toggle{display:none;background:transparent;border:1px solid rgba(60,40,90,.3);border-radius:6px;padding:.5rem 1rem;font-family:var(--f-serif);font-size:.85rem;color:#343539;cursor:pointer}
+@media(max-width:900px){
+  .nav-in{justify-content:flex-start}
+  .nav-toggle{display:inline-flex;align-items:center}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(250,248,253,.98);border-bottom:1px solid rgba(90,70,120,.16);padding:.5rem 0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.85rem 1.5rem;width:100%;box-sizing:border-box;text-align:center}
+}
+
+.hero{padding:4rem 0 1rem}
+.hero .lab{display:block;margin-bottom:.9rem}
+.hero h1{font-size:clamp(2rem,5.5vw,3.4rem);max-width:26ch}
+
+.btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
+.btn.sm{font-size:.79rem;padding:.5rem 1rem}
+
+footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
+.foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
+footer a{color:var(--ink-3)}
+.note{font-size:.76rem;color:var(--ink-3);margin-top:1rem;line-height:1.55;max-width:52rem}
+.brand{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.55rem}
+footer .brand img{width:24px;height:24px;border-radius:50%}
+
+/* ---------- Brand Intelligence Engine ---------- */
+.tool{margin-top:1.5rem;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.tool-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;padding:.75rem 1.1rem;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.tool-bar .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-mark)}
+.tool-bar .ttl{font-family:var(--f-m);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.tool-bar .hint{font-size:.78rem;color:var(--ink-3);margin-left:auto}
+.tool-grid{display:grid;grid-template-columns:minmax(0,20rem) minmax(0,1fr)}
+@media(max-width:900px){.tool-grid{grid-template-columns:1fr}}
+.panel-in{padding:1.35rem 1.35rem 1.5rem;border-right:1px solid var(--line)}
+@media(max-width:900px){.panel-in{border-right:none;border-bottom:1px solid var(--line)}}
+.panel-out{padding:1.35rem 1.35rem 1.6rem;min-width:0}
+.fld{margin-bottom:1.05rem}
+.fld label,.fld .lgl{display:block;font-family:var(--f-m);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem}
+input[type=text],input[type=number],select{width:100%;font-family:var(--f-b);font-size:.92rem;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:.5rem .65rem}
+input::placeholder{color:var(--ink-3)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chip-in{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.chip-lb{font-family:var(--f-b);font-size:.79rem;padding:.3rem .6rem;border:1px solid var(--line);border-radius:99px;color:var(--ink-2);cursor:pointer;user-select:none;transition:.12s}
+.chip-lb:hover{border-color:var(--ink-3)}
+.chip-in:checked + .chip-lb{background:var(--accent-quiet);border-color:var(--accent-mark);color:var(--accent-ink);font-weight:500}
+.chip-in:focus-visible + .chip-lb{outline:2px solid var(--accent-mark);outline-offset:2px}
+.chk{display:flex;align-items:flex-start;gap:.5rem;font-size:.85rem;color:var(--ink-2);cursor:pointer}
+.chk input{margin-top:.25rem;accent-color:var(--accent-mark)}
+
+/* results */
+.empty{color:var(--ink-3);font-size:.9rem;display:flex;align-items:center;justify-content:center;min-height:16rem;text-align:center;padding:2rem;border:1px dashed var(--line);border-radius:var(--r)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
+.tile{background:var(--surface-2);padding:.8rem .9rem}
+.tile dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.3rem}
+.tile dd{margin:0;font-family:var(--f-d);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile dd.sm{font-size:1.02rem;letter-spacing:-.01em}
+.tile .cap{font-size:.72rem;color:var(--ink-3);margin-top:.15rem;line-height:1.35}
+.res-h{font-family:var(--f-m);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:1.5rem 0 .75rem;display:flex;align-items:baseline;gap:.6rem}
+.res-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.match{border:1px solid var(--line);border-radius:var(--r);background:var(--surface-2);padding:.8rem .95rem;margin-bottom:.55rem}
+.match-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem}
+.match-name{font-family:var(--f-d);font-weight:700;font-size:.98rem;letter-spacing:-.01em;flex:1;min-width:0}
+.match-score{font-family:var(--f-m);font-size:.85rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.meter{height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+.meter i{display:block;height:100%;background:var(--accent-mark);border-radius:0 3px 3px 0}
+.match-why{font-size:.84rem;color:var(--ink-2);margin:0}
+.match-ex{font-size:.8rem;color:var(--ink-3);margin:.4rem 0 0;font-family:var(--f-m);letter-spacing:.01em}
+.tagline{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--f-m);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.16rem .42rem;border-radius:2px;border:1px solid;white-space:nowrap}
+.t-nat{color:var(--ink-3);border-color:var(--line)}
+.t-loc{color:var(--amber);border-color:var(--amber)}
+.flagbox{border:1px solid var(--line);border-left:3px solid var(--amber);background:var(--surface-2);border-radius:var(--r);padding:.75rem .9rem;margin-bottom:.55rem;font-size:.85rem;color:var(--ink-2)}
+.flagbox.hot{border-left-color:var(--rose)}
+.flagbox b{color:var(--ink);font-weight:600;display:block;margin-bottom:.2rem;font-size:.8rem}
+.flagbox .ic{font-family:var(--f-m);font-weight:700;color:var(--amber);margin-right:.3rem}
+.flagbox.hot .ic{color:var(--rose)}
+.res-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.disc{font-size:.74rem;color:var(--ink-3);margin:.9rem 0 0;line-height:1.5}
+
+.lmsg{margin-top:.9rem;font-size:.9rem;border-radius:var(--r);padding:.7rem .85rem;display:none}
+.lmsg.ok{display:block;background:var(--accent-quiet);color:var(--ink);border:1px solid var(--accent)}
+.lmsg.err{display:block;background:var(--surface-2);color:var(--ink);border:1px solid var(--rose)}
+.capture{margin-top:1.4rem;border:1px solid var(--accent);border-radius:var(--r);background:var(--accent-quiet);padding:1.1rem 1.2rem}
+.capture h4{margin:0 0 .3rem;font-family:var(--f-d);font-weight:700;font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
+.capture p{margin:0 0 .9rem;font-size:.88rem;color:var(--ink-2)}
+.capture .crow{display:flex;flex-wrap:wrap;gap:.6rem}
+.capture input{flex:1 1 11rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .9rem/1.5 var(--f-b);padding:.55rem .7rem}
+.capture input:focus{outline:2px solid var(--accent);outline-offset:1px}
+</style>
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sevenitysportsgroup.com/#org",
+      "name": "Sevenity Sports Group",
+      "url": "https://sevenitysportsgroup.com/",
+      "sameAs": ["https://www.instagram.com/sevenitysports/"]
+    },
+    {
+      "@type": "Service",
+      "name": "Brand Intelligence",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "description": "A free browser-based tool that reads an athlete's audience behavior — sends per comment, engagement rate, and content pillars — and ranks sponsor categories by fit rather than follower count."
+    }
+  ]
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="why-sevenity.html">Why Sevenity</a>
+      <a href="services.html">Services</a>
+      <a href="services.html#pricing">Pricing</a>
+      <a href="brand-intelligence.html">Brand Intelligence</a>
+      <a href="community.html">Community</a>
+      <a href="https://www.instagram.com/sevenitysports" target="_blank" rel="noopener">Instagram</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <span class="lab">Featured Tool</span>
+  <h1>Try it yourself.</h1>
+</div>
+
+<section id="tool-section">
+  <div class="wrap">
+    <div class="tool" id="tool">
+    <div class="tool-bar">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="ttl">Brand Intelligence Engine &middot; v1</span>
+      <span class="hint">Runs in your browser. Your numbers never leave this page.</span>
+    </div>
+    <div class="tool-grid">
+      <form class="panel-in" id="scanForm" autocomplete="off">
+        <div class="fld">
+          <label for="handle">Athlete handle</label>
+          <input type="text" id="handle" placeholder="@yourhandle" value="">
+        </div>
+        <div class="fld row2">
+          <div>
+            <label for="followers">Followers</label>
+            <input type="number" id="followers" min="0" step="100" value="12000">
+          </div>
+          <div>
+            <label for="level">Level</label>
+            <select id="level">
+              <option value="hs">High school</option>
+              <option value="college" selected>College</option>
+              <option value="portal">Transfer portal</option>
+              <option value="pro">Pro / overseas</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld">
+          <span class="lgl">Typical post — last 5</span>
+          <div class="row2" style="margin-bottom:.7rem">
+            <div><label for="likes" style="letter-spacing:.06em">Avg likes</label><input type="number" id="likes" min="0" value="900"></div>
+            <div><label for="comments" style="letter-spacing:.06em">Avg comments</label><input type="number" id="comments" min="0" value="24"></div>
+          </div>
+          <div class="row2">
+            <div><label for="sends" style="letter-spacing:.06em">Avg sends / DM shares</label><input type="number" id="sends" min="0" value="180"></div>
+            <div><label for="market" style="letter-spacing:.06em">Home market</label><input type="text" id="market" placeholder="Atlanta, GA" value="Atlanta, GA"></div>
+          </div>
+        </div>
+        <div class="fld">
+          <span class="lgl">Content pillars — pick what you actually post</span>
+          <div class="chips" id="pillars"></div>
+        </div>
+        <div class="fld">
+          <label class="chk"><input type="checkbox" id="ownsMerch"> <span>I sell my own merch or apparel line</span></label>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn" type="submit">Run scan</button>
+          <button class="btn ghost" type="button" id="demoBtn">Load example</button>
+        </div>
+      </form>
+
+      <div class="panel-out" id="out" aria-live="polite">
+        <div class="empty">Pick your pillars and run the scan.<br>You'll get an audience read, ranked sponsor categories, and the conflicts to watch for.</div>
+      </div>
+    </div>
+  </div>
+    <p class="note">This engine scores sponsor <em>categories</em> against an athlete's audience behavior. It is a starting read, not a placement. Turning a category into a signed deal is the advisory work — that's the conversation.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div style="flex:1;min-width:14rem">
+      <div class="brand" style="margin-bottom:.5rem"><img src="/img/mark.webp" width="24" height="24" loading="eager" decoding="async" alt="">Sevenity Sports Group</div>
+      <div>Athlete Development &amp; Advisory &middot; Atlanta, GA</div>
+    </div>
+    <div>Training &middot; Opportunities &middot; Strategy</div>
+    <div><a href="mailto:sevenitysportsgroup@gmail.com">sevenitysportsgroup@gmail.com</a> &middot; <a href="tel:+14706012934">470-601-2934</a> &middot; <a href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">@sevenitysports</a></div>
+  </div>
+  <div class="wrap"><p class="note">Brand Intelligence output is a marketing recommendation, not legal, financial, or compliance advice. NIL activity is governed by institution, conference, and state rules — athletes should confirm all terms with their compliance office before signing. Indicative rate ranges are benchmarks for negotiation, not quotes or guarantees of earnings.</p></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var btn = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if(btn && links){
+    btn.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(links.querySelectorAll('a'), function(a){
+      a.addEventListener('click', function(){ links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
+    });
+  }
+
+  /* ---------- lead capture ----------
+     Posts to /api/lead, which emails Sevenity and stores nothing. */
+  var __t0 = Date.now();
+
+  function scanPayload(){
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem('sevenityScan') || 'null'); } catch(e){}
+    if(!d) return null;
+    var o = {};
+    if(d.handle)            o['Handle']         = d.handle;
+    if(d.followers != null) o['Followers']      = String(d.followers);
+    if(d.likes != null)     o['Avg likes']      = String(d.likes);
+    if(d.comments != null)  o['Avg comments']   = String(d.comments);
+    if(d.sends != null)     o['Avg sends']      = String(d.sends);
+    if(d.level)             o['Tier']           = d.level;
+    if(d.market)            o['Market']         = d.market;
+    if(d.ownsMerch != null) o['Own merch line'] = d.ownsMerch ? 'Yes' : 'No';
+    if(d.pillars && d.pillars.join) o['Pillars'] = d.pillars.join(', ');
+    return Object.keys(o).length ? o : null;
+  }
+
+  function say(el, text, ok){
+    if(!el) return;
+    el.textContent = text;
+    el.className = 'lmsg ' + (ok ? 'ok' : 'err');
+  }
+
+  function send(payload, btn, msgEl, okText){
+    var label = btn ? btn.textContent : '';
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+    return fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if(r.ok && j.ok){
+          say(msgEl, okText, true);
+          if(window.va){ try { window.va('event', { name: 'lead_sent' }); } catch(e){} }
+          return true;
+        }
+        say(msgEl, j.error || "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up.", false);
+        return false;
+      });
+    }).catch(function(){
+      say(msgEl, "That didn't send — you may be offline. Email sevenitysportsgroup@gmail.com directly.", false);
+      return false;
+    }).then(function(done){
+      if(btn){ btn.disabled = false; btn.textContent = label; }
+      return done;
+    });
+  }
+  /* the post-scan capture form is rendered after a scan, so bind by delegation */
+  document.addEventListener('submit', function(e){
+    if(!e.target || e.target.id !== 'capForm') return;
+    e.preventDefault();
+    var msgEl = document.getElementById('cap-msg');
+    var name  = document.getElementById('cap-name').value.trim();
+    var email = document.getElementById('cap-email').value.trim();
+    if(!name || !email){ say(msgEl, 'Name and email, then it goes straight to the Sevenity team.', false); return; }
+    send({
+      name: name,
+      email: email,
+      interest: 'Brand Intelligence report',
+      message: 'Sent from the Brand Intelligence Engine result.',
+      elapsed: Date.now() - __t0,
+      scan: scanPayload()
+    }, document.getElementById('cap-submit'), msgEl,
+       "Sent — the Sevenity team has your scan and will come back to you.");
+  });
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+  /* ---------- pillars ---------- */
+  var PILLARS = [
+    ['faith','Faith'],['skill','Skill / training'],['comedy','Comedy / lifestyle'],
+    ['family','Family'],['fashion','Style / fashion'],['music','Music'],
+    ['gaming','Gaming'],['community','Community / service'],
+    ['fitness','Fitness / recovery'],['academics','Academics']
+  ];
+  var box = document.getElementById('pillars');
+  PILLARS.forEach(function(p){
+    var id = 'p_' + p[0];
+    var i = document.createElement('input');
+    i.type='checkbox'; i.className='chip-in'; i.id=id; i.value=p[0];
+    var l = document.createElement('label');
+    l.className='chip-lb'; l.htmlFor=id; l.textContent=p[1];
+    box.appendChild(i); box.appendChild(l);
+  });
+
+  /* ---------- category database ----------
+     pillars: affinity 0-1 | behavior: fit per audience type | scope: national|local|both
+     floor: follower level where the category starts taking meetings          */
+  var CATS = [
+    {n:'Devotional apps & faith media', scope:'national', floor:5000,
+     p:{faith:1,community:.35,family:.3},
+     b:{forwarder:1,balanced:.65,conversational:.5,passive:.45},
+     why:'Faith content is the ad unit already — no adaptation needed. Free apps are the most forwardable product there is, and install links make performance provable.',
+     ex:'Hallow · Glorify · Dwell · YouVersion'},
+
+    {n:'Faith-athletic apparel', scope:'national', floor:3000, conflict:'merch',
+     p:{faith:.95,skill:.4,fashion:.5},
+     b:{forwarder:.8,balanced:.7,conversational:.6,passive:.5},
+     why:'Exact positioning match with national DTC shipping, so the whole audience is addressable.',
+     ex:'Active Faith Sports · AG2G · Faithletics'},
+
+    {n:'Training tech & equipment', scope:'national', floor:2500,
+     p:{skill:1,fitness:.6},
+     b:{forwarder:.85,balanced:.8,conversational:.6,passive:.6},
+     why:'Skill posts already work as unpaid product demos. The format needs no change, only the product in frame.',
+     ex:'Dr. Dish · Shoot-A-Way · HomeCourt'},
+
+    {n:'Performance nutrition & hydration', scope:'national', floor:8000,
+     p:{fitness:.9,skill:.65,family:.25},
+     b:{forwarder:.7,balanced:.8,conversational:.7,passive:.55},
+     why:'Consumable products need repeat exposure, which suits a steady posting cadence more than one viral spike.',
+     ex:'Clean-label hydration and protein brands'},
+
+    {n:'Recovery & wellness tech', scope:'national', floor:10000,
+     p:{fitness:.95,skill:.5,academics:.2},
+     b:{forwarder:.65,balanced:.7,conversational:.6,passive:.7},
+     why:'High-ticket gear converts on demonstration and trust rather than impulse, so a passive, attentive audience still performs.',
+     ex:'Recovery boots, percussion, sleep tech'},
+
+    {n:'Basketball footwear & on-court apparel', scope:'national', floor:15000, conflict:'merch',
+     p:{skill:.9,fashion:.8,fitness:.4},
+     b:{forwarder:.75,balanced:.75,conversational:.65,passive:.6},
+     why:'The category with the largest budgets and the tightest competition. Needs real reach before it engages.',
+     ex:'Footwear and performance apparel brands'},
+
+    {n:'Streetwear & lifestyle fashion', scope:'national', floor:9000, conflict:'merch',
+     p:{fashion:1,music:.6,comedy:.45},
+     b:{forwarder:.85,balanced:.7,conversational:.6,passive:.5},
+     why:'Fit content is shared privately more than any other format — sends are the metric this category quietly buys.',
+     ex:'Regional and national streetwear labels'},
+
+    {n:'Local QSR & restaurant franchises', scope:'local', floor:1500,
+     p:{comedy:.75,family:.7,community:.6,fitness:.25},
+     b:{forwarder:.7,balanced:.75,conversational:.75,passive:.5},
+     why:'Franchise operators hold real local budgets and move far faster than corporate. Food is inherently shareable.',
+     ex:'Franchise operators in the home market'},
+
+    {n:'Youth camps & training facilities', scope:'local', floor:800,
+     p:{skill:.85,community:.8,family:.65},
+     b:{forwarder:.7,balanced:.75,conversational:.8,passive:.5},
+     why:'Their customers are the parents already watching. Appearance fees plus content is the standard structure.',
+     ex:'Sports complexes, camps, AAU programs'},
+
+    {n:'Barbershops, grooming & personal care', scope:'both', floor:1500,
+     p:{fashion:.75,comedy:.5,community:.5,music:.35},
+     b:{forwarder:.7,balanced:.7,conversational:.7,passive:.5},
+     why:'Low-cost entry category that converts locally and scales nationally through DTC grooming lines.',
+     ex:'Local shops and DTC grooming brands'},
+
+    {n:'Financial literacy & banking apps', scope:'national', floor:8000,
+     p:{academics:.7,family:.6,community:.5},
+     b:{forwarder:.7,balanced:.7,conversational:.65,passive:.7},
+     why:'Athlete-money content performs well and these brands pay for trust rather than for reach alone.',
+     ex:'Banking, investing, and literacy platforms'},
+
+    {n:'Education, tutoring & test prep', scope:'national', floor:2500,
+     p:{academics:1,family:.6,community:.4},
+     b:{forwarder:.7,balanced:.7,conversational:.75,passive:.55},
+     why:'Parents are the buyer, and a student-athlete voice is the most credible one this category can rent.',
+     ex:'Test prep, tutoring, and study platforms'},
+
+    {n:'Gaming & esports', scope:'national', floor:8000,
+     p:{gaming:1,comedy:.7,music:.35},
+     b:{forwarder:.65,balanced:.75,conversational:.9,passive:.55},
+     why:'The rare category that genuinely wants comments — engaged discussion is the product these brands buy.',
+     ex:'Peripherals, titles, and esports orgs'},
+
+    {n:'Audio & music brands', scope:'national', floor:9000,
+     p:{music:.95,fashion:.6,skill:.5,fitness:.4},
+     b:{forwarder:.75,balanced:.7,conversational:.6,passive:.6},
+     why:'Pre-game and training content is where headphones and audio gear are natively demonstrated.',
+     ex:'Headphone, speaker, and streaming brands'},
+
+    {n:'Automotive dealerships & local services', scope:'local', floor:4000,
+     p:{family:.75,community:.75,fashion:.35},
+     b:{forwarder:.6,balanced:.7,conversational:.7,passive:.8},
+     why:'High-ticket local purchases sell on familiarity and repetition, so reach matters less than being recognizable at home.',
+     ex:'Dealer groups, insurance, home services'},
+
+    {n:'Community & nonprofit partnerships', scope:'local', floor:500,
+     p:{community:1,faith:.5,family:.55},
+     b:{forwarder:.7,balanced:.75,conversational:.8,passive:.6},
+     why:'Rarely the biggest cheque, but it builds the local credibility that makes the paid categories say yes.',
+     ex:'Foundations, ministries, youth orgs'}
+  ];
+
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+  var money = function(n){
+    if(n >= 1000) return '$' + (Math.round(n/50)*50).toLocaleString('en-US');
+    return '$' + Math.max(25, Math.round(n/5)*5);
+  };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  function analyze(d){
+    var eng = d.followers > 0 ? (d.likes + d.comments + d.sends) / d.followers : 0;
+    var sendRatio = d.comments > 0 ? d.sends / d.comments : (d.sends > 0 ? 99 : 0);
+
+    var behavior, bLabel, bRead;
+    if(sendRatio >= 5){
+      behavior = 'forwarder'; bLabel = 'Forwarder';
+      bRead = 'This audience privately forwards rather than discusses. Sends are one-to-one recommendations from someone trusted — the highest-intent unit on the platform. Sell shareable assets with an offer the recipient can act on immediately, and put sends in the reporting clause.';
+    } else if(sendRatio <= 1.4){
+      behavior = 'conversational'; bLabel = 'Conversationalist';
+      bRead = 'This audience talks back. Comment-driven activations, Q&A formats, polls, and community campaigns will outperform pure reach buys — and brands that want visible engagement will pay a premium for it.';
+    } else {
+      behavior = 'balanced'; bLabel = 'Balanced';
+      bRead = 'This audience both shares and responds. The widest range of sponsor types is available, but that also means fewer categories will pay a premium — differentiation has to come from the content itself.';
+    }
+    if(eng < 0.015 && sendRatio < 5){
+      behavior = 'passive'; bLabel = 'Passive reach';
+      bRead = 'Reach is outpacing response right now. Categories that convert on repetition and familiarity — local high-ticket, awareness buys — fit better than performance deals until engagement lifts.';
+    }
+
+    var scored = CATS.map(function(c){
+      var pMax = 0, pGot = 0;
+      for(var k in c.p){ pMax = Math.max(pMax, c.p[k]); }
+      d.pillars.forEach(function(p){ if(c.p[p]) pGot = Math.max(pGot, c.p[p]) + (pGot > 0 ? c.p[p] * 0.35 : 0); });
+      var pillarScore = pMax > 0 ? Math.min(1, pGot / (pMax * 1.2)) : 0;
+      var behaviorScore = c.b[behavior] || 0.5;
+      var scopeScore = c.scope === 'local' ? (d.market ? 0.92 : 0.45) : (c.scope === 'both' ? 0.85 : 1);
+      var reachScore = d.followers >= c.floor ? 1 : Math.max(0.15, d.followers / c.floor);
+      var s = 100 * (0.46 * pillarScore + 0.24 * behaviorScore + 0.14 * scopeScore + 0.16 * reachScore);
+      var flagged = c.conflict === 'merch' && d.ownsMerch;
+      if(flagged) s -= 9;
+      return { c:c, score: Math.max(0, Math.round(s)), flagged: flagged, pillarScore: pillarScore };
+    }).filter(function(r){ return r.pillarScore > 0.05; })
+      .sort(function(a,b){ return b.score - a.score; });
+
+    var engNorm = Math.min(1.6, eng / 0.03);
+    var base = (d.followers / 1000) * (7 + 15 * engNorm);
+    if(behavior === 'forwarder') base *= 1.22;
+    if(behavior === 'passive') base *= 0.8;
+    if(d.level === 'hs') base *= 0.6;
+    if(d.level === 'pro') base *= 1.15;
+
+    return { eng:eng, sendRatio:sendRatio, behavior:behavior, bLabel:bLabel, bRead:bRead,
+             scored:scored, rateLow: base * 0.7, rateHigh: base * 1.45 };
+  }
+
+  function render(d, a){
+    var out = document.getElementById('out');
+    if(d.pillars.length === 0){
+      out.innerHTML = '<div class="empty">Pick at least one content pillar — the read is built on what you actually post.</div>';
+      return;
+    }
+    var top = a.scored.slice(0, 6);
+    var h = '';
+
+    h += '<dl class="tiles">';
+    h += '<div class="tile"><dt>Engagement rate</dt><dd>' + (a.eng * 100).toFixed(1) + '%</dd><div class="cap">' + (a.eng >= 0.04 ? 'Strong' : a.eng >= 0.02 ? 'Healthy' : 'Below benchmark') + '</div></div>';
+    h += '<div class="tile"><dt>Sends per comment</dt><dd>' + (a.sendRatio >= 99 ? '&infin;' : a.sendRatio.toFixed(1) + ':1') + '</dd><div class="cap">' + (a.sendRatio >= 5 ? 'Forwarding, not discussing' : a.sendRatio <= 1.4 ? 'Discussing, not forwarding' : 'Mixed behavior') + '</div></div>';
+    h += '<div class="tile"><dt>Audience type</dt><dd class="sm">' + a.bLabel + '</dd><div class="cap">Drives category fit</div></div>';
+    h += '<div class="tile"><dt>Indicative rate / Reel</dt><dd class="sm">' + money(a.rateLow) + '&ndash;' + money(a.rateHigh) + '</dd><div class="cap">Negotiation benchmark</div></div>';
+    h += '</dl>';
+
+    h += '<div class="flagbox"><b>The read</b>' + a.bRead + '</div>';
+
+    h += '<div class="res-h">Ranked sponsor categories</div>';
+    top.forEach(function(r){
+      var scope = r.c.scope === 'local'
+        ? '<span class="tagline t-loc">Local' + (d.market ? ' &middot; ' + esc(d.market) : '') + '</span>'
+        : '<span class="tagline t-nat">' + (r.c.scope === 'both' ? 'Local + national' : 'National') + '</span>';
+      h += '<div class="match">';
+      h += '<div class="match-top"><span class="match-name">' + esc(r.c.n) + '</span>' + scope + '<span class="match-score">' + r.score + '</span></div>';
+      h += '<div class="meter"><i style="width:' + r.score + '%"></i></div>';
+      h += '<p class="match-why">' + esc(r.c.why) + '</p>';
+      h += '<p class="match-ex">' + esc(r.c.ex) + '</p>';
+      h += '</div>';
+    });
+
+    var flags = [];
+    if(d.ownsMerch && a.scored.some(function(r){ return r.flagged && r.score > 45; })){
+      flags.push(['hot','Merch conflict','You sell your own apparel. Every apparel sponsor above competes with that revenue and will ask for the exclusivity that shuts it down. Structure these as co-branded capsule drops with a revenue share — never as an open-ended ambassadorship.']);
+    }
+    if(d.level === 'college' || d.level === 'portal'){
+      flags.push(['','School outfitter &amp; disclosure','Your athletic department’s footwear and apparel contract may restrict competing brand deals when you appear in team gear. Confirm the restrictions and your school’s NIL disclosure thresholds with compliance before any term sheet circulates.']);
+    }
+    if(a.sendRatio >= 5){
+      flags.push(['','Do not buy comment activations','With this profile, tag-a-friend contests, comment-to-enter giveaways, and AMA formats will underperform and make the reporting look worse than the account really is.']);
+    }
+    if(a.eng > 0.10){
+      flags.push(['hot','Check for spike concentration','That engagement rate is high enough that it is probably carried by one or two outlier posts. Price off your median with a bonus tied to the ceiling — an inflated headline rate collapses in a brand’s audit.']);
+    }
+    if(d.followers < 3000){
+      flags.push(['','Lead with local','At this follower level, national categories will not take the meeting yet. Local and community partners build the case studies that unlock them.']);
+    }
+    if(flags.length){
+      h += '<div class="res-h">Flags before you sign</div>';
+      flags.forEach(function(f){
+        h += '<div class="flagbox' + (f[0] ? ' ' + f[0] : '') + '"><b><span class="ic">!</span>' + f[1] + '</b>' + f[2] + '</div>';
+      });
+    }
+
+    h += '<div class="res-actions">';
+    h += '<button class="btn" type="button" id="copyBtn">Copy this report</button>';
+    h += '<a class="btn ghost" href="contact.html?interest=Brand%20Intelligence%20report">Take it further with Sevenity</a>';
+    h += '</div>';
+    h += '<p class="disc">Scores rank sponsor <em>categories</em> by fit, not named brands by availability. Named examples are illustrations of each category, not existing Sevenity relationships or endorsements. Rate ranges are negotiation benchmarks, not quotes.</p>';
+
+    h += '<div class="capture"><h4>Want the Sevenity team to read this with you?</h4>'
+       + '<p>Send this scan straight to us. We’ll reply with what we’d actually do about it — the target list, the conflicts, and what your rate should be.</p>'
+       + '<form class="crow" id="capForm"><input type="email" id="cap-email" placeholder="you@email.com" aria-label="Your email" required>'
+       + '<input type="text" id="cap-name" placeholder="Your name" aria-label="Your name" required>'
+       + '<button class="btn" type="submit" id="cap-submit">Send my scan</button></form>'
+       + '<div class="lmsg" id="cap-msg" role="status" aria-live="polite"></div></div>';
+
+    out.innerHTML = h;
+    window.__lastScan = d;
+    try { localStorage.setItem('sevenityScan', JSON.stringify(d)); } catch(e){}
+
+    document.getElementById('copyBtn').addEventListener('click', function(){
+      var t = 'BRAND INTELLIGENCE SCAN — Sevenity Sports Group\n';
+      t += (d.handle ? d.handle + '\n' : '');
+      t += fmt(d.followers) + ' followers · ' + d.level + (d.market ? ' · ' + d.market : '') + '\n';
+      t += 'Pillars: ' + d.pillars.join(', ') + '\n\n';
+      t += 'Engagement rate: ' + (a.eng * 100).toFixed(1) + '%\n';
+      t += 'Sends per comment: ' + (a.sendRatio >= 99 ? 'n/a' : a.sendRatio.toFixed(1) + ':1') + '\n';
+      t += 'Audience type: ' + a.bLabel + '\n';
+      t += 'Indicative rate per Reel: ' + money(a.rateLow) + '–' + money(a.rateHigh) + '\n\n';
+      t += 'THE READ\n' + a.bRead + '\n\nRANKED CATEGORIES\n';
+      top.forEach(function(r, i){ t += (i + 1) + '. ' + r.c.n + ' (' + r.score + ') — ' + r.c.ex + '\n'; });
+      if(flags.length){
+        t += '\nFLAGS\n';
+        flags.forEach(function(f){ t += '- ' + f[1].replace(/&amp;/g,'&') + ': ' + f[2].replace(/’/g,"'") + '\n'; });
+      }
+      t += '\nIndicative only. Confirm NIL terms with your compliance office.';
+      var btn = this;
+      var done = function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy this report'; }, 1800); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(done, function(){ fallback(t, done); });
+      } else { fallback(t, done); }
+    });
+
+    function fallback(t, done){
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch(e){ btnFail(); }
+      document.body.removeChild(ta);
+    }
+    function btnFail(){
+      var b = document.getElementById('copyBtn');
+      if(b) b.textContent = 'Select and copy manually';
+    }
+  }
+
+  function collect(){
+    var picks = [];
+    Array.prototype.forEach.call(document.querySelectorAll('#pillars .chip-in'), function(i){
+      if(i.checked) picks.push(i.value);
+    });
+    var num = function(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : 0; };
+    return {
+      handle: document.getElementById('handle').value.trim(),
+      followers: num('followers'),
+      likes: num('likes'),
+      comments: num('comments'),
+      sends: num('sends'),
+      market: document.getElementById('market').value.trim(),
+      level: document.getElementById('level').value,
+      ownsMerch: document.getElementById('ownsMerch').checked,
+      pillars: picks
+    };
+  }
+
+  document.getElementById('scanForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var d = collect();
+    if(d.followers <= 0){
+      document.getElementById('out').innerHTML = '<div class="empty">Add a follower count to run the scan.</div>';
+      return;
+    }
+    render(d, analyze(d));
+    /* Counts that a scan happened. No field values are read or transmitted. */
+    if (window.va) { try { window.va('event', { name: 'scan_run' }); } catch (err) {} }
+  });
+
+  document.getElementById('demoBtn').addEventListener('click', function(){
+    document.getElementById('handle').value = '@example_hooper';
+    document.getElementById('followers').value = 45100;
+    document.getElementById('likes').value = 7849;
+    document.getElementById('comments').value = 50;
+    document.getElementById('sends').value = 910;
+    document.getElementById('market').value = 'Atlanta, GA';
+    document.getElementById('level').value = 'college';
+    document.getElementById('ownsMerch').checked = true;
+    ['faith','skill','comedy'].forEach(function(p){
+      var el = document.getElementById('p_' + p); if(el) el.checked = true;
+    });
+    var d = collect();
+    render(d, analyze(d));
+    document.getElementById('out').scrollIntoView({block:'nearest'});
+  });
+
+})();
+</script>
+</body>
+</html>
