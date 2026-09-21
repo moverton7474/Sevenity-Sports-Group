@@ -47,6 +47,7 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{
   margin:0;color:var(--ink);font-family:var(--f-b);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow:hidden;
   background-color:#2e2c2d;
   background-image:radial-gradient(ellipse at 50% 42%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);
 }
@@ -80,13 +81,8 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
 @media(max-width:640px){.title-hero-text{letter-spacing:.11em}}
 @media(max-width:420px){.title-hero-text{letter-spacing:.06em}}
 
-/* below-section — Pricing/Book Training/Book Content, then Instagram, reached by scrolling */
-.below-section{background-color:#2e2c2d;background-image:radial-gradient(ellipse at 50% 0%, #598ce8 0%, #3c4356 55%, #2e2c2d 100%);padding:2.75rem 1.25rem;display:flex;flex-direction:column;align-items:center;gap:.6rem}
-.below-section:last-of-type{padding-bottom:3.25rem}
-.below-section + .below-section{padding-top:0}
-
-/* link grid — 5 boxes on the first screen */
-.link-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem;width:100%;max-width:88rem}
+/* link grid — 6 boxes, all on the one screen */
+.link-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.85rem;width:100%;max-width:88rem}
 .link-box{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.1rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.4rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .18s ease,background .18s ease,border-color .18s ease;text-align:left;min-height:8.5rem}
 .link-box:hover{transform:translateY(-3px);background:var(--glass-2);border-color:rgba(255,255,255,.4)}
 .link-box .qn{font-family:var(--f-m);font-size:.68rem;letter-spacing:.12em;color:var(--gold)}
@@ -96,10 +92,14 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
 @media(max-width:700px){.link-grid{grid-template-columns:repeat(2,1fr)}.link-box{padding:1rem .9rem;min-height:6.5rem}}
 @media(max-height:640px){.link-box span.desc{display:none}.link-box{padding:.8rem .9rem;min-height:0}}
 
-/* below-fold grids size to their own item count */
-.below-section:nth-of-type(1) .link-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:44rem}
-.below-section:nth-of-type(2) .link-grid{grid-template-columns:minmax(0,1fr);max-width:16rem}
-@media(max-width:700px){.below-section:nth-of-type(1) .link-grid{grid-template-columns:repeat(2,1fr)}}
+/* pricing box — Book Training & Book Content nested under it */
+.link-box.pricing-box{padding:0;justify-content:space-between}
+.pricing-box .lb-head{display:flex;flex-direction:column;gap:.4rem;padding:1.3rem 1.1rem .8rem;text-decoration:none;color:var(--ink)}
+.pricing-box .lb-links{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.pricing-box .lb-links a{padding:.5rem 1.1rem;font-family:var(--f-m);font-size:.66rem;letter-spacing:.05em;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line-soft)}
+.pricing-box .lb-links a:last-child{border-bottom:none}
+.pricing-box .lb-links a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+@media(max-height:640px){.pricing-box .lb-links{display:none}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -194,39 +194,20 @@ nav{flex:none;position:relative;z-index:90;background:rgba(250,248,253,.88);back
       <h3>Contact</h3>
       <span class="desc">Tell Sevenity what you're building.</span>
     </a>
+    <div class="link-box pricing-box">
+      <a class="lb-head" href="services.html#pricing">
+        <span class="qn">06</span>
+        <h3>Pricing</h3>
+        <span class="desc">Training and content rates, clearly listed.</span>
+      </a>
+      <div class="lb-links">
+        <a href="book-training.html">Book Training &rarr;</a>
+        <a href="book-content.html">Book Content &rarr;</a>
+      </div>
+    </div>
   </div>
 </main>
 </div>
-
-<section class="below-section">
-  <div class="link-grid link-grid-sm">
-    <a class="link-box" href="services.html#pricing">
-      <span class="qn">06</span>
-      <h3>Pricing</h3>
-      <span class="desc">Training and content rates, clearly listed.</span>
-    </a>
-    <a class="link-box" href="book-training.html">
-      <span class="qn">07</span>
-      <h3>Book Training</h3>
-      <span class="desc">Book and pay for a session, or request one.</span>
-    </a>
-    <a class="link-box" href="book-content.html">
-      <span class="qn">08</span>
-      <h3>Book Content</h3>
-      <span class="desc">Book and pay for a shoot, or request one.</span>
-    </a>
-  </div>
-</section>
-
-<section class="below-section">
-  <div class="link-grid link-grid-sm">
-    <a class="link-box" href="https://www.instagram.com/sevenitysports" target="_blank" rel="noopener">
-      <span class="qn">09</span>
-      <h3>Instagram</h3>
-      <span class="desc">Follow @sevenitysports.</span>
-    </a>
-  </div>
-</section>
 
 <script>
 (function(){
