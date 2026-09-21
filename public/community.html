@@ -136,6 +136,9 @@ footer a{color:var(--ink-3)}
 .figs figcaption{margin-top:.6rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
 .figs figcaption b{display:block;font-family:var(--f-b);font-size:.85rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600;margin-bottom:.2rem}
 .port img{aspect-ratio:3/4;object-fit:cover;object-position:top center}
+.shoe-gallery{margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem}
+.shoe-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+@media(max-width:620px){.shoe-pair{grid-template-columns:1fr}}
 .band{margin-top:2rem;position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .band img{display:block;width:100%;height:auto}
 .band figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.5rem .9rem;background:linear-gradient(to top,rgba(6,10,16,.88),rgba(6,10,16,0));color:#F2F4F7;font-family:var(--f-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
@@ -221,9 +224,12 @@ footer a{color:var(--ink-3)}
       <h2>Camps and courts where kids can watch someone who made it.</h2>
       <p>Free clinics and shoe drives run out of the same community centers our founder grew up training in — because a kid learns more from watching someone from their own neighborhood get reps than from any highlight reel.</p>
     </div>
-    <div class="figs c2">
-      <figure><div class="media"><img src="/img/shoe-drive-group.webp" alt="Chase Clemmons hosting a basketball camp for kids at the Marietta Community Center" width="900" height="506" loading="lazy" decoding="async"></div><figcaption><b>Youth basketball camp</b>Marietta Community Center</figcaption></figure>
-      <figure><div class="media"><img src="/img/shoe-drive-flyer.webp" alt="Flyer for a Sevenity Sports Group community shoe drive" width="1000" height="1293" loading="lazy" decoding="async"></div><figcaption><b>Shoe drive</b>Gear for kids who need it</figcaption></figure>
+    <div class="shoe-gallery">
+      <figure><div class="media"><img src="/img/shoe-drive-group.jpg" alt="Sevenity Sports Group shoe drive with kids and volunteers at the Marietta Community Center" width="1800" height="1645" loading="lazy" decoding="async"></div><figcaption><b>Shoe drive</b>Marietta Community Center, with the Salvation Army</figcaption></figure>
+      <div class="shoe-pair">
+        <figure><div class="media"><img src="/img/shoe-drive-bench.jpg" alt="Sevenity Sports Group shoe drive with kids at the Marietta Community Center" width="1200" height="1800" loading="lazy" decoding="async"></div><figcaption><b>Trying them on</b>Shoes laid out for the kids to choose</figcaption></figure>
+        <figure><div class="media"><img src="/img/shoe-drive-shoes.jpg" alt="Sevenity Sports Group shoe drive with kids at the Marietta Community Center" width="1200" height="1800" loading="lazy" decoding="async"></div><figcaption><b>Donated shoes</b>Gear for kids who need it</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
