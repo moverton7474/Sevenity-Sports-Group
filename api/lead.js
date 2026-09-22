@@ -122,38 +122,93 @@ module.exports = async function handler(req, res) {
   if (wantsInvoice && pkg && price) {
     const invoiceNo = `SVN-${Date.now().toString(36).toUpperCase()}`;
     const invoiceDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    const firstName = name.split(/\s+/)[0] || name;
-    const invRow = (k, v) => (v ? `<tr><td style="padding:4px 14px 4px 0;color:#6C7788">${k}</td><td style="padding:4px 0"><b>${esc(v)}</b></td></tr>` : '');
     const when = [prefDate, prefTime].filter(Boolean).join(' at ');
 
-    // Written as a plain note from a person, not a templated "pay us now" blast —
-    // stacked payment-app handles in a bulleted table is exactly the shape spam
-    // filters flag, so this reads as a sentence instead.
-    const invoiceHtml = `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;color:#0D131B;line-height:1.65">
-      <p style="margin:0 0 16px">Hi ${esc(firstName)},</p>
-      <p style="margin:0 0 16px">Thanks for booking with Sevenity Sports Group. Here's the invoice for your ${esc(pkg.toLowerCase())}${when ? `, requested for ${esc(when)}` : ''}:</p>
-      <table style="border-collapse:collapse;width:100%;max-width:420px;margin-bottom:16px;border-top:1px solid #E3E9F0;border-bottom:1px solid #E3E9F0">
-        <tr><td style="padding:10px 0;color:#0D131B">${esc(pkg)}</td><td style="padding:10px 0;text-align:right;font-size:18px"><b>${esc(price)}</b></td></tr>
+    // A real invoice layout: header, billed-to, itemized line, a bolded total,
+    // and a clearly labeled payment block — so the amount and how to pay are
+    // unmissable at a glance, not buried in a sentence.
+    const invoiceHtml = `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#0D131B">
+      <table width="100%" style="border-collapse:collapse;margin-bottom:20px">
+        <tr>
+          <td style="vertical-align:top">
+            <div style="font-size:19px;font-weight:700">Sevenity Sports Group</div>
+            <div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete Development &amp; Advisory &middot; Atlanta, GA</div>
+          </td>
+          <td style="vertical-align:top;text-align:right">
+            <div style="font-size:20px;font-weight:700;letter-spacing:.04em">INVOICE</div>
+            <div style="font-size:13px;color:#6C7788;margin-top:2px">${esc(invoiceNo)}</div>
+            <div style="font-size:13px;color:#6C7788">${esc(invoiceDate)}</div>
+          </td>
+        </tr>
       </table>
-      <table style="border-collapse:collapse;margin-bottom:16px">
-        ${invRow('Athlete', athlete)}${invRow('Notes', notes)}
+      <div style="border-top:2px solid #0D131B;margin-bottom:20px"></div>
+
+      <table width="100%" style="border-collapse:collapse;margin-bottom:22px">
+        <tr>
+          <td style="vertical-align:top">
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788;margin-bottom:6px">Billed to</div>
+            <div style="font-size:15px;font-weight:600">${esc(name)}</div>
+            <div style="font-size:14px;color:#3A4552">${esc(email)}</div>
+          </td>
+          <td style="vertical-align:top;text-align:right">
+            ${when ? `<div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788;margin-bottom:6px">Session</div><div style="font-size:14px;font-weight:600">${esc(when)}</div>` : ''}
+          </td>
+        </tr>
       </table>
-      <p style="margin:0 0 16px">You can send that over by Zelle to chaseclemmons3@yahoo.com, Venmo to @Chase-Clemmons-7, or Apple Pay to 470-601-2934 — whichever's easiest for you. I'll confirm the session as soon as it comes through.</p>
-      <p style="margin:0 0 16px">Any questions, just reply here or call/text me at 470-601-2934.</p>
-      <p style="margin:0 0 4px">— Chase</p>
-      <p style="margin:0;color:#6C7788;font-size:13px">Sevenity Sports Group &middot; Athlete Development &amp; Advisory &middot; Atlanta, GA &middot; ref ${esc(invoiceNo)}, ${esc(invoiceDate)}</p>
+
+      <table width="100%" style="border-collapse:collapse;margin-bottom:4px">
+        <tr>
+          <td style="padding:0 0 8px;border-bottom:1px solid #E3E9F0;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788">Description</td>
+          <td style="padding:0 0 8px;border-bottom:1px solid #E3E9F0;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788;text-align:right">Amount</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 0;border-bottom:1px solid #E3E9F0;font-size:15px;vertical-align:top">
+            <div style="font-weight:600">${esc(pkg)}</div>
+            ${athlete ? `<div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete: ${esc(athlete)}</div>` : ''}
+            ${notes ? `<div style="font-size:13px;color:#6C7788;margin-top:2px">${esc(notes)}</div>` : ''}
+          </td>
+          <td style="padding:14px 0;border-bottom:1px solid #E3E9F0;font-size:15px;text-align:right;vertical-align:top">${esc(price)}</td>
+        </tr>
+      </table>
+
+      <table width="100%" style="border-collapse:collapse;margin-bottom:24px">
+        <tr>
+          <td style="padding:14px 0;text-align:right">
+            <span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#6C7788;margin-right:10px">Amount due</span>
+            <span style="font-size:24px;font-weight:700">${esc(price)}</span>
+          </td>
+        </tr>
+      </table>
+
+      <div style="background:#F5F7FA;border-radius:8px;padding:18px 20px;margin-bottom:24px">
+        <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788;margin-bottom:10px">How to pay</div>
+        <table style="border-collapse:collapse;width:100%">
+          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788;width:92px">Zelle</td><td style="padding:3px 0;font-size:14px"><b>chaseclemmons3@yahoo.com</b></td></tr>
+          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788">Venmo</td><td style="padding:3px 0;font-size:14px"><b>@Chase-Clemmons-7</b></td></tr>
+          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788">Apple Pay</td><td style="padding:3px 0;font-size:14px"><b>470-601-2934</b></td></tr>
+        </table>
+      </div>
+
+      <p style="margin:0 0 16px;font-size:14px;line-height:1.6">I'll confirm your ${esc(pkg.toLowerCase())} as soon as payment comes through. Any questions, just reply to this email or call/text me at 470-601-2934.</p>
+      <p style="margin:0 0 20px;font-size:14px">— Chase</p>
+      <p style="margin:0;color:#6C7788;font-size:12px">Sevenity Sports Group &middot; Athlete Development &amp; Advisory &middot; Atlanta, GA</p>
     </div>`;
 
     const invoiceText = [
-      `Hi ${firstName},`, '',
-      `Thanks for booking with Sevenity Sports Group. Here's the invoice for your ${pkg.toLowerCase()}${when ? `, requested for ${when}` : ''}:`, '',
-      `${pkg}: ${price}`,
-      athlete ? `Athlete: ${athlete}` : '',
-      notes ? `Notes: ${notes}` : '', '',
-      "You can send that over by Zelle to chaseclemmons3@yahoo.com, Venmo to @Chase-Clemmons-7, or Apple Pay to 470-601-2934 — whichever's easiest for you. I'll confirm the session as soon as it comes through.", '',
-      'Any questions, just reply here or call/text me at 470-601-2934.', '',
+      'SEVENITY SPORTS GROUP — INVOICE',
+      `${invoiceNo}  ·  ${invoiceDate}`, '',
+      `Billed to: ${name} (${email})`,
+      when ? `Session: ${when}` : '', '',
+      `${pkg}${athlete ? ` — Athlete: ${athlete}` : ''}${notes ? ` — ${notes}` : ''}`,
+      `Amount: ${price}`, '',
+      `AMOUNT DUE: ${price}`, '',
+      'How to pay:',
+      '  Zelle: chaseclemmons3@yahoo.com',
+      '  Venmo: @Chase-Clemmons-7',
+      '  Apple Pay: 470-601-2934', '',
+      `I'll confirm your ${pkg.toLowerCase()} as soon as payment comes through. Any questions, just reply to this email or call/text me at 470-601-2934.`, '',
       '— Chase',
-      `Sevenity Sports Group · Athlete Development & Advisory · Atlanta, GA · ref ${invoiceNo}, ${invoiceDate}`,
+      'Sevenity Sports Group · Athlete Development & Advisory · Atlanta, GA',
     ].filter(Boolean).join('\n');
 
     invoicePayload = {
