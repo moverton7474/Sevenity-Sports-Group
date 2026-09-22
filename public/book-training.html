@@ -63,18 +63,20 @@ section{padding:5rem 0;border-top:1px solid var(--line-soft);scroll-margin-top:5
 .sec-head p{font-size:1.02rem;margin:.9rem 0 0}
 
 /* nav — light frosted bar, centered links */
-nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,70,120,.16)}
-.nav-in{max-width:var(--max);margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:center;position:relative}
-.nav-links{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:center}
-.nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#343539;text-decoration:none;font-size:.9rem}
-.nav-links a:hover{opacity:.6}
-.nav-toggle{display:none;background:transparent;border:1px solid rgba(60,40,90,.3);border-radius:6px;padding:.5rem 1rem;font-family:var(--f-serif);font-size:.85rem;color:#343539;cursor:pointer}
-@media(max-width:960px){
-  .nav-in{justify-content:flex-start}
-  .nav-toggle{display:inline-flex;align-items:center}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(250,248,253,.98);border-bottom:1px solid rgba(90,70,120,.16);padding:.5rem 0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:.85rem 1.5rem;width:100%;box-sizing:border-box;text-align:center}
+nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,70,120,.16)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative}
+.nav-brand{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;color:#232428;text-decoration:none;display:flex;align-items:center;gap:.55rem;white-space:nowrap}
+.nav-brand img{width:26px;height:26px;border-radius:50%;display:block;flex:none}
+.nav-toggle{display:inline-flex;align-items:center;gap:.55rem;background:transparent;border:1px solid rgba(60,40,90,.3);border-radius:6px;padding:.5rem 1rem;font-family:var(--f-serif);font-size:.85rem;color:#343539;cursor:pointer;flex:none}
+.nav-toggle .bars{display:inline-flex;flex-direction:column;gap:3px}
+.nav-toggle .bars span{display:block;width:15px;height:2px;background:#343539;border-radius:1px}
+.nav-links{display:none;position:absolute;top:100%;right:0;z-index:95;flex-direction:column;gap:0;background:rgba(250,248,253,.98);border:1px solid rgba(90,70,120,.16);border-radius:10px;padding:.5rem 0;min-width:14.5rem;box-shadow:0 16px 36px rgba(20,16,30,.22)}
+.nav-links.open{display:flex}
+.nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#343539;text-decoration:none;font-size:.9rem;padding:.7rem 1.3rem;width:100%;box-sizing:border-box;text-align:left}
+.nav-links a:hover{opacity:.7;background:rgba(90,70,120,.07)}
+@media(max-width:640px){
+  .nav-brand{font-size:.86rem}
+  .nav-links{left:1.5rem;right:1.5rem;min-width:0}
 }
 
 .hero{padding:4rem 0 1rem}
@@ -152,7 +154,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <body>
 <nav>
   <div class="nav-in">
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <a class="nav-brand" href="index.html"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">Sevenity Sports Group</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+      <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="why-sevenity.html">Why Sevenity</a>
@@ -163,7 +169,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <a href="book-training.html">Book Training</a>
       <a href="book-content.html">Book Content</a>
       <a href="community.html">Community</a>
-      <a href="https://www.instagram.com/sevenitysports" target="_blank" rel="noopener">Instagram</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>
