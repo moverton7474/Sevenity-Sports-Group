@@ -28,17 +28,17 @@
 <style>
 :root{
   --glow:#6ba1e8; --blue:#5b8ee7; --mid:#3c3e50; --char:#2f2e35;
-  --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#A9B4C6;
+  --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#C3CCDC;
   --gold:#F2C879; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(242,200,121,.16);
   --line:rgba(255,255,255,.18); --line-soft:rgba(255,255,255,.10); --line-2:var(--line-soft);
-  --glass:rgba(11,14,20,.46); --glass-2:rgba(11,14,20,.66); --glass-light:rgba(255,255,255,.08);
+  --glass:rgba(8,10,15,.78); --glass-2:rgba(8,10,15,.88); --glass-light:rgba(255,255,255,.08);
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
   --amber:#F5C24B; --rose:#F2706A;
   --f-serif:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-d:var(--f-serif);
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --r:8px; --max:88rem;
+  --r:8px; --max:104rem;
 }
 *{box-sizing:border-box}
 html{font-size:112.5%;scroll-behavior:smooth;scroll-padding-top:5.5rem}
@@ -49,6 +49,7 @@ body{
   background-image:radial-gradient(circle at 50% 30%, var(--glow) 0%, var(--blue) 46%, #46567a 78%, var(--char) 100%);
   background-attachment:fixed;
   background-size:cover;
+  text-shadow:0 1px 2px rgba(0,0,0,.6),0 3px 10px rgba(0,0,0,.35);
 }
 .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
 a{color:var(--ink)}
@@ -118,6 +119,27 @@ footer a{color:var(--ink-3)}
 .note{font-size:.76rem;color:var(--ink-3);margin-top:1rem;line-height:1.55;max-width:52rem}
 .brand{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.55rem}
 footer .brand img{width:24px;height:24px;border-radius:50%}
+
+/* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
+   Mobile/tablet (below 1024px) is untouched on purpose. */
+@media(min-width:1024px){
+  html{font-size:150%}
+  body{font-size:22px}
+  .nav-brand{font-size:1.25rem}
+  .nav-toggle{font-size:1.05rem;padding:.7rem 1.4rem}
+  .nav-links{min-width:18rem}
+  .nav-links a{font-size:1.15rem;padding:.95rem 1.7rem}
+}
+@media(min-width:1440px){
+  html{font-size:165%}
+  body{font-size:24px}
+  .nav-brand{font-size:1.3rem}
+  .nav-links a{font-size:1.22rem}
+}
+@media(min-width:1800px){
+  html{font-size:178%}
+  body{font-size:25px}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">

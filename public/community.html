@@ -34,13 +34,13 @@
   --f-d:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --r:4px; --max:84rem;
+  --r:4px; --max:100rem;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
     --ground:#F5F7FA; --surface:#FFFFFF; --surface-2:#EEF2F7; --surface-3:#E3E9F0;
     --line:#D9E0E9; --line-2:#E7EDF3;
-    --ink:#0D131B; --ink-2:#47525F; --ink-3:#76818F;
+    --ink:#0D131B; --ink-2:#47525F; --ink-3:#4F5A67;
     --accent:#1B3F94; --accent-ink:#1B3F94; --accent-quiet:#DCE9F9; --accent-mark:#4F82D6;
     --amber:#9A6412; --rose:#B3423C;
   }
@@ -48,7 +48,7 @@
 :root[data-theme="light"]{
   --ground:#F5F7FA; --surface:#FFFFFF; --surface-2:#EEF2F7; --surface-3:#E3E9F0;
   --line:#D9E0E9; --line-2:#E7EDF3;
-  --ink:#0D131B; --ink-2:#47525F; --ink-3:#76818F;
+  --ink:#0D131B; --ink-2:#47525F; --ink-3:#4F5A67;
   --accent:#1B3F94; --accent-ink:#1B3F94; --accent-quiet:#DCE9F9; --accent-mark:#4F82D6;
   --amber:#9A6412; --rose:#B3423C;
 }
@@ -146,6 +146,27 @@ footer a{color:var(--ink-3)}
 .band figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.5rem .9rem;background:linear-gradient(to top,rgba(6,10,16,.88),rgba(6,10,16,0));color:#F2F4F7;font-family:var(--f-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
 @media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:1fr}}
 @media(max-width:620px){.figs.c2{grid-template-columns:1fr}}
+
+/* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
+   Mobile/tablet (below 1024px) is untouched on purpose. */
+@media(min-width:1024px){
+  html{font-size:150%}
+  body{font-size:22px}
+  .nav-brand{font-size:1.25rem}
+  .nav-toggle{font-size:1.05rem;padding:.7rem 1.4rem}
+  .nav-links{min-width:18rem}
+  .nav-links a{font-size:1.15rem;padding:.95rem 1.7rem}
+}
+@media(min-width:1440px){
+  html{font-size:165%}
+  body{font-size:24px}
+  .nav-brand{font-size:1.3rem}
+  .nav-links a{font-size:1.22rem}
+}
+@media(min-width:1800px){
+  html{font-size:178%}
+  body{font-size:25px}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
