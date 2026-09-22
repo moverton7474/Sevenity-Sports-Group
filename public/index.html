@@ -83,9 +83,9 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 /* brand hero — the name, at the very top of the page */
 .brand-hero{padding:6rem 0 3.2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
 .brand-hero .title-hero-text{font-family:var(--f-baskerville);font-style:italic;font-weight:400;text-transform:uppercase;color:#343539;letter-spacing:.22em;line-height:1.14;margin:0}
-.brand-hero .title-hero-text span{display:block;font-size:clamp(2.6rem,11vw,7.4rem)}
-@media(max-width:640px){.brand-hero .title-hero-text{letter-spacing:.11em}}
-@media(max-width:420px){.brand-hero .title-hero-text{letter-spacing:.06em}}
+.brand-hero .title-hero-text span{display:block;font-size:clamp(2.6rem,11vw,7.4rem);white-space:nowrap}
+@media(max-width:640px){.brand-hero .title-hero-text{letter-spacing:.09em}.brand-hero .title-hero-text span{font-size:9vw}}
+@media(max-width:420px){.brand-hero .title-hero-text{letter-spacing:.05em}.brand-hero .title-hero-text span{font-size:8.6vw}}
 
 .btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
 .btn:hover{opacity:.85;transform:translateY(-1px)}
@@ -171,8 +171,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <a href="services.html">Services</a>
       <a href="services.html#pricing">Pricing</a>
       <a href="brand-intelligence.html">Brand Intelligence</a>
-      <a href="book-training.html">Book Training</a>
-      <a href="book-content.html">Book Content</a>
       <a href="community.html">Community</a>
       <a href="contact.html">Contact</a>
     </div>
