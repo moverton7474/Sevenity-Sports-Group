@@ -235,8 +235,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   <div class="wrap">
     <div class="sec-head">
       <span class="lab">Request a Package</span>
-      <h2 style="margin-top:.7rem">Not ready to pay online?</h2>
-      <p>Tell Sevenity what you're looking for and the team will follow up to confirm your session.</p>
+      <h2 style="margin-top:.7rem">Ready to book a session?</h2>
+      <p>Tell Sevenity what you're looking for and we'll follow up with an invoice to confirm your session.</p>
     </div>
 
     <form class="lead" id="leadForm" autocomplete="off">
@@ -387,7 +387,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         company: document.getElementById('req-company').value,
         elapsed: Date.now() - __t0
       }, document.getElementById('req-submit'), msgEl,
-         'Thanks, the Sevenity team will confirm your session.')
+         "Thanks — Sevenity will follow up with an invoice to confirm your session.")
       .then(function(ok){ if(ok) leadForm.reset(); });
     });
   }
