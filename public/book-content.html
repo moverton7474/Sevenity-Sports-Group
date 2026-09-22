@@ -361,12 +361,19 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
       var packageSel = document.getElementById('package');
       var packageLabel = packageSel.options[packageSel.selectedIndex].text;
+      var packageParts = packageLabel.split(/\s*—\s*/);
+      var packageName = packageParts[0] || packageLabel;
+      var packagePrice = packageParts[1] || '';
+      var athleteVal = document.getElementById('req-athlete').value.trim() || name;
+      var dateVal = document.getElementById('req-date').value.trim();
+      var timeVal = document.getElementById('req-time').value.trim();
+      var notesVal = document.getElementById('req-notes').value.trim();
       var message = [
-        'Athlete: ' + (document.getElementById('req-athlete').value.trim() || name),
+        'Athlete: ' + athleteVal,
         'Package: ' + packageLabel,
-        'Preferred date: ' + (document.getElementById('req-date').value.trim() || 'Not specified'),
-        'Preferred time: ' + (document.getElementById('req-time').value.trim() || 'Not specified'),
-        'Location / notes: ' + (document.getElementById('req-notes').value.trim() || 'None')
+        'Preferred date: ' + (dateVal || 'Not specified'),
+        'Preferred time: ' + (timeVal || 'Not specified'),
+        'Location / notes: ' + (notesVal || 'None')
       ].join('\n');
 
       send({
@@ -376,9 +383,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         interest: 'Content booking',
         message: message,
         company: document.getElementById('req-company').value,
-        elapsed: Date.now() - __t0
+        elapsed: Date.now() - __t0,
+        invoice: true,
+        package: packageName,
+        price: packagePrice,
+        athlete: athleteVal,
+        date: dateVal,
+        time: timeVal,
+        notes: notesVal
       }, document.getElementById('req-submit'), msgEl,
-         "Thanks — Sevenity will follow up with an invoice to confirm your shoot.")
+         "Thanks — check your email, we've sent your invoice.")
       .then(function(ok){ if(ok) leadForm.reset(); });
     });
   }
