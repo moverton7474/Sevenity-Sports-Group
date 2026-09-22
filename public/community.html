@@ -34,7 +34,7 @@
   --f-d:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --r:4px; --max:72rem;
+  --r:4px; --max:84rem;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
@@ -54,9 +54,9 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{font-size:112.5%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-b);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-b);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
 a{color:var(--accent-ink)}
 :focus-visible{outline:2px solid var(--accent-mark);outline-offset:3px;border-radius:2px}
@@ -94,7 +94,7 @@ footer .brand img{width:22px;height:22px;border-radius:50%}
 .btn.sm{font-size:.79rem;padding:.42rem .8rem}
 
 /* hero */
-.hero{padding:4.5rem 0 3.5rem}
+.hero{padding-top:4.5rem;padding-bottom:3.5rem}
 .hero .lab{color:var(--accent-ink)}
 .hero h1{font-size:clamp(2.5rem,7vw,4.6rem);font-weight:800;margin:1rem 0 0;max-width:20ch}
 .hero h1 em{font-style:normal;color:var(--accent-ink)}

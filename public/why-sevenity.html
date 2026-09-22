@@ -39,13 +39,13 @@
   --f-d:var(--f-serif);
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --r:8px; --max:74rem;
+  --r:8px; --max:88rem;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+html{font-size:112.5%;scroll-behavior:smooth;scroll-padding-top:5.5rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{
-  margin:0;color:var(--ink);font-family:var(--f-b);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  margin:0;color:var(--ink);font-family:var(--f-b);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;
   background-color:var(--char);
   background-image:radial-gradient(circle at 50% 30%, var(--glow) 0%, var(--blue) 46%, #46567a 78%, var(--char) 100%);
   background-attachment:fixed;
@@ -80,7 +80,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
   .nav-links{left:1.5rem;right:1.5rem;min-width:0}
 }
 
-.hero{padding:4rem 0 1rem}
+.hero{padding-top:4rem;padding-bottom:1rem}
 .hero .lab{display:block;margin-bottom:.9rem}
 .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);max-width:26ch}
 
