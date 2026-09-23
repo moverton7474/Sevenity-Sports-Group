@@ -93,6 +93,9 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
 .cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+.hero-cta{justify-content:center;margin-top:.6rem}
+.hero-cta .btn{font-weight:400}
+@media(max-width:640px){.hero-cta{gap:.5rem}.hero-cta .btn{font-size:.72rem;padding:.55rem 1.05rem}}
 
 /* founder / about */
 .founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:2.6rem;align-items:start}
@@ -201,6 +204,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 <div id="top" class="wrap brand-hero">
   <h1 class="title-hero-text"><span>Sevenity</span><span>Sports Group</span></h1>
+  <div class="cta-row hero-cta">
+    <a class="btn" href="why-sevenity.html">Why Sevenity</a>
+    <a class="btn" href="services.html">See services &amp; pricing</a>
+  </div>
 </div>
 
 <section id="about-sevenity">
@@ -210,10 +217,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <h2 style="margin-top:.7rem">One firm for the whole picture.</h2>
       <p>Sevenity Sports Group brings on-court training, personal development plans, athlete consulting and advisory, and content and personal branding together under one roof — backed by a nationwide coaching and scouting network. An athlete's training, opportunities, and brand shouldn't be handled by three different people who never talk to each other. At Sevenity, they're handled by one.</p>
       <p>From high school and college athletes to those navigating the transfer portal, Sevenity builds the plan, does the work, and stays in the room for what comes next.</p>
-    </div>
-    <div class="cta-row">
-      <a class="btn" href="services.html">See services &amp; pricing</a>
-      <a class="btn ghost" href="why-sevenity.html">Why Sevenity</a>
     </div>
   </div>
 </section>
