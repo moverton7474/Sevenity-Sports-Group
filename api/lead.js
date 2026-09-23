@@ -82,6 +82,7 @@ module.exports = async function handler(req, res) {
   const prefDate = clean(body.date, 60);
   const prefTime = clean(body.time, 60);
   const notes = clean(body.notes, 1000);
+  const location = clean(body.location, 80);
 
   if (!name) return res.status(400).json({ error: "Add your name so we know who we're replying to." });
   if (!looksLikeEmail(email)) return res.status(400).json({ error: 'That email address does not look right — check it and try again.' });
@@ -122,7 +123,13 @@ module.exports = async function handler(req, res) {
   if (wantsInvoice && pkg && price) {
     const invoiceNo = `SVN-${Date.now().toString(36).toUpperCase()}`;
     const invoiceDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    const when = [prefDate, prefTime].filter(Boolean).join(' at ');
+    const when = [[prefDate, prefTime].filter(Boolean).join(' at '), location].filter(Boolean).join(' · ');
+    // Tap-to-pay link: opens Venmo (app on phones, website on desktop) with
+    // Chase as the recipient and the amount + invoice number filled in.
+    const amountNum = (price.replace(/,/g, '').match(/\d+(?:\.\d{1,2})?/) || [''])[0];
+    const venmoUrl = 'https://venmo.com/Chase-Clemmons-7?txn=pay'
+      + (amountNum ? `&amount=${amountNum}` : '')
+      + `&note=${encodeURIComponent(`Sevenity ${pkg} (${invoiceNo})`)}`;
 
     // A real invoice layout: header, billed-to, itemized line, a bolded total,
     // and a clearly labeled payment block — so the amount and how to pay are
@@ -183,9 +190,9 @@ module.exports = async function handler(req, res) {
       <div style="background:#F5F7FA;border-radius:8px;padding:18px 20px;margin-bottom:24px">
         <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6C7788;margin-bottom:10px">How to pay</div>
         <table style="border-collapse:collapse;width:100%">
-          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788;width:92px">Zelle</td><td style="padding:3px 0;font-size:14px"><b>chaseclemmons3@yahoo.com</b></td></tr>
-          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788">Venmo</td><td style="padding:3px 0;font-size:14px"><b>@Chase-Clemmons-7</b></td></tr>
-          <tr><td style="padding:3px 0;font-size:14px;color:#6C7788">Apple Pay</td><td style="padding:3px 0;font-size:14px"><b>470-601-2934</b></td></tr>
+          <tr><td style="padding:6px 0;font-size:14px;color:#6C7788;width:92px">Venmo</td><td style="padding:6px 0;font-size:14px"><a href="${esc(venmoUrl)}" style="color:#008CFF;font-weight:700;text-decoration:underline">@Chase-Clemmons-7</a> <span style="color:#6C7788;font-size:12px">&mdash; tap to pay</span></td></tr>
+          <tr><td style="padding:6px 0;font-size:14px;color:#6C7788">Apple Pay</td><td style="padding:6px 0;font-size:14px"><a href="sms:+14706012934" style="color:#0D131B;font-weight:700;text-decoration:underline">470-601-2934</a> <span style="color:#6C7788;font-size:12px">&mdash; tap to open Messages, then send with Apple Cash</span></td></tr>
+          <tr><td style="padding:6px 0;font-size:14px;color:#6C7788">Zelle</td><td style="padding:6px 0;font-size:14px"><b>chaseclemmons3@yahoo.com</b> <span style="color:#6C7788;font-size:12px">&mdash; send from your bank&rsquo;s app</span></td></tr>
         </table>
       </div>
 
@@ -203,9 +210,9 @@ module.exports = async function handler(req, res) {
       `Amount: ${price}`, '',
       `AMOUNT DUE: ${price}`, '',
       'How to pay:',
-      '  Zelle: chaseclemmons3@yahoo.com',
-      '  Venmo: @Chase-Clemmons-7',
-      '  Apple Pay: 470-601-2934', '',
+      `  Venmo: @Chase-Clemmons-7 — ${venmoUrl}`,
+      '  Apple Pay: 470-601-2934 (send with Apple Cash in Messages)',
+      "  Zelle: chaseclemmons3@yahoo.com (send from your bank's app)", '',
       `I'll confirm your ${pkg.toLowerCase()} as soon as payment comes through. Any questions, just reply to this email or call/text me at 470-601-2934.`, '',
       '— Chase',
       'Sevenity Sports Group · Athlete Development & Advisory · Atlanta, GA',
