@@ -98,15 +98,17 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 @media(max-width:640px){.hero-cta{gap:.5rem}.hero-cta .btn{font-size:.72rem;padding:.55rem 1.05rem}}
 
 /* player development */
-.pdev{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2.6rem;align-items:center}
-.pdev-video{position:relative;aspect-ratio:9/16;max-height:82vh;margin:0 auto;width:100%;max-width:26rem;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0d131b;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.pdev-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.pdev-cards{display:grid;gap:1rem;margin-top:1.4rem}
-.pcard2{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem}
+#player-development{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:6rem 0}
+.pdev-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.pdev-bg video{width:100%;height:100%;object-fit:cover;display:block;opacity:.38;filter:saturate(.9)}
+.pdev-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,19,27,.55) 0%,rgba(13,19,27,.25) 45%,rgba(13,19,27,.75) 100%)}
+#player-development .wrap{position:relative;z-index:1;width:100%}
+.pdev-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.8rem}
+.pcard2{background:rgba(8,10,15,.32);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem}
 .pcard2 .lab{display:block;margin-bottom:.35rem}
 .pcard2 h3{font-size:1.02rem;margin:0}
 .pcard2 p{font-size:.84rem;color:var(--ink-2);margin:.45rem 0 0}
-@media(max-width:900px){.pdev{grid-template-columns:1fr}.pdev-video{max-width:22rem}}
+@media(max-width:900px){.pdev-cards{grid-template-columns:1fr}}
 
 /* proven brand activations */
 .acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
@@ -239,41 +241,37 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 </div>
 
 <section id="player-development">
+  <div class="pdev-bg" aria-hidden="true">
+    <video poster="/img/player-development-poster.webp" autoplay muted loop playsinline preload="auto">
+      <source src="/video/player-development.mp4" type="video/mp4">
+      <source src="/video/player-development.webm" type="video/webm">
+    </video>
+  </div>
   <div class="wrap">
-    <div class="pdev">
-      <div class="pdev-video">
-        <video poster="/img/player-development-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="Sevenity player development training clips">
-          <source src="/video/player-development.mp4" type="video/mp4">
-          <source src="/video/player-development.webm" type="video/webm">
-        </video>
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="lab">Player Development</span>
+      <h2 style="margin-top:.7rem">Player development.</h2>
+      <p>On-court work built around the athlete in front of us &mdash; real reps, real feedback, and a plan that carries from the gym to game day.</p>
+    </div>
+    <div class="pdev-cards">
+      <div class="pcard2">
+        <span class="lab">01 &middot; Skill Work</span>
+        <h3>On-court training</h3>
+        <p>Ball handling, finishing, and shooting in one-on-one and small-group sessions.</p>
       </div>
-      <div>
-        <div class="sec-head" style="margin-bottom:0">
-          <span class="lab">Player Development</span>
-          <h2 style="margin-top:.7rem">Player development.</h2>
-          <p>On-court work built around the athlete in front of us &mdash; real reps, real feedback, and a plan that carries from the gym to game day.</p>
-        </div>
-        <div class="pdev-cards">
-          <div class="pcard2">
-            <span class="lab">01 &middot; Skill Work</span>
-            <h3>On-court training</h3>
-            <p>Ball handling, finishing, and shooting in one-on-one and small-group sessions.</p>
-          </div>
-          <div class="pcard2">
-            <span class="lab">02 &middot; Game Reps</span>
-            <h3>Live, competitive reps</h3>
-            <p>Moves are tested against a defender so they hold up at game speed.</p>
-          </div>
-          <div class="pcard2">
-            <span class="lab">03 &middot; The Plan</span>
-            <h3>Personal development plans</h3>
-            <p>Every athlete leaves with clear goals and what to work on before the next session.</p>
-          </div>
-        </div>
-        <div class="cta-row">
-          <a class="btn" href="book-training.html">Book training</a>
-        </div>
+      <div class="pcard2">
+        <span class="lab">02 &middot; Game Reps</span>
+        <h3>Live, competitive reps</h3>
+        <p>Moves are tested against a defender so they hold up at game speed.</p>
       </div>
+      <div class="pcard2">
+        <span class="lab">03 &middot; The Plan</span>
+        <h3>Personal development plans</h3>
+        <p>Every athlete leaves with clear goals and what to work on before the next session.</p>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a class="btn" href="book-training.html">Book training</a>
     </div>
   </div>
 </section>
