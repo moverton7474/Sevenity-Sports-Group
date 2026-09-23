@@ -54,9 +54,9 @@
 }
 
 *{box-sizing:border-box}
-html{font-size:112.5%;scroll-behavior:smooth}
+html{font-size:126%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-b);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-b);font-size:20.16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
 a{color:var(--accent-ink)}
 :focus-visible{outline:2px solid var(--accent-mark);outline-offset:3px;border-radius:2px}
@@ -72,7 +72,7 @@ section{padding:5rem 0;border-top:1px solid var(--line)}
 /* nav — light frosted bar, centered links */
 nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,70,120,.16)}
 .nav-in{max-width:var(--max);margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative}
-.nav-brand{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;color:#343539;text-decoration:none;display:flex;align-items:center;gap:.55rem;white-space:nowrap}
+.nav-brand{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:0.875rem;letter-spacing:.02em;text-transform:uppercase;color:#343539;text-decoration:none;display:flex;align-items:center;gap:.55rem;white-space:nowrap}
 .nav-brand img{width:26px;height:26px;border-radius:50%;display:block;flex:none}
 .nav-toggle{display:inline-flex;align-items:center;gap:.55rem;background:transparent;border:1px solid rgba(60,40,90,.3);border-radius:6px;padding:.5rem 1rem;font-family:var(--f-serif);font-size:.85rem;color:#000000;cursor:pointer;flex:none}
 .nav-toggle .bars{display:inline-flex;flex-direction:column;gap:3px}
@@ -82,10 +82,10 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#000000;text-decoration:none;font-size:.9rem;padding:.7rem 1.3rem;width:100%;box-sizing:border-box;text-align:left}
 .nav-links a:hover{opacity:.7;background:rgba(90,70,120,.07)}
 @media(max-width:640px){
-  .nav-brand{font-size:.86rem}
+  .nav-brand{font-size:0.768rem}
   .nav-links{left:1.5rem;right:1.5rem;min-width:0}
 }
-.brand{font-family:var(--f-d);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.55rem}
+.brand{font-family:var(--f-d);font-weight:800;font-size:0.938rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.55rem}
 footer .brand img{width:22px;height:22px;border-radius:50%}
 .btn{font-family:var(--f-b);font-weight:600;font-size:.87rem;padding:.55rem 1.05rem;border-radius:var(--r);border:1px solid var(--accent-mark);background:var(--accent-mark);color:#000000;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s}
 .btn:hover{opacity:.86}
@@ -146,22 +146,22 @@ footer a{color:var(--ink-3)}
 /* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
    Mobile/tablet (below 1024px) is untouched on purpose. */
 @media(min-width:1024px){
-  html{font-size:150%}
-  body{font-size:22px}
-  .nav-brand{font-size:1.25rem}
+  html{font-size:168%}
+  body{font-size:24.64px}
+  .nav-brand{font-size:1.116rem}
   .nav-toggle{font-size:1.05rem;padding:.7rem 1.4rem}
   .nav-links{min-width:18rem}
   .nav-links a{font-size:.95rem;padding:.95rem 1.7rem}
 }
 @media(min-width:1440px){
-  html{font-size:165%}
-  body{font-size:24px}
-  .nav-brand{font-size:1.3rem}
+  html{font-size:184.8%}
+  body{font-size:26.88px}
+  .nav-brand{font-size:1.161rem}
   .nav-links a{font-size:1.02rem}
 }
 @media(min-width:1800px){
-  html{font-size:178%}
-  body{font-size:25px}
+  html{font-size:199.36%}
+  body{font-size:28px}
 }
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
