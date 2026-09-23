@@ -146,6 +146,14 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   body{font-size:28px}
 }
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
+.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.partner{display:flex;gap:1rem;align-items:flex-start;border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.3rem 1.4rem;text-decoration:none;color:inherit;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:border-color .15s,transform .15s}
+.partner:hover{border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+.partner .mono{flex:none;width:3rem;height:3rem;border-radius:50%;background:var(--gold);color:#0d131b;display:flex;align-items:center;justify-content:center;font-family:var(--f-m);font-weight:700;font-size:.9rem}
+.partner h3{margin:0}
+.partner .ig{display:block;font-family:var(--f-m);font-size:.8rem;color:var(--gold);margin-top:.25rem}
+.partner p{margin:.5rem 0 0;font-size:.9rem;color:var(--ink-2)}
+@media(max-width:760px){.partners{grid-template-columns:1fr}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -222,6 +230,34 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <p class="price">$150 <small>/ session</small></p>
         <div class="foot"><button class="btn block book-btn" type="button" data-package-id="content-bundle">Book and pay</button></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab">Content Partners</span>
+      <h2 style="margin-top:.7rem">Who Sevenity creates with.</h2>
+      <p>Sevenity partners with trusted media creators to shoot, edit, and share athlete content.</p>
+    </div>
+    <div class="partners">
+      <a class="partner" href="https://www.instagram.com/caden.cams/" target="_blank" rel="noopener">
+        <span class="mono" aria-hidden="true">CC</span>
+        <span>
+          <h3>Caden C</h3>
+          <span class="ig">@caden.cams</span>
+          <p>Georgia-based photographer and videographer handling all media, photo and video.</p>
+        </span>
+      </a>
+      <a class="partner" href="https://www.instagram.com/takeflighthoops/" target="_blank" rel="noopener">
+        <span class="mono" aria-hidden="true">TF</span>
+        <span>
+          <h3>Take Flight Hoops</h3>
+          <span class="ig">@takeflighthoops</span>
+          <p>Basketball media company sharing highlights and the latest from the game to 9K+ followers.</p>
+        </span>
+      </a>
     </div>
   </div>
 </section>
