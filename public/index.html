@@ -108,6 +108,9 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .pcard2 .lab{display:block;margin-bottom:.35rem}
 .pcard2 h3{font-size:1.02rem;margin:0}
 .pcard2 p{font-size:.84rem;color:var(--ink-2);margin:.45rem 0 0}
+a.pcard2{display:block;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s,background .15s}
+a.pcard2:hover{border-color:rgba(255,255,255,.6);background:rgba(8,10,15,.45);transform:translateY(-2px)}
+.pcard2 .pmore{display:inline-block;margin-top:.8rem;font-size:.78rem;color:var(--gold);font-weight:600}
 @media(max-width:900px){.pdev-cards{grid-template-columns:1fr}}
 
 /* proven brand activations */
@@ -253,21 +256,24 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <p>On-court work built around the athlete in front of us &mdash; real reps, real feedback, and a plan that carries from the gym to game day.</p>
     </div>
     <div class="pdev-cards">
-      <div class="pcard2">
+      <a class="pcard2" href="development-plan.html">
         <span class="lab">01 &middot; The Plan</span>
         <h3>Personal development plans</h3>
         <p>Every athlete leaves with clear goals and what to work on before the next session.</p>
-      </div>
-      <div class="pcard2">
+        <span class="pmore">See an example plan &rarr;</span>
+      </a>
+      <a class="pcard2" href="book-training.html">
         <span class="lab">02 &middot; Skill Work</span>
         <h3>On-court training</h3>
         <p>Ball handling, finishing, and shooting in one-on-one and small-group sessions.</p>
-      </div>
-      <div class="pcard2">
+        <span class="pmore">View training packages &rarr;</span>
+      </a>
+      <a class="pcard2" href="book-training.html">
         <span class="lab">03 &middot; Game Reps</span>
         <h3>Live, competitive reps</h3>
         <p>Moves are tested against a defender so they hold up at game speed.</p>
-      </div>
+        <span class="pmore">Book a session &rarr;</span>
+      </a>
     </div>
     <div class="cta-row">
       <a class="btn" href="book-training.html">Book training</a>
