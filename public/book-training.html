@@ -286,7 +286,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <option>Canton, GA</option>
         <option>Marietta, GA</option>
         <option>Buckhead, GA</option>
+        <option value="own">Player's own gym</option>
       </select>
+      <div id="own-gym-wrap" hidden>
+        <label for="req-own-gym">Your gym's name &amp; address</label>
+        <input type="text" id="req-own-gym" name="own_gym" placeholder="e.g. Lifetime Fitness, 123 Main St, Alpharetta, GA">
+      </div>
       <label for="req-notes">Notes</label>
       <textarea id="req-notes" name="notes" placeholder="Anything else Sevenity should know"></textarea>
 
@@ -317,6 +322,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <script src="/js/booking-config.js"></script>
 <script src="/js/booking.js"></script>
 <script src="/js/datepicker.js"></script>
+<script>
+/* Show the gym name/address field when "Player's own gym" is picked. */
+(function(){
+  var sel = document.getElementById('req-location'), wrap = document.getElementById('own-gym-wrap');
+  if (!sel || !wrap) return;
+  function sync(){ wrap.hidden = sel.value !== 'own'; if (!wrap.hidden) document.getElementById('req-own-gym').focus(); }
+  sel.addEventListener('change', sync);
+  if (sel.form) sel.form.addEventListener('reset', function(){ setTimeout(function(){ wrap.hidden = true; }, 0); });
+})();
+</script>
 <script>
 /* Player development time slots. Weekdays 9 AM - 1 PM are blocked (unavailable). */
 (function(){
@@ -417,6 +432,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var dateVal = document.getElementById('req-date').value.trim();
       var timeVal = document.getElementById('req-time').value.trim();
       var locationVal = document.getElementById('req-location').value;
+      if (locationVal === 'own') {
+        var ownGym = document.getElementById('req-own-gym').value.trim();
+        locationVal = "Player's own gym" + (ownGym ? ' — ' + ownGym : '');
+      }
       var notesVal = document.getElementById('req-notes').value.trim();
       var message = [
         'Athlete: ' + athleteVal,
