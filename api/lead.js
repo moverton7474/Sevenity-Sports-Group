@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
   const prefDate = clean(body.date, 60);
   const prefTime = clean(body.time, 60);
   const notes = clean(body.notes, 1000);
-  const location = clean(body.location, 80);
+  const location = clean(body.location, 200);
 
   if (!name) return res.status(400).json({ error: "Add your name so we know who we're replying to." });
   if (!looksLikeEmail(email)) return res.status(400).json({ error: 'That email address does not look right — check it and try again.' });
