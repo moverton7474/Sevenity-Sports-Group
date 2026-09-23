@@ -116,6 +116,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .lead textarea{min-height:5.5rem;resize:vertical}
 .lead input:focus,.lead select:focus,.lead textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+#req-date{border-color:#fff;color-scheme:dark}
 .lead .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .lead .lfoot{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.1rem}
 .lead .note-sm{font-size:.78rem;color:var(--ink-3);margin:.8rem 0 0;line-height:1.5}
@@ -268,8 +269,15 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
           <input type="text" id="req-time" name="time" placeholder="e.g. weekday evenings">
         </div>
       </div>
-      <label for="req-notes">Location or notes</label>
-      <textarea id="req-notes" name="notes" placeholder="Gym or area for the shoot, anything else Sevenity should know"></textarea>
+      <label for="req-location">Location</label>
+      <select id="req-location" name="location">
+        <option value="">Choose a gym</option>
+        <option>Canton, GA</option>
+        <option>Marietta, GA</option>
+        <option>Buckhead, GA</option>
+      </select>
+      <label for="req-notes">Notes</label>
+      <textarea id="req-notes" name="notes" placeholder="Anything else Sevenity should know"></textarea>
 
       <label class="hp" for="req-company" aria-hidden="true">Company</label>
       <input class="hp" type="text" id="req-company" name="company" tabindex="-1" autocomplete="off">
@@ -297,6 +305,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 <script src="/js/booking-config.js"></script>
 <script src="/js/booking.js"></script>
+<script src="/js/datepicker.js"></script>
 <script>
 (function(){
   "use strict";
@@ -367,13 +376,15 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var athleteVal = document.getElementById('req-athlete').value.trim() || name;
       var dateVal = document.getElementById('req-date').value.trim();
       var timeVal = document.getElementById('req-time').value.trim();
+      var locationVal = document.getElementById('req-location').value;
       var notesVal = document.getElementById('req-notes').value.trim();
       var message = [
         'Athlete: ' + athleteVal,
         'Package: ' + packageLabel,
         'Preferred date: ' + (dateVal || 'Not specified'),
         'Preferred time: ' + (timeVal || 'Not specified'),
-        'Location / notes: ' + (notesVal || 'None')
+        'Location: ' + (locationVal || 'Not specified'),
+        'Notes: ' + (notesVal || 'None')
       ].join('\n');
 
       send({
@@ -390,6 +401,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         athlete: athleteVal,
         date: dateVal,
         time: timeVal,
+        location: locationVal,
         notes: notesVal
       }, document.getElementById('req-submit'), msgEl,
          "Thanks — check your email, we've sent your invoice.")
