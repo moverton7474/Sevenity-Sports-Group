@@ -75,6 +75,8 @@
     if (b.dataset.nav) { view.setMonth(view.getMonth() + +b.dataset.nav); render(); return; }
     selected = new Date(view.getFullYear(), view.getMonth(), +b.dataset.day);
     input.value = selected.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    input.dataset.iso = selected.getFullYear() + '-' + String(selected.getMonth() + 1).padStart(2, '0') + '-' + String(selected.getDate()).padStart(2, '0');
+    input.dispatchEvent(new Event('change', { bubbles: true }));
     close();
     input.focus();
   });
