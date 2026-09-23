@@ -275,7 +275,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         </div>
         <div>
           <label for="req-time">Preferred time</label>
-          <input type="text" id="req-time" name="time" placeholder="e.g. weekday evenings">
+          <select id="req-time" name="time"><option value="">Pick a time</option></select>
         </div>
       </div>
       <label for="req-location">Location</label>
@@ -315,6 +315,35 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <script src="/js/booking-config.js"></script>
 <script src="/js/booking.js"></script>
 <script src="/js/datepicker.js"></script>
+<script>
+/* Training time slots. Weekdays 9 AM - 1 PM are blocked (unavailable). */
+(function(){
+  var dateEl = document.getElementById('req-date'), timeEl = document.getElementById('req-time');
+  if (!dateEl || !timeEl) return;
+  var HOURS = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  function label(h){ return (h % 12 || 12) + ':00 ' + (h < 12 ? 'AM' : 'PM'); }
+  HOURS.forEach(function(h){ var o = document.createElement('option'); o.value = label(h); o.textContent = label(h); o.dataset.h = h; timeEl.appendChild(o); });
+  function isWeekday(){
+    var iso = dateEl.dataset.iso || (/^\d{4}-\d{2}-\d{2}$/.test(dateEl.value) ? dateEl.value : '');
+    if (!iso) return false;
+    var p = iso.split('-'), day = new Date(+p[0], +p[1] - 1, +p[2]).getDay();
+    return day >= 1 && day <= 5;
+  }
+  function update(){
+    var wk = isWeekday();
+    [].forEach.call(timeEl.options, function(o){
+      if (!o.dataset.h) return;
+      var blocked = wk && +o.dataset.h >= 9 && +o.dataset.h < 13;
+      o.disabled = blocked;
+      o.textContent = o.value + (blocked ? ' (unavailable)' : '');
+    });
+    if (timeEl.selectedOptions[0] && timeEl.selectedOptions[0].disabled) timeEl.value = '';
+  }
+  dateEl.addEventListener('change', update);
+  dateEl.addEventListener('input', update);
+  var form = dateEl.form; if (form) form.addEventListener('reset', function(){ delete dateEl.dataset.iso; setTimeout(update, 0); });
+})();
+</script>
 <script>
 (function(){
   "use strict";
