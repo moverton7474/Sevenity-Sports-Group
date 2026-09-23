@@ -106,6 +106,8 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .act-logo img{width:100%;height:100%;object-fit:contain}
 .act-logo.dark{background:#000}
 .act-logo.wide{width:6.6rem;padding:.3rem}
+.act-photo.fit::before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;background-position:center;filter:blur(16px) brightness(.55);clip-path:inset(0 round 13px 13px 0 0)}
+.act-photo.fit>img{object-fit:contain}
 .act-body{padding:2.3rem 1.3rem 1.5rem}
 .act-body .lab{display:block;margin-bottom:.45rem}
 .act-body h3{font-size:1.08rem;line-height:1.35;margin:0}
@@ -267,8 +269,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         </div>
       </article>
       <article class="act">
-        <div class="act-photo">
-          <img src="/img/act-clean-energy.webp" alt="Athlete shooting a jump shot behind a Clean Energy product box" width="546" height="820" loading="lazy" decoding="async" style="object-position:center 8%">
+        <div class="act-photo fit" style="background-image:url('/img/act-clean-energy.webp')">
+          <img src="/img/act-clean-energy.webp" alt="Athlete shooting a jump shot behind a Clean Energy product box" width="546" height="820" loading="lazy" decoding="async">
           <div class="act-logo wide"><img src="/img/logo-clean-energy.webp" alt="Clean Energy" width="420" height="210" loading="lazy"></div>
         </div>
         <div class="act-body">
