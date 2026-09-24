@@ -100,6 +100,13 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .creed span{display:block;color:var(--ink-3)}
 .creed span:first-child{color:var(--gold)}
 
+/* what we are */
+.about-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:3rem;align-items:center}
+.about-split .sec-head{max-width:none}
+.about-pic{margin:0}
+.about-pic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+@media(max-width:900px){.about-split{grid-template-columns:1fr;gap:1.8rem}.about-pic{max-width:30rem}}
+
 /* contact tiles */
 .direct{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:2rem}
 .direct div{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.3rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
@@ -224,6 +231,22 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
           <a class="btn ghost" href="https://www.instagram.com/chaseclemmons_/" target="_blank" rel="noopener">@chaseclemmons_ on Instagram</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-sevenity">
+  <div class="wrap">
+    <div class="about-split">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="lab">What We Are</span>
+        <h2 style="margin-top:.7rem">One firm for the whole picture.</h2>
+        <p>Sevenity Sports Group brings on-court player development, personal development plans, athlete consulting and advisory, and content and personal branding together under one roof, backed by a nationwide coaching and scouting network. An athlete's player development, opportunities, and brand shouldn't be handled by three different people who never talk to each other. At Sevenity, they're handled by one.</p>
+        <p>From high school and college athletes to those navigating the transfer portal, Sevenity builds the plan, does the work, and stays in the room for what comes next.</p>
+      </div>
+      <figure class="about-pic">
+        <img src="/img/training-session.webp" srcset="/img/training-session.webp 700w, /img/training-session-hd.webp 1100w" sizes="(max-width:900px) 100vw, 40vw" alt="A Sevenity trainer coaching an athlete through a two-ball dribbling drill in the gym" width="700" height="1050" loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </section>
