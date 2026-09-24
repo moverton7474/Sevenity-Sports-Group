@@ -74,6 +74,10 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .nav-toggle .bars span{display:block;width:15px;height:2px;background:#000000;border-radius:1px}
 .nav-links{display:none;position:absolute;top:100%;right:0;z-index:95;flex-direction:column;gap:0;background:rgba(250,248,253,.98);border:1px solid rgba(90,70,120,.16);border-radius:10px;padding:.5rem 0;min-width:14.5rem;box-shadow:0 16px 36px rgba(20,16,30,.22)}
 .nav-links.open{display:flex}
+.nav-links{max-height:calc(100vh - 88px);max-height:calc(100dvh - 88px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+@media(min-width:1024px){.nav-links{max-height:calc(100vh - 128px);max-height:calc(100dvh - 128px)}}
+@media(min-width:1440px){.nav-links{max-height:calc(100vh - 140px);max-height:calc(100dvh - 140px)}}
+@media(min-width:1800px){.nav-links{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px)}}
 .nav-links a{font-family:var(--f-serif);font-style:normal;font-weight:400;text-transform:none;letter-spacing:.02em;color:#000000;text-decoration:none;font-size:.9rem;padding:.7rem 1.3rem;width:100%;box-sizing:border-box;text-align:left}
 .nav-links a:hover{opacity:.7;background:rgba(90,70,120,.07)}
 @media(max-width:640px){
@@ -208,6 +212,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <span class="lab">Player Development</span>
       <h2 style="margin-top:.7rem">Player development.</h2>
       <p>On-court work built around the athlete in front of us: real reps, real feedback, and a plan that carries from the gym to game day.</p>
+      <p style="margin-top:.4rem">In-person sessions in the Atlanta area: Canton, Marietta, and Buckhead.</p>
     </div>
     <div class="pdev-cards">
       <a class="pcard2" href="development-plan.html">
