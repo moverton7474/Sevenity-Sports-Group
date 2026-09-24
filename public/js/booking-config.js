@@ -1,10 +1,10 @@
 /**
- * Sevenity booking links — Stripe Payment Links only.
+ * Sevenity booking links, Stripe Payment Links only.
  *
  * Every URL below is created in the Stripe Dashboard under
  * Payment Links > + New link (test.stripe.com or dashboard.stripe.com,
  * depending on mode), never typed or generated here. Stripe hosts the
- * checkout page and collects the card details directly — this site
+ * checkout page and collects the card details directly, this site
  * never sees or stores a card number.
  *
  * For "Unlimited training" ($500/mo), create the Payment Link from a
@@ -18,13 +18,13 @@
  * scrolls to the request form instead, with that package preselected.
  */
 window.SEVENITY_BOOKING_LINKS = {
-  // Basketball training — book-training.html
+  // Basketball training, book-training.html
   'training-1session': '',
   'training-5session': '',
   'training-unlimited': '', // recurring monthly price in Stripe
   'training-pro': '',
 
-  // Content creation — book-content.html
+  // Content creation, book-content.html
   'content-video': '',
   'content-photo': '',
   'content-bundle': ''
