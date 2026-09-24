@@ -58,5 +58,12 @@
       "path": "/api/health",
       "schedule": "0 */6 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/docs/:path*",
+      "destination": "/development-plan",
+      "permanent": false
+    }
   ]
 }
