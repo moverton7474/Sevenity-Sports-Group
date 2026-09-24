@@ -154,7 +154,13 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .home-hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:7rem 0 4rem;text-align:center}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:#0d131b}
 .hero-bg video{width:100%;height:100%;object-fit:cover;display:block;opacity:.65}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,19,27,.55) 0%,rgba(13,19,27,.3) 45%,rgba(13,19,27,.8) 100%)}
+.hero-bg .hero-fill{display:none}
+/* computer screens: show the whole vertical clip in the middle, with a blurred copy filling the sides */
+@media(min-width:641px){
+  .hero-bg .hero-fill{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(28px) brightness(.55) saturate(1.1);transform:scale(1.12);opacity:1}
+  #heroVideo{position:relative;z-index:1;object-fit:contain;opacity:.8}
+}
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(13,19,27,.55) 0%,rgba(13,19,27,.3) 45%,rgba(13,19,27,.8) 100%)}
 .hero-in{position:relative;z-index:1;width:100%}
 .home-hero .title-hero-text{font-family:var(--f-baskerville);font-style:italic;font-weight:400;text-transform:uppercase;color:#fff;letter-spacing:.22em;line-height:1.14;margin:0;text-shadow:0 4px 30px rgba(0,0,0,.45)}
 .home-hero .title-hero-text span{display:block;font-size:clamp(2.321rem,11vw,6.607rem);white-space:nowrap}
@@ -243,6 +249,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 <header id="top" class="home-hero">
   <div class="hero-bg" aria-hidden="true">
+    <video id="heroVideoFill" class="hero-fill" muted playsinline preload="none"></video>
     <video id="heroVideo" poster="/img/home-hero-poster.jpg" autoplay muted playsinline preload="auto"></video>
   </div>
   <div class="wrap hero-in">
@@ -313,13 +320,20 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     '/video/home-3'
   ];
   var v = document.getElementById('heroVideo');
+  var fill = document.getElementById('heroVideoFill');
+  var wide = window.matchMedia('(min-width:641px)');
   if (!v || !HERO_VIDEOS.length) return;
   var i = 0;
   var ext = v.canPlayType('video/mp4; codecs="avc1.42E01E"') ? '.mp4' : '.webm';
   v.muted = true;
   v.loop = HERO_VIDEOS.length === 1;
+  if (fill) { fill.muted = true; fill.loop = v.loop; }
   function play(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
-  function load(n){ i = n % HERO_VIDEOS.length; v.src = HERO_VIDEOS[i] + ext; play(); }
+  function syncFill(){ if (!fill || !wide.matches) return; var src = HERO_VIDEOS[i] + ext; if (fill.getAttribute('src') !== src) { fill.src = src; } if (Math.abs(fill.currentTime - v.currentTime) > 0.3) { try { fill.currentTime = v.currentTime; } catch(e){} } if (fill.paused) { var q = fill.play(); if (q && q.catch) q.catch(function(){}); } }
+  function load(n){ i = n % HERO_VIDEOS.length; v.src = HERO_VIDEOS[i] + ext; play(); syncFill(); }
+  v.addEventListener('playing', syncFill);
+  v.addEventListener('timeupdate', function(){ if (wide.matches && fill && Math.abs(fill.currentTime - v.currentTime) > 0.5) syncFill(); });
+  if (wide.addEventListener) wide.addEventListener('change', syncFill);
   v.addEventListener('ended', function(){ load(i + 1); });
   v.addEventListener('pause', function(){ if (!document.hidden && !v.ended) setTimeout(play, 300); });
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) play(); });
