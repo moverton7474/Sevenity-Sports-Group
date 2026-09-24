@@ -374,6 +374,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <option value="content-photo">Photography · $50/session</option>
         <option value="content-bundle">Video + photography bundle · $150/session</option>
       </select>
+      <label for="req-creator">Who do you want to book?</label>
+      <select id="req-creator" name="creator" required>
+        <option value="">Choose a creator</option>
+        <option value="Caden C (@caden.cams)">Caden C (@caden.cams)</option>
+        <option value="Take Flight Hoops (@takeflighthoops)">Take Flight Hoops (@takeflighthoops)</option>
+      </select>
       <div class="lrow">
         <div>
           <label for="req-date">Preferred date</label>
@@ -492,9 +498,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var timeVal = document.getElementById('req-time').value.trim();
       var locationVal = document.getElementById('req-location').value;
       var notesVal = document.getElementById('req-notes').value.trim();
+      var creatorVal = document.getElementById('req-creator').value;
+      if(!creatorVal) { say(msgEl, 'Choose who you want to book: Caden C or Take Flight Hoops.', false); return; }
       var message = [
         'Athlete: ' + athleteVal,
         'Package: ' + packageLabel,
+        'Creator: ' + creatorVal,
         'Preferred date: ' + (dateVal || 'Not specified'),
         'Preferred time: ' + (timeVal || 'Not specified'),
         'Location: ' + (locationVal || 'Not specified'),
@@ -516,7 +525,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         date: dateVal,
         time: timeVal,
         location: locationVal,
-        notes: notesVal
+        notes: 'Creator: ' + creatorVal + (notesVal ? '. ' + notesVal : '')
       }, document.getElementById('req-submit'), msgEl,
          "Thanks! Check your email, we've sent your invoice.")
       .then(function(ok){ if(ok) leadForm.reset(); });
