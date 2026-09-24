@@ -2,7 +2,7 @@
  * Watchdog for the lead path.
  *
  * /api/lead is the only route between a visitor and revenue. If it breaks the
- * failure is SILENT — from Sevenity's side a broken form is indistinguishable from
+ * failure is SILENT, from Sevenity's side a broken form is indistinguishable from
  * nobody being interested, so he would stop trusting the site rather than report
  * a bug. This checks the things that actually break, on a schedule, and emails
  * only when something is wrong.
@@ -49,7 +49,7 @@ module.exports = async function handler(req, res) {
     !from && 'LEAD_FROM',
   ].filter(Boolean);
   checks.env = missing.length ? `missing: ${missing.join(', ')}` : 'ok';
-  if (missing.length) failures.push(`Lead form config incomplete — missing ${missing.join(', ')}. Submissions are failing right now.`);
+  if (missing.length) failures.push(`Lead form config incomplete, missing ${missing.join(', ')}. Submissions are failing right now.`);
 
   // 2 + 3. the mail path
   if (apiKey) {
@@ -68,7 +68,7 @@ module.exports = async function handler(req, res) {
           failures.push(`The sending domain ${wanted} is no longer present in Resend. Lead email cannot be sent.`);
         } else if (hit.status !== 'verified') {
           checks.senderDomain = `${wanted} is ${hit.status}`;
-          failures.push(`The sending domain ${wanted} is "${hit.status}" rather than verified — most likely its DNS records were changed.`);
+          failures.push(`The sending domain ${wanted} is "${hit.status}" rather than verified. Most likely its DNS records were changed.`);
         } else {
           checks.senderDomain = `${wanted} verified`;
         }
@@ -92,7 +92,7 @@ module.exports = async function handler(req, res) {
         body: JSON.stringify({
           from,
           to: [alertTo],
-          subject: 'Sevenity — the lead form is not working',
+          subject: 'Sevenity: the lead form is not working',
           text:
             `The contact form on sevenitysportsgroup.com is currently failing.\n\n${lines}\n\n` +
             `Until this is fixed, anyone who fills in the form gets an error and Sevenity receives nothing.\n\n` +
