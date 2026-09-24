@@ -173,6 +173,23 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .p-note{font-size:.72rem;color:var(--ink-3);margin-top:.9rem}
 @media(max-width:980px){.partner{grid-template-columns:1fr}}
 @media(max-width:620px){.p-grid{grid-template-columns:1fr}}
+/* proven brand activations */
+.acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.act-photo{position:relative;aspect-ratio:4/3;background:#0d131b}
+.act-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:13px 13px 0 0}
+.act-logo{position:absolute;z-index:2;left:1rem;bottom:-1.6rem;width:4.2rem;height:4.2rem;border-radius:12px;background:#fff;border:3px solid #0d131b;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.act-logo img{width:100%;height:100%;object-fit:contain}
+.act-logo.dark{background:#000}
+.act-logo.wide{width:6.6rem;padding:.3rem}
+.act-photo.fit::before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;background-position:center;filter:blur(16px) brightness(.55);clip-path:inset(0 round 13px 13px 0 0)}
+.act-photo.fit>img{object-fit:contain}
+.act-body{padding:2.3rem 1.3rem 1.5rem}
+.act-body .lab{display:block;margin-bottom:.45rem}
+.act-body h3{font-size:1.08rem;line-height:1.35;margin:0}
+.act-body p{font-size:.86rem;color:var(--ink-2);margin:.6rem 0 0}
+@media(max-width:900px){.acts{grid-template-columns:1fr;max-width:32rem}}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -336,6 +353,51 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   </div>
 </section>
 <script async src="https://www.instagram.com/embed.js"></script>
+
+<section id="activations">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab">Brand Partnerships</span>
+      <h2 style="margin-top:.7rem">Proven brand activations.</h2>
+      <p>Sevenity connects brands with athletes and communities through real events, camps, and product activations, not just logo placements.</p>
+    </div>
+    <div class="acts">
+      <article class="act">
+        <div class="act-photo">
+          <img src="/img/act-jersey-mikes-clinic.webp" alt="Youth basketball clinic group photo at the Marietta Community Center" width="900" height="506" loading="lazy" decoding="async">
+          <div class="act-logo"><img src="/img/logo-jersey-mikes.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy"></div>
+        </div>
+        <div class="act-body">
+          <span class="lab">Jersey Mike&rsquo;s</span>
+          <h3>Community clinic &amp; event sponsorship</h3>
+          <p>A free youth basketball clinic at the Marietta Community Center, sponsored by Jersey Mike&rsquo;s.</p>
+        </div>
+      </article>
+      <article class="act">
+        <div class="act-photo">
+          <img src="/img/act-1st-phorm-camp.webp" alt="College players in 1st Phorm uniforms gathered on the court during a camp" width="692" height="598" loading="lazy" decoding="async">
+          <div class="act-logo dark"><img src="/img/logo-1st-phorm.webp" alt="1st Phorm" width="300" height="300" loading="lazy"></div>
+        </div>
+        <div class="act-body">
+          <span class="lab">1st Phorm</span>
+          <h3>College NIL camp partnership</h3>
+          <p>College athletes outfitted in 1st Phorm gear for an NIL camp partnership.</p>
+        </div>
+      </article>
+      <article class="act">
+        <div class="act-photo fit" style="background-image:url('/img/act-clean-energy.webp')">
+          <img src="/img/act-clean-energy.webp" alt="Athlete shooting a jump shot behind a Clean Energy product box" width="546" height="820" loading="lazy" decoding="async">
+          <div class="act-logo wide"><img src="/img/logo-clean-energy.webp" alt="Clean Energy" width="420" height="210" loading="lazy"></div>
+        </div>
+        <div class="act-body">
+          <span class="lab">Clean Energy</span>
+          <h3>NIL product activation</h3>
+          <p>A product activation putting Clean Energy directly in athletes&rsquo; hands and content.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <section id="request-form">
   <div class="wrap">
