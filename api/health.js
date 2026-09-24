@@ -39,7 +39,8 @@ module.exports = async function handler(req, res) {
   const checks = {};
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_TO;
+  // Every enquiry (and every alert) goes to Chase's work inbox, regardless of the LEAD_TO setting in Vercel.
+  const to = 'chase@sevenitysportsgroup.com';
   const from = process.env.LEAD_FROM;
 
   // 1. configuration

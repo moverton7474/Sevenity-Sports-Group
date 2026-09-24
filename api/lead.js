@@ -57,11 +57,12 @@ module.exports = async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_TO;
+  // Every enquiry (and every alert) goes to Chase's work inbox, regardless of the LEAD_TO setting in Vercel.
+  const to = 'chase@sevenitysportsgroup.com';
   const from = process.env.LEAD_FROM;
   if (!apiKey || !to || !from) {
     console.error('lead: missing RESEND_API_KEY / LEAD_TO / LEAD_FROM');
-    return res.status(500).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
+    return res.status(500).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
   }
 
   let body = req.body;
@@ -266,11 +267,11 @@ module.exports = async function handler(req, res) {
     const r = await internalSend;
     if (!r.ok) {
       console.error('lead: resend rejected', r.status, (await r.text()).slice(0, 400));
-      return res.status(502).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
+      return res.status(502).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
     }
   } catch (err) {
     console.error('lead: resend threw', err && err.message);
-    return res.status(502).json({ error: "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up." });
+    return res.status(502).json({ error: "That didn't send. Email chase@sevenitysportsgroup.com directly and we'll pick it up." });
   }
 
   // Best-effort invoice email straight to the submitter. Never fails the request,   // Sevenity already has the enquiry either way. It was already in flight above,
