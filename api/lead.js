@@ -153,7 +153,7 @@ module.exports = async function handler(req, res) {
         <tr>
           <td style="vertical-align:top">
             <div style="font-size:19px;font-weight:700">Sevenity Sports Group</div>
-            <div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete Development &amp; Advisory &middot; Atlanta, GA</div>
+            <div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete Development &amp; Advisory &middot; Nationwide</div>
           </td>
           <td style="vertical-align:top;text-align:right">
             <div style="font-size:20px;font-weight:700;letter-spacing:.04em">INVOICE</div>
@@ -212,7 +212,7 @@ module.exports = async function handler(req, res) {
 
       <p style="margin:0 0 16px;font-size:14px;line-height:1.6">I'll confirm your ${esc(pkg.toLowerCase())} as soon as payment comes through. Any questions, just reply to this email or call/text me at 470-601-2934.</p>
       <p style="margin:0 0 20px;font-size:14px">Chase</p>
-      <p style="margin:0;color:#6C7788;font-size:12px">Sevenity Sports Group &middot; Athlete Development &amp; Advisory &middot; Atlanta, GA</p>
+      <p style="margin:0;color:#6C7788;font-size:12px">Sevenity Sports Group &middot; Athlete Development &amp; Advisory &middot; Nationwide</p>
     </div>`;
 
     const invoiceText = [
@@ -229,7 +229,7 @@ module.exports = async function handler(req, res) {
       "  Zelle: chaseclemmons3@yahoo.com (send from your bank's app)", '',
       `I'll confirm your ${pkg.toLowerCase()} as soon as payment comes through. Any questions, just reply to this email or call/text me at 470-601-2934.`, '',
       'Chase',
-      'Sevenity Sports Group · Athlete Development & Advisory · Atlanta, GA',
+      'Sevenity Sports Group · Athlete Development & Advisory · Nationwide',
     ].filter(Boolean).join('\n');
 
     invoicePayload = {
