@@ -283,6 +283,10 @@ input::placeholder{color:var(--ink-3)}
         <div class="fld">
           <span class="lgl">Content pillars: pick what you actually post</span>
           <div class="chips" id="pillars"></div>
+          <div id="otherWrap" hidden style="margin-top:.6rem">
+            <label for="otherPillar" style="letter-spacing:.06em">What else do you post?</label>
+            <input type="text" id="otherPillar" maxlength="120" placeholder="e.g. cooking, travel, cars, podcasts">
+          </div>
         </div>
         <div class="fld">
           <label class="chk"><input type="checkbox" id="ownsMerch"> <span>I sell my own merch or apparel line</span></label>
@@ -347,6 +351,7 @@ input::placeholder{color:var(--ink-3)}
     if(d.market)            o['Market']         = d.market;
     if(d.ownsMerch != null) o['Own merch line'] = d.ownsMerch ? 'Yes' : 'No';
     if(d.pillars && d.pillars.join) o['Pillars'] = d.pillars.join(', ');
+    if(d.otherPillar)       o['Other content']  = d.otherPillar;
     return Object.keys(o).length ? o : null;
   }
 
@@ -410,7 +415,8 @@ input::placeholder{color:var(--ink-3)}
     ['faith','Faith'],['skill','Skill / training'],['comedy','Comedy / lifestyle'],
     ['family','Family'],['fashion','Style / fashion'],['music','Music'],
     ['gaming','Gaming'],['community','Community / service'],
-    ['fitness','Fitness / recovery'],['academics','Academics']
+    ['fitness','Fitness / recovery'],['academics','Academics'],
+    ['other','Other']
   ];
   var box = document.getElementById('pillars');
   PILLARS.forEach(function(p){
@@ -420,6 +426,12 @@ input::placeholder{color:var(--ink-3)}
     var l = document.createElement('label');
     l.className='chip-lb'; l.htmlFor=id; l.textContent=p[1];
     box.appendChild(i); box.appendChild(l);
+  });
+  /* "Other" opens a box so athletes can name content that isn't in the list. */
+  var otherChk = document.getElementById('p_other'), otherWrap = document.getElementById('otherWrap');
+  if (otherChk && otherWrap) otherChk.addEventListener('change', function(){
+    otherWrap.hidden = !otherChk.checked;
+    if (otherChk.checked) document.getElementById('otherPillar').focus();
   });
 
   /* ---------- category database ----------
@@ -596,6 +608,7 @@ input::placeholder{color:var(--ink-3)}
     h += '<div class="flagbox"><b>The read</b>' + a.bRead + '</div>';
 
     h += '<div class="res-h">Ranked sponsor categories</div>';
+    if(!top.length) h += '<div class="flagbox"><b>Tell us more</b>Your content does not line up with the listed categories yet' + (d.otherPillar ? ' (' + esc(d.otherPillar) + ')' : '') + '. Send this scan to the Sevenity team below and we will read it with you personally.</div>';
     top.forEach(function(r){
       var scope = r.c.scope === 'local'
         ? '<span class="tagline t-loc">Local' + (d.market ? ' &middot; ' + esc(d.market) : '') + '</span>'
@@ -652,7 +665,7 @@ input::placeholder{color:var(--ink-3)}
       var t = 'BRAND INTELLIGENCE SCAN | Sevenity Sports Group\n';
       t += (d.handle ? d.handle + '\n' : '');
       t += fmt(d.followers) + ' followers · ' + d.level + (d.market ? ' · ' + d.market : '') + '\n';
-      t += 'Pillars: ' + d.pillars.join(', ') + '\n\n';
+      t += 'Pillars: ' + d.pillars.join(', ') + (d.otherPillar ? ' (other: ' + d.otherPillar + ')' : '') + '\n\n';
       t += 'Engagement rate: ' + (a.eng * 100).toFixed(1) + '%\n';
       t += 'Sends per comment: ' + (a.sendRatio >= 99 ? 'n/a' : a.sendRatio.toFixed(1) + ':1') + '\n';
       t += 'Audience type: ' + a.bLabel + '\n';
@@ -700,7 +713,8 @@ input::placeholder{color:var(--ink-3)}
       market: document.getElementById('market').value.trim(),
       level: document.getElementById('level').value,
       ownsMerch: document.getElementById('ownsMerch').checked,
-      pillars: picks
+      pillars: picks,
+      otherPillar: picks.indexOf('other') > -1 ? document.getElementById('otherPillar').value.trim() : ''
     };
   }
 

@@ -362,6 +362,7 @@ footer a{color:var(--ink-3)}
     if(d.market)            o['Market']         = d.market;
     if(d.ownsMerch != null) o['Own merch line'] = d.ownsMerch ? 'Yes' : 'No';
     if(d.pillars && d.pillars.join) o['Pillars'] = d.pillars.join(', ');
+    if(d.otherPillar)       o['Other content']  = d.otherPillar;
     return Object.keys(o).length ? o : null;
   }
 
