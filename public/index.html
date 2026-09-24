@@ -351,7 +351,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     else { started = true; detach(); }
   }
   function onGesture(){ if (!started) start(); }
-  var evts = ['pointerdown','touchend','keydown'];
+  // iPhones only allow sound inside a real tap, so listen to every kind of touch/click and keep trying until one works.
+  var evts = ['touchstart','touchend','pointerdown','pointerup','mousedown','click','keydown'];
   function detach(){ evts.forEach(function(t){ window.removeEventListener(t, onGesture, true); }); }
   evts.forEach(function(t){ window.addEventListener(t, onGesture, true); });
   document.addEventListener('visibilitychange', function(){
