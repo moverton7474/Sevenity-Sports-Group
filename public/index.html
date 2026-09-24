@@ -249,6 +249,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <header id="top" class="home-hero">
   <div class="hero-bg" aria-hidden="true">
     <video id="heroVideo" poster="/img/home-hero-poster.jpg" autoplay muted playsinline preload="auto"></video>
+    <audio id="heroAudio" loop preload="auto"><source src="/audio/home-soundtrack.m4a" type="audio/mp4"><source src="/audio/home-soundtrack.ogg" type="audio/ogg"></audio>
   </div>
   <div class="wrap hero-in">
     <h1 class="sr-only">Sevenity Sports Group</h1>
@@ -334,6 +335,30 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) play(); });
   ['touchstart','click','scroll'].forEach(function(e){ window.addEventListener(e, function(){ if (v.paused) play(); }, {passive:true, once:true}); });
   load(0);
+})();
+</script>
+<script>
+/* Home soundtrack: loops over the silent videos. Browsers block sound until the visitor interacts,
+   so try to start right away and, if refused, start at the first tap, click, or key press. */
+(function(){
+  var a = document.getElementById('heroAudio');
+  if (!a) return;
+  var started = false;
+  a.volume = 1;
+  function start(){
+    var p = a.play();
+    if (p && p.then) p.then(function(){ started = true; detach(); }).catch(function(){});
+    else { started = true; detach(); }
+  }
+  function onGesture(){ if (!started) start(); }
+  var evts = ['pointerdown','touchend','keydown'];
+  function detach(){ evts.forEach(function(t){ window.removeEventListener(t, onGesture, true); }); }
+  evts.forEach(function(t){ window.addEventListener(t, onGesture, true); });
+  document.addEventListener('visibilitychange', function(){
+    if (!started) return;
+    if (document.hidden) a.pause(); else { var p = a.play(); if (p && p.catch) p.catch(function(){}); }
+  });
+  start();
 })();
 </script>
 </body>
