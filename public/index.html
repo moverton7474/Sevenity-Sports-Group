@@ -155,10 +155,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:#0d131b}
 .hero-bg video{width:100%;height:100%;object-fit:cover;display:block;opacity:.65}
 .hero-bg .hero-fill{display:none}
-/* computer screens: show the whole vertical clip in the middle, with a blurred copy filling the sides */
+/* computer screens: video fills the whole screen; aim the crop a little above center so heads and the ball stay in frame */
 @media(min-width:641px){
-  .hero-bg .hero-fill{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(28px) brightness(.55) saturate(1.1);transform:scale(1.12);opacity:1}
-  #heroVideo{position:relative;z-index:1;object-fit:contain;opacity:.8}
+  #heroVideo{object-fit:cover;object-position:center 38%}
+  .home-hero{min-height:calc(100vh - var(--navh,0px));min-height:calc(100svh - var(--navh,0px));padding:3rem 0}
 }
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(13,19,27,.55) 0%,rgba(13,19,27,.3) 45%,rgba(13,19,27,.8) 100%)}
 .hero-in{position:relative;z-index:1;width:100%}
@@ -249,8 +249,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 <header id="top" class="home-hero">
   <div class="hero-bg" aria-hidden="true">
-    <video id="heroVideoFill" class="hero-fill" muted playsinline preload="none"></video>
-    <video id="heroVideo" poster="/img/home-hero-poster.jpg" autoplay muted playsinline preload="auto"></video>
+    <video id="heroVideo" poster="/img/home-hero-poster.jpg" playsinline preload="auto"></video>
   </div>
   <div class="wrap hero-in">
     <h1 class="sr-only">Sevenity Sports Group</h1>
@@ -312,32 +311,69 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 })();
 </script>
 <script>
-/* Home background videos: play in order, then start over. Add files to the list in the order they should play. */
+/* Home background videos: play in order and loop forever, with sound where the browser allows it.
+   Browsers block sound until the visitor interacts, so if unmuted playback is refused we play muted
+   and turn the sound on at the first tap, click, or key press anywhere on the page. */
 (function(){
   var HERO_VIDEOS = [
     '/video/home-1',
     '/video/home-2',
-    '/video/home-3'
+    '/video/home-3',
+    '/video/home-4'
   ];
   var v = document.getElementById('heroVideo');
   var fill = document.getElementById('heroVideoFill');
+  var btn = document.getElementById('soundBtn');
   var wide = window.matchMedia('(min-width:641px)');
+  var nav = document.querySelector('nav');
+  function setNavH(){ if (nav) document.documentElement.style.setProperty('--navh', nav.offsetHeight + 'px'); }
+  setNavH(); window.addEventListener('resize', setNavH);
   if (!v || !HERO_VIDEOS.length) return;
   var i = 0;
+  var wantSound = true;       // visitor has not turned sound off
   var ext = v.canPlayType('video/mp4; codecs="avc1.42E01E"') ? '.mp4' : '.webm';
-  v.muted = true;
   v.loop = HERO_VIDEOS.length === 1;
   if (fill) { fill.muted = true; fill.loop = v.loop; }
-  function play(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+
+  function paintBtn(){
+    if (!btn) return;
+    var on = !v.muted;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.querySelector('.snd-label').textContent = on ? 'Sound on' : 'Tap for sound';
+    btn.classList.toggle('on', on);
+  }
+  function play(){
+    v.muted = !wantSound ? true : v.muted;
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){
+      // Unmuted autoplay refused: fall back to muted so the video still plays.
+      if (!v.muted) { v.muted = true; paintBtn(); var q = v.play(); if (q && q.catch) q.catch(function(){}); }
+    });
+    paintBtn();
+  }
   function syncFill(){ if (!fill || !wide.matches) return; var src = HERO_VIDEOS[i] + ext; if (fill.getAttribute('src') !== src) { fill.src = src; } if (Math.abs(fill.currentTime - v.currentTime) > 0.3) { try { fill.currentTime = v.currentTime; } catch(e){} } if (fill.paused) { var q = fill.play(); if (q && q.catch) q.catch(function(){}); } }
   function load(n){ i = n % HERO_VIDEOS.length; v.src = HERO_VIDEOS[i] + ext; play(); syncFill(); }
+
+  function soundOn(){ wantSound = true; v.muted = false; var p = v.play(); if (p && p.catch) p.catch(function(){}); paintBtn(); }
+  function firstGesture(e){
+    if (btn && btn.contains(e.target)) return;   // the button handles itself
+    if (wantSound && v.muted) soundOn();
+    ['pointerdown','touchend','keydown'].forEach(function(t){ window.removeEventListener(t, firstGesture, true); });
+  }
+  ['pointerdown','touchend','keydown'].forEach(function(t){ window.addEventListener(t, firstGesture, true); });
+
+  if (btn) btn.addEventListener('click', function(){
+    if (v.muted) { soundOn(); } else { wantSound = false; v.muted = true; paintBtn(); }
+  });
+
   v.addEventListener('playing', syncFill);
   v.addEventListener('timeupdate', function(){ if (wide.matches && fill && Math.abs(fill.currentTime - v.currentTime) > 0.5) syncFill(); });
   if (wide.addEventListener) wide.addEventListener('change', syncFill);
   v.addEventListener('ended', function(){ load(i + 1); });
   v.addEventListener('pause', function(){ if (!document.hidden && !v.ended) setTimeout(play, 300); });
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) play(); });
-  ['touchstart','click','scroll'].forEach(function(e){ window.addEventListener(e, function(){ if (v.paused) play(); }, {passive:true, once:true}); });
+
+  v.muted = false;   // try with sound first
   load(0);
 })();
 </script>
