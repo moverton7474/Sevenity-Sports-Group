@@ -396,7 +396,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <option>Canton, GA</option>
         <option>Marietta, GA</option>
         <option>Buckhead, GA</option>
+        <option value="own">Player has access to a gym</option>
       </select>
+      <div id="own-gym-wrap" hidden>
+        <label for="req-own-gym">Gym name &amp; address</label>
+        <input type="text" id="req-own-gym" name="own_gym" placeholder="e.g. Lifetime Fitness, 123 Main St, Alpharetta, GA">
+      </div>
       <label for="req-notes">Notes</label>
       <textarea id="req-notes" name="notes" placeholder="Anything else Sevenity should know"></textarea>
 
@@ -497,6 +502,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var dateVal = document.getElementById('req-date').value.trim();
       var timeVal = document.getElementById('req-time').value.trim();
       var locationVal = document.getElementById('req-location').value;
+      if (locationVal === 'own') {
+        var ownGym = document.getElementById('req-own-gym').value.trim();
+        locationVal = "Player has access to a gym" + (ownGym ? ': ' + ownGym : '');
+      }
       var notesVal = document.getElementById('req-notes').value.trim();
       var creatorVal = document.getElementById('req-creator').value;
       if(!creatorVal) { say(msgEl, 'Choose who you want to book: Caden C or Take Flight Hoops.', false); return; }
@@ -531,6 +540,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       .then(function(ok){ if(ok) leadForm.reset(); });
     });
   }
+})();
+</script>
+<script>
+/* Show the gym name/address field when "Player has access to a gym" is picked. */
+(function(){
+  var sel = document.getElementById('req-location'), wrap = document.getElementById('own-gym-wrap');
+  if (!sel || !wrap) return;
+  function sync(){ wrap.hidden = sel.value !== 'own'; if (!wrap.hidden) document.getElementById('req-own-gym').focus(); }
+  sel.addEventListener('change', sync);
+  if (sel.form) sel.form.addEventListener('reset', function(){ setTimeout(function(){ wrap.hidden = true; }, 0); });
 })();
 </script>
 </body>
