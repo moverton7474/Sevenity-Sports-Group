@@ -22,7 +22,7 @@ const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const PACKAGES = {
   'training-1session': { name: 'Individual session', price: '$65' },
   'training-5session': { name: '5-session package', price: '$250' },
-  'training-unlimited': { name: 'Unlimited player development', price: '$500/mo' },
+  'training-unlimited': { name: 'Unlimited player development (monthly)', price: '$500/mo' },
   'training-pro': { name: 'Sevenity Pro Session', price: '$130/session' },
   'content-video': { name: 'Videography', price: '$120/session' },
   'content-photo': { name: 'Photography', price: '$50/session' },
