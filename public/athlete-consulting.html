@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#5b8ee7">
-<title>Services &amp; Pricing | Sevenity Sports Group</title>
-<meta name="description" content="Player development, personal development plans, athlete consulting and advisory, and content and personal branding: services and pricing from Sevenity Sports Group.">
-<link rel="canonical" href="https://sevenitysportsgroup.com/services.html">
+<title>Athlete Consulting &amp; Advisory | Sevenity Sports Group</title>
+<meta name="description" content="Athlete consulting and advisory from Sevenity Sports Group: career and opportunity planning, offer evaluation, positioning, and transfer portal strategy.">
+<link rel="canonical" href="https://sevenitysportsgroup.com/athlete-consulting.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sevenitysportsgroup.com/services.html">
+<meta property="og:url" content="https://sevenitysportsgroup.com/athlete-consulting.html">
 <meta property="og:site_name" content="Sevenity Sports Group">
-<meta property="og:title" content="Services &amp; Pricing | Sevenity Sports Group">
-<meta property="og:description" content="Four service lines, one plan: player development, consulting, content and branding. See what's included and what it costs.">
+<meta property="og:title" content="Athlete Consulting &amp; Advisory | Sevenity Sports Group">
+<meta property="og:description" content="Athlete consulting and advisory from Sevenity Sports Group: career and opportunity planning, offer evaluation, positioning, and transfer portal strategy.">
 <meta property="og:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Sevenity Sports Group: athlete development and advisory.">
 <meta name="twitter:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Services &amp; Pricing | Sevenity Sports Group">
-<meta name="twitter:description" content="Four service lines, one plan: player development, consulting, content and branding. See what's included and what it costs.">
+<meta name="twitter:title" content="Athlete Consulting &amp; Advisory | Sevenity Sports Group">
+<meta name="twitter:description" content="Athlete consulting and advisory from Sevenity Sports Group: career and opportunity planning, offer evaluation, positioning, and transfer portal strategy.">
 <link rel="icon" href="/img/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,7 @@
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
   --amber:#F5C24B; --rose:#F2706A;
   --f-serif:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --f-baskerville:var(--f-serif);
   --f-d:var(--f-serif);
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
@@ -85,34 +86,33 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);max-width:26ch}
 @media(max-width:420px){.hero h1{font-size:8.2vw}}
 
-.btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
-.btn:hover{opacity:.85;transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
-.btn.sm{font-size:.79rem;padding:.5rem 1rem}
+/* back to top */
+.back-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;background:var(--glass-2);border:1px solid var(--line);color:var(--ink);font-family:var(--f-m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.05rem;border-radius:999px;text-decoration:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.back-top:hover{background:rgba(255,255,255,.16)}
 
-/* services grid, clickable cards */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.1rem}
-.svc-card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:block;text-decoration:none;color:var(--ink);transition:transform .18s ease,background .18s ease,border-color .18s ease}
-.svc-card:hover{transform:translateY(-3px);background:var(--glass-2);border-color:rgba(255,255,255,.4)}
-.svc-body{padding:1.5rem 1.5rem 1.6rem}
-.svc-body .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;color:var(--gold);margin-bottom:.55rem}
-.svc-body h3{margin-bottom:.5rem}
-.svc-body p{font-size:.88rem;margin:0 0 .9rem}
-.svc-body .more{font-family:var(--f-m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:inline-block}
-.svc-card:hover .more{color:var(--gold)}
+/* photo grids */
+.figs{display:grid;gap:1.1rem;margin-top:2rem}
+.figs.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.figs.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.figs.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.figs figure{margin:0}
+.media{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--glass-light)}
+.media img{display:block;width:100%;height:auto}
+.figs figcaption{margin-top:.6rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
+.figs figcaption b{display:block;font-family:var(--f-b);font-size:.85rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600;margin-bottom:.2rem}
+.port img{aspect-ratio:3/4;object-fit:cover;object-position:top center}
+@media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:1fr}}
+@media(max-width:620px){.figs.c2{grid-template-columns:1fr}}
 
-/* pricing */
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.1rem;margin-top:2.6rem}
-.pcard{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem 1.55rem;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.pcard.feat{border-color:var(--gold)}
-.pcard h3{margin-bottom:.3rem}
-.pcard .psub{font-size:.83rem;color:var(--ink-3);margin:0 0 1.1rem}
-.ptab{width:100%;border-collapse:collapse;font-size:.92rem}
-.ptab td{padding:.55rem 0;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
-.ptab td:last-child{text-align:right;font-family:var(--f-m);font-size:.86rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
-.ptab tr:last-child td{border-bottom:none}
-.pcard .foot{margin-top:1.2rem}
+/* athletes collage, single pre-composed image, edge to edge */
+.collage-heading{margin:3rem 0 1.2rem;font-size:clamp(1.4rem,3vw,2rem);letter-spacing:.12em}
+.collage-img{display:block;width:100%;height:auto}
+
+/* network logos */
+.logowall{display:flex;flex-wrap:wrap;gap:1.1rem;align-items:center;justify-content:center}
+.logowall .logotile{background:#fff;border-radius:var(--r);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.logowall img{height:86px;width:auto;display:block;object-fit:contain}
+@media(max-width:620px){.logowall img{height:64px}}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
 .foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -142,38 +142,27 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   body{font-size:28px}
 }
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
+/* proven brand activations */
+.acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.act-photo{position:relative;aspect-ratio:4/3;background:#0d131b}
+.act-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:13px 13px 0 0}
+.act-logo{position:absolute;z-index:2;left:1rem;bottom:-1.6rem;width:4.2rem;height:4.2rem;border-radius:12px;background:#fff;border:3px solid #0d131b;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.act-logo img{width:100%;height:100%;object-fit:contain}
+.act-logo.dark{background:#000}
+.act-logo.wide{width:6.6rem;padding:.3rem}
+.act-photo.fit::before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;background-position:center;filter:blur(16px) brightness(.55);clip-path:inset(0 round 13px 13px 0 0)}
+.act-photo.fit>img{object-fit:contain}
+.act-body{padding:2.3rem 1.3rem 1.5rem}
+.act-body .lab{display:block;margin-bottom:.45rem}
+.act-body h3{font-size:1.08rem;line-height:1.35;margin:0}
+.act-body p{font-size:.86rem;color:var(--ink-2);margin:.6rem 0 0}
+@media(max-width:900px){.acts{grid-template-columns:1fr;max-width:32rem}}
+.btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://sevenitysportsgroup.com/#org",
-      "name": "Sevenity Sports Group",
-      "url": "https://sevenitysportsgroup.com/",
-      "sameAs": ["https://www.instagram.com/sevenitysports/"]
-    },
-    {
-      "@type": "Service",
-      "name": "Player Development",
-      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
-      "areaServed": "Atlanta, GA"
-    },
-    {
-      "@type": "Service",
-      "name": "Content Creation",
-      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
-      "offers": [
-        {"@type": "Offer", "name": "Videography", "price": "120", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Photography", "price": "50", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Video and photography bundle", "price": "150", "priceCurrency": "USD"}
-      ]
-    }
-  ]
-}
-</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -197,93 +186,30 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   </div>
 </nav>
 
-<div class="wrap hero">
-  <span class="lab">What We Do</span>
-  <h1>Four service lines, one plan.</h1>
+<div id="top" class="wrap hero">
+  <span class="lab">Athlete Consulting &amp; Advisory</span>
+  <h1>Athlete Consulting &amp; Advisory.</h1>
+  <p style="margin-top:.9rem;max-width:40rem">Career and opportunity planning, offer evaluation, and positioning from someone who has been on the other side of it.</p>
 </div>
 
-<section id="services">
+<section id="transfer-portal">
   <div class="wrap">
     <div class="sec-head">
-      <p>Athletes can start anywhere and add as they grow.</p>
+      <span class="lab">Transfer portal consulting</span>
+      <h2 style="margin-top:.7rem;font-size:clamp(1.5rem,3.2vw,2.1rem)">From portal entry to a signed opportunity.</h2>
+      <p>Strategic positioning across opportunity ranges from roughly <b style="color:var(--ink)">$15K into six figures and beyond</b>. Ramone Seals entered the portal out of Kennesaw State and landed at FIU. Positioning work moved his opportunity range from roughly $15K into six figures.</p>
     </div>
-
-    <div class="svc">
-      <a class="svc-card" href="player-development.html">
-        <div class="svc-body">
-          <div class="n">ON COURT</div>
-          <h3>Player Development</h3>
-          <p>Individualized player development built around where an athlete actually needs to improve: skill work, live defenders, and rebounding.</p>
-          <span class="more">Explore player development &rarr;</span>
-        </div>
-      </a>
-      <a class="svc-card" href="development-plan.html">
-        <div class="svc-body">
-          <div class="n">ROADMAP</div>
-          <h3>Personal Development Plans</h3>
-          <p>A written, individualized plan for every athlete. The roadmap a trainer's rate card never includes.</p>
-          <span class="more">See an example plan &rarr;</span>
-        </div>
-      </a>
-      <a class="svc-card" href="athlete-consulting.html">
-        <div class="svc-body">
-          <div class="n">STRATEGY</div>
-          <h3>Athlete Consulting &amp; Advisory</h3>
-          <p>Career and opportunity planning, offer evaluation, and positioning from someone who has been on the other side of it.</p>
-          <span class="more">Explore consulting &rarr;</span>
-        </div>
-      </a>
-      <a class="svc-card" href="book-content.html">
-        <div class="svc-body">
-          <div class="n">ASSETS</div>
-          <h3>Content &amp; Personal Branding</h3>
-          <p>Videography, photography, and social content built to grow an athlete's brand and following.</p>
-          <span class="more">Packages &amp; booking &rarr;</span>
-        </div>
-      </a>
+    <div class="figs c2">
+      <figure><div class="media"><img src="/img/seals-portal.webp" alt="News graphic announcing that sophomore Ramone Seals entered the transfer portal" width="720" height="952" loading="lazy" decoding="async"></div><figcaption><b>Entering the portal</b>Kennesaw State</figcaption></figure>
+      <figure><div class="media"><img src="/img/seals-fiu.webp" alt="Commitment graphic for Ramone Seals at Florida International University" width="720" height="900" loading="lazy" decoding="async"></div><figcaption><b>Committed</b>Florida International</figcaption></figure>
+    </div>
+    <div class="cta-row" style="margin-top:2.2rem">
+      <a class="btn" href="contact.html">Start the conversation</a>
     </div>
   </div>
 </section>
 
-<section id="pricing">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="lab">Pricing</span>
-      <h2 style="margin-top:.7rem">Packages and pricing.</h2>
-      <p>Content is rate-carded. Player development pricing comes with your invoice once you request a session.</p>
-    </div>
-
-    <div class="price-grid">
-      <div class="pcard">
-        <h3>Player Development</h3>
-        <p class="psub">Individual and recurring</p>
-        <table class="ptab">
-          <tbody>
-            <tr><td>Individual session</td><td>Via invoice</td></tr>
-            <tr><td>5-session package</td><td>Via invoice</td></tr>
-            <tr><td>Sevenity Pro Session</td><td>Via invoice</td></tr>
-            <tr><td>Unlimited player development / month</td><td>Via invoice</td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Request a package and your pricing arrives with your invoice email.</p>
-        <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Sevenity Pro Session: professional-level player development with live defenders and rebounders.</p>
-        <div class="foot"><a class="btn ghost sm" href="book-training.html">Book player development</a></div>
-      </div>
-      <div class="pcard feat">
-        <h3>Content Creation</h3>
-        <p class="psub">Per session, on location</p>
-        <table class="ptab">
-          <tbody>
-            <tr><td>Videography</td><td>$120&#8202;/&#8202;session</td></tr>
-            <tr><td>Photography</td><td>$50&#8202;/&#8202;session</td></tr>
-            <tr><td>Video + photography bundle</td><td>$150&#8202;/&#8202;session</td></tr>
-          </tbody>
-        </table>
-        <div class="foot"><a class="btn sm" href="book-content.html">Book a shoot</a></div>
-      </div>
-    </div>
-  </div>
-</section>
+<a class="back-top" href="#top">&uarr; Top</a>
 
 <footer>
   <div class="wrap foot-in">
