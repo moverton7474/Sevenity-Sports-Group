@@ -154,6 +154,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   html{font-size:199.36%}
   body{font-size:28px}
 }
+/* narrow phones: long words like RELATIONSHIPS stay inside the screen */
+@media(max-width:420px){h2{font-size:min(1.9rem,8.4vw)}}
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
 /* proven brand activations */
 .acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
@@ -281,8 +283,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   <div class="wrap">
     <div class="sec-head">
       <span class="lab">Proof</span>
-      <h2 style="margin-top:.7rem">Athletes &amp; Results</h2>
-      <p>Already doing the work, not just describing it.</p>
+      <h2 style="margin-top:.7rem">Trusted Athlete Relationships</h2>
+      <p>Athletes and families who trust Sevenity with their development, their brand, and their next move.</p>
     </div>
 
     <h2 class="collage-heading">Athletes in our network</h2>
