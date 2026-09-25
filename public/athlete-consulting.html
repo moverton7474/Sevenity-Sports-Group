@@ -168,6 +168,13 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .deal{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:2.4rem;align-items:center;margin-top:3.6rem}
 .deal-pic{margin:0}
 @media(max-width:820px){.deal{grid-template-columns:1fr;gap:1.4rem}.deal-pic{max-width:30rem}}
+/* small phones: keep the nav bar inside the screen (no sideways scroll) */
+@media(max-width:400px){
+  .nav-in{padding:.75rem 1rem;gap:.6rem}
+  .nav-brand{gap:.45rem}
+  .nav-toggle{padding:.5rem .75rem}
+}
+@media(max-width:359px){.nav-toggle .nav-label{display:none}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script defer src="/_vercel/insights/script.js"></script>
@@ -176,9 +183,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <nav>
   <div class="nav-in">
     <a class="nav-brand" href="index.html"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">Sevenity Sports Group</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
       <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      Menu
+      <span class="nav-label">Menu</span>
     </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>

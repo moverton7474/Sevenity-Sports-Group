@@ -189,6 +189,13 @@ input::placeholder{color:var(--ink-3)}
   body{font-size:28px}
 }
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
+/* small phones: keep the nav bar inside the screen (no sideways scroll) */
+@media(max-width:400px){
+  .nav-in{padding:.75rem 1rem;gap:.6rem}
+  .nav-brand{gap:.45rem}
+  .nav-toggle{padding:.5rem .75rem}
+}
+@media(max-width:359px){.nav-toggle .nav-label{display:none}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -217,9 +224,9 @@ input::placeholder{color:var(--ink-3)}
 <nav>
   <div class="nav-in">
     <a class="nav-brand" href="index.html"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">Sevenity Sports Group</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
       <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      Menu
+      <span class="nav-label">Menu</span>
     </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
