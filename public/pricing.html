@@ -121,6 +121,11 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .ptab td{padding:.55rem 0;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
 .ptab td:last-child{text-align:right;font-family:var(--f-m);font-size:.86rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ptab tr:last-child td{border-bottom:none}
+/* each package row links straight to booking it */
+.ptab a.prow{display:block;color:inherit;text-decoration:none}
+.ptab .go{color:var(--gold);font-weight:600;transition:margin .15s}
+.ptab tr:hover td{color:var(--ink)}
+.ptab tr:hover .go,.ptab a.prow:focus-visible .go{margin-left:.25rem}
 .ptab .from{display:block;font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);line-height:1.3}
 .pcard .foot{margin-top:1.2rem}
 
@@ -222,7 +227,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <section id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <p>Content is rate-carded. Player development pricing comes with your invoice once you request a session.</p>
+      <p>Content is rate-carded. Player development pricing comes with your invoice once you request a session. Tap any package to book it.</p>
     </div>
 
     <div class="price-grid">
@@ -231,10 +236,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <p class="psub">Individual and recurring</p>
         <table class="ptab">
           <tbody>
-            <tr><td>Individual session</td><td><small class="from">Starting at</small>$65</td></tr>
-            <tr><td>5-session package</td><td><small class="from">Starting at</small>$250</td></tr>
-            <tr><td>Sevenity Pro Session</td><td><small class="from">Starting at</small>$130&#8202;/&#8202;session</td></tr>
-            <tr><td>Unlimited player development / month</td><td><small class="from">Starting at</small>$500&#8202;/&#8202;mo</td></tr>
+            <tr><td><a class="prow" href="book-training.html?package=training-1session">Individual session<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-training.html?package=training-1session" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$65</a></td></tr>
+            <tr><td><a class="prow" href="book-training.html?package=training-5session">5-session package<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-training.html?package=training-5session" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$250</a></td></tr>
+            <tr><td><a class="prow" href="book-training.html?package=training-pro">Sevenity Pro Session<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-training.html?package=training-pro" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$130&#8202;/&#8202;session</a></td></tr>
+            <tr><td><a class="prow" href="book-training.html?package=training-unlimited">Unlimited player development / month<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-training.html?package=training-unlimited" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$500&#8202;/&#8202;mo</a></td></tr>
           </tbody>
         </table>
         <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Request a package and your pricing arrives with your invoice email.</p>
@@ -246,9 +251,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <p class="psub">Per session, on location</p>
         <table class="ptab">
           <tbody>
-            <tr><td>Videography</td><td><small class="from">Starting at</small>$120&#8202;/&#8202;session</td></tr>
-            <tr><td>Photography</td><td><small class="from">Starting at</small>$50&#8202;/&#8202;session</td></tr>
-            <tr><td>Video + photography bundle</td><td><small class="from">Starting at</small>$150&#8202;/&#8202;session</td></tr>
+            <tr><td><a class="prow" href="book-content.html?package=content-video">Videography<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-content.html?package=content-video" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$120&#8202;/&#8202;session</a></td></tr>
+            <tr><td><a class="prow" href="book-content.html?package=content-photo">Photography<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-content.html?package=content-photo" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$50&#8202;/&#8202;session</a></td></tr>
+            <tr><td><a class="prow" href="book-content.html?package=content-bundle">Video + photography bundle<span class="go" aria-hidden="true"> &rarr;</span></a></td><td><a class="prow" href="book-content.html?package=content-bundle" tabindex="-1" aria-hidden="true"><small class="from">Starting at</small>$150&#8202;/&#8202;session</a></td></tr>
           </tbody>
         </table>
         <div class="foot"><a class="btn sm" href="book-content.html">Book a shoot</a></div>
