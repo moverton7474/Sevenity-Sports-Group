@@ -22,18 +22,31 @@
       });
     } else {
       btn.textContent = 'Request this package';
-      btn.addEventListener('click', function(){
-        var select = document.getElementById('package');
-        if(select){
-          for(var i = 0; i < select.options.length; i++){
-            if(select.options[i].value === id){ select.selectedIndex = i; break; }
-          }
-        }
-        var form = document.getElementById('request-form');
-        if(form && form.scrollIntoView){ form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        var nameInput = document.getElementById('req-name');
-        if(nameInput){ setTimeout(function(){ nameInput.focus(); }, 450); }
-      });
+      btn.addEventListener('click', function(){ requestPackage(id); });
     }
   });
+
+  function requestPackage(id){
+    var select = document.getElementById('package');
+    if(select){
+      for(var i = 0; i < select.options.length; i++){
+        if(select.options[i].value === id){ select.selectedIndex = i; break; }
+      }
+    }
+    var form = document.getElementById('request-form');
+    if(form && form.scrollIntoView){ form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    var nameInput = document.getElementById('req-name');
+    if(nameInput){ setTimeout(function(){ nameInput.focus({ preventScroll: true }); }, 450); }
+  }
+
+  // Arriving from the Pricing page with ?package=<id>: go straight to booking
+  // that package (request form preselected, or its pay button if it has a link).
+  var wanted = (window.location.search.match(/[?&]package=([\w-]+)/) || [])[1];
+  var wantedBtn = wanted && document.querySelector('.book-btn[data-package-id="' + wanted + '"]');
+  if(wantedBtn){
+    setTimeout(function(){
+      if((links[wanted] || '').trim()){ wantedBtn.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      else { requestPackage(wanted); }
+    }, 300);
+  }
 })();
