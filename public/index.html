@@ -168,12 +168,17 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .home-hero .title-hero-text{font-family:var(--f-baskerville);font-style:italic;font-weight:400;text-transform:uppercase;color:#fff;letter-spacing:.22em;line-height:1.14;margin:0;text-shadow:0 4px 30px rgba(0,0,0,.45)}
 .home-hero .title-hero-text span{display:block;font-size:clamp(2.321rem,11vw,6.607rem);white-space:nowrap}
 .home-svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:0;text-align:left}
-.hsvc{display:flex;flex-direction:column;gap:.4rem;background:rgba(8,10,15,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s,background .15s}
+.hsvc{container-type:inline-size;display:flex;flex-direction:column;gap:.4rem;background:rgba(8,10,15,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s,background .15s}
 .hsvc:hover{border-color:rgba(255,255,255,.6);background:rgba(8,10,15,.55);transform:translateY(-2px)}
 .hsvc .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .hsvc h3{font-size:1.02rem;margin:0;flex:1}
 .hsvc .go{font-size:.78rem;color:var(--gold);font-weight:600}
-@media(max-width:900px){.home-svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* keep card text inside its card on every screen: cap the size by the card's own width
+   (longest word "DEVELOPMENT" is ~7.6em wide, longest label ~9.3em); browsers without cqi keep the rem size above */
+.hsvc h3{font-size:min(1.02rem,12.6cqi)}
+.hsvc .go{font-size:min(.78rem,10.4cqi);white-space:nowrap}
+/* four columns are too narrow for the desktop type scale until ~1200px, so stay 2x2 until then */
+@media(max-width:1199px){.home-svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.home-hero .title-hero-text{letter-spacing:.09em}.home-hero .title-hero-text span{font-size:9vw}}
 @media(max-width:420px){.home-hero .title-hero-text{letter-spacing:.05em}.home-hero .title-hero-text span{font-size:8.6vw}}
 @media(max-width:640px){
@@ -181,9 +186,18 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .home-svc{grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-top:0}
   .hsvc{padding:.85rem .8rem .9rem;gap:.35rem;border-radius:12px}
   .hsvc .n{font-size:.5rem;letter-spacing:.12em}
-  .hsvc h3{font-size:.74rem;line-height:1.25;letter-spacing:.01em}
-  .hsvc .go{font-size:.66rem}
+  .hsvc h3{font-size:.74rem;font-size:min(.74rem,12.6cqi);line-height:1.25;letter-spacing:.01em}
+  .hsvc .go{font-size:.66rem;font-size:min(.66rem,10.4cqi)}
 }
+@media(max-width:400px){
+  .hero-in.wrap{padding:0 1rem}
+  .home-svc{gap:.5rem}
+  .hsvc{padding:.8rem .65rem .85rem}
+  .nav-in{padding:.75rem 1rem;gap:.6rem}
+  .nav-brand{gap:.45rem}
+  .nav-toggle{padding:.5rem .75rem}
+}
+@media(max-width:359px){.nav-toggle .nav-label{display:none}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .home-connect{display:flex;justify-content:center;margin-top:1.6rem}
 .home-connect .btn{font-size:.95rem;padding:.8rem 1.7rem}
@@ -236,9 +250,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <nav>
   <div class="nav-in">
     <a class="nav-brand" href="index.html"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">Sevenity Sports Group</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
       <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      Menu
+      <span class="nav-label">Menu</span>
     </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>

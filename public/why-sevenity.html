@@ -113,10 +113,14 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .collage-img{display:block;width:100%;height:auto}
 
 /* network logos */
-.logowall{display:flex;flex-wrap:wrap;gap:1.1rem;align-items:center;justify-content:center}
-.logowall .logotile{background:#fff;border-radius:var(--r);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
-.logowall img{height:86px;width:auto;display:block;object-fit:contain}
-@media(max-width:620px){.logowall img{height:64px}}
+.logo-cell{aspect-ratio:784/524;display:flex;align-items:center;justify-content:center}
+.logowall{display:flex;flex-wrap:nowrap;gap:8%;align-items:center;justify-content:center;width:100%}
+/* logos sit straight on the page, no tile or outline; sized so both read with equal weight */
+.logowall img{display:block;height:auto;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.logowall .logo-ce{width:52%}
+.logowall .logo-jm{width:36%}
+@media(max-width:900px){.logowall .logo-ce{width:48%}.logowall .logo-jm{width:32%}}
+@media(max-width:620px){.logo-cell{aspect-ratio:auto;padding:1rem 0}.logowall .logo-ce{width:44%;max-width:15rem}.logowall .logo-jm{width:30%;max-width:10rem}}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
 .foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -227,10 +231,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <figure><div class="media"><img src="/img/coaches-map.webp" alt="Map of the United States covered in college program logos" width="1000" height="620" loading="lazy" decoding="async"></div><figcaption><b>College coaches</b>Nationwide staff network</figcaption></figure>
       <figure><div class="media"><img src="/img/scouts.webp" alt="A scout taking notes courtside at a basketball game" width="784" height="524" loading="lazy" decoding="async"></div><figcaption><b>Scouting access</b>NBA &amp; college</figcaption></figure>
       <figure>
-        <div class="media" style="aspect-ratio:784/524;display:flex;align-items:center;justify-content:center;padding:1.4rem">
+        <div class="logo-cell">
           <div class="logowall">
-            <div class="logotile"><img src="/img/logo-clean-energy.webp" alt="Clean Energy" width="420" height="210" loading="lazy" decoding="async"></div>
-            <div class="logotile"><img src="/img/logo-jersey-mikes.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy" decoding="async"></div>
+            <img class="logo-ce" src="/img/logo-clean-energy-transparent.webp" alt="Clean Energy" width="400" height="196" loading="lazy" decoding="async">
+            <img class="logo-jm" src="/img/logo-jersey-mikes-transparent.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy" decoding="async">
           </div>
         </div>
         <figcaption><b>Brand partners</b>Clean Energy &amp; Jersey Mike's</figcaption>
