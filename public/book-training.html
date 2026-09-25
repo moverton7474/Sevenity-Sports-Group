@@ -122,6 +122,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .lead textarea{min-height:5.5rem;resize:vertical}
 .lead input:focus,.lead select:focus,.lead textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
 #req-date{border-color:#fff;color-scheme:dark}
+.lead .lrow>div{min-width:0}
+.lead input:not([type=checkbox]):not([type=radio]),.lead select{height:calc(1.5em + 1.2rem + 2px);min-width:0;max-width:100%;display:block}
+.lead input[type=date]{-webkit-appearance:none;appearance:none;text-align:left}
+.lead input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.lead input[type=date]::-webkit-datetime-edit{padding:0}
 .lead .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .lead .lfoot{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.1rem}
 .lead .note-sm{font-size:.78rem;color:var(--ink-3);margin:.8rem 0 0;line-height:1.5}
@@ -268,6 +273,29 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
           <input type="text" id="req-athlete" name="athlete" placeholder="If different from you">
         </div>
       </div>
+      <label for="req-grade">Athlete grade / level</label>
+      <select id="req-grade" name="grade" required>
+        <option value="">Pick grade or level</option>
+        <optgroup label="K-12">
+          <option value="Kindergarten">Kindergarten</option>
+          <option value="1st grade">1st grade</option>
+          <option value="2nd grade">2nd grade</option>
+          <option value="3rd grade">3rd grade</option>
+          <option value="4th grade">4th grade</option>
+          <option value="5th grade">5th grade</option>
+          <option value="6th grade">6th grade</option>
+          <option value="7th grade">7th grade</option>
+          <option value="8th grade">8th grade</option>
+          <option value="9th grade">9th grade</option>
+          <option value="10th grade">10th grade</option>
+          <option value="11th grade">11th grade</option>
+          <option value="12th grade">12th grade</option>
+        </optgroup>
+        <optgroup label="Beyond high school">
+          <option value="College">College</option>
+          <option value="Pro">Pro</option>
+        </optgroup>
+      </select>
       <label for="package">Package</label>
       <select id="package" name="package">
         <option value="training-1session">Individual session</option>
@@ -433,6 +461,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var packageId = packageSel.value;
       var packageName = packageLabel;
       var athleteVal = document.getElementById('req-athlete').value.trim() || name;
+      var gradeVal = document.getElementById('req-grade').value;
+      if(!gradeVal) { say(msgEl, "Pick the athlete's grade or level.", false); return; }
       var dateVal = document.getElementById('req-date').value.trim();
       var timeVal = document.getElementById('req-time').value.trim();
       var locationVal = document.getElementById('req-location').value;
@@ -443,6 +473,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var notesVal = document.getElementById('req-notes').value.trim();
       var message = [
         'Athlete: ' + athleteVal,
+        'Grade / level: ' + gradeVal,
         'Package: ' + packageLabel,
         'Preferred date: ' + (dateVal || 'Not specified'),
         'Preferred time: ' + (timeVal || 'Not specified'),
@@ -462,6 +493,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         package: packageName,
         packageId: packageId,
         athlete: athleteVal,
+        grade: gradeVal,
         date: dateVal,
         time: timeVal,
         location: locationVal,

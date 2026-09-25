@@ -94,6 +94,7 @@ module.exports = async function handler(req, res) {
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
   const athlete = clean(body.athlete, 120);
+  const grade = clean(body.grade, 40);
   const prefDate = clean(body.date, 60);
   const prefTime = clean(body.time, 60);
   const notes = clean(body.notes, 1000);
@@ -185,7 +186,7 @@ module.exports = async function handler(req, res) {
         <tr>
           <td style="padding:14px 0;border-bottom:1px solid #E3E9F0;font-size:15px;vertical-align:top">
             <div style="font-weight:600">${esc(pkg)}</div>
-            ${athlete ? `<div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete: ${esc(athlete)}</div>` : ''}
+            ${athlete ? `<div style="font-size:13px;color:#6C7788;margin-top:2px">Athlete: ${esc(athlete)}${grade ? ` &middot; ${esc(grade)}` : ''}</div>` : ''}
             ${notes ? `<div style="font-size:13px;color:#6C7788;margin-top:2px">${esc(notes)}</div>` : ''}
           </td>
           <td style="padding:14px 0;border-bottom:1px solid #E3E9F0;font-size:15px;text-align:right;vertical-align:top">${esc(price)}</td>
@@ -220,7 +221,7 @@ module.exports = async function handler(req, res) {
       `${invoiceNo}  ·  ${invoiceDate}`, '',
       `Billed to: ${name} (${email})`,
       when ? `Session: ${when}` : '', '',
-      `${pkg}${athlete ? ` (Athlete: ${athlete})` : ''}${notes ? `. ${notes}` : ''}`,
+      `${pkg}${athlete ? ` (Athlete: ${athlete}${grade ? `, ${grade}` : ''})` : ''}${notes ? `. ${notes}` : ''}`,
       `Amount: ${price}`, '',
       `AMOUNT DUE: ${price}`, '',
       'How to pay:',
