@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#5b8ee7">
-<title>About &amp; Contact | Sevenity Sports Group</title>
-<meta name="description" content="Meet Chase Clemmons, founder of Sevenity Sports Group, and get in touch by email, phone, or Instagram.">
-<link rel="canonical" href="https://sevenitysportsgroup.com/about">
+<title>Pricing | Sevenity Sports Group</title>
+<meta name="description" content="Sevenity Sports Group pricing: player development sessions, packages, and unlimited monthly training, plus content creation rates for videography and photography.">
+<link rel="canonical" href="https://sevenitysportsgroup.com/pricing">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sevenitysportsgroup.com/about">
+<meta property="og:url" content="https://sevenitysportsgroup.com/pricing">
 <meta property="og:site_name" content="Sevenity Sports Group">
-<meta property="og:title" content="About &amp; Contact | Sevenity Sports Group">
-<meta property="og:description" content="Meet the founder behind Sevenity Sports Group, and get in touch.">
+<meta property="og:title" content="Pricing | Sevenity Sports Group">
+<meta property="og:description" content="Player development and content creation packages, with starting prices for every session.">
 <meta property="og:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Sevenity Sports Group: athlete development and advisory.">
 <meta name="twitter:image" content="https://sevenitysportsgroup.com/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About &amp; Contact | Sevenity Sports Group">
-<meta name="twitter:description" content="Meet the founder behind Sevenity Sports Group, and get in touch.">
+<meta name="twitter:title" content="Pricing | Sevenity Sports Group">
+<meta name="twitter:description" content="Player development and content creation packages, with starting prices for every session.">
 <link rel="icon" href="/img/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/img/favicon-192.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -40,7 +40,6 @@
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
   --amber:#F5C24B; --rose:#F2706A;
   --f-serif:"Libre Baskerville",Georgia,"Times New Roman",serif;
-  --f-baskerville:var(--f-serif);
   --f-d:var(--f-serif);
   --f-b:"Libre Baskerville",Georgia,"Times New Roman",serif;
   --f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
@@ -99,35 +98,31 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .btn:hover{opacity:.85;transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
+.btn.sm{font-size:.79rem;padding:.5rem 1rem}
 
-/* founder / about */
-.founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:2.6rem;align-items:start}
-@media(max-width:820px){.founder{grid-template-columns:1fr;gap:1.6rem}}
-.fpic{margin:0}
-.fpic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top center;border:1px solid var(--line);border-radius:var(--r)}
-.creed{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:clamp(1.3rem,3vw,2rem);letter-spacing:.01em;line-height:1.2;margin:1.5rem 0 0;text-transform:uppercase}
-.creed span{display:block;color:var(--ink-3)}
-.creed span:first-child{color:var(--gold)}
+/* services grid, clickable cards */
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.1rem}
+.svc-card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:block;text-decoration:none;color:var(--ink);transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.svc-card:hover{transform:translateY(-3px);background:var(--glass-2);border-color:rgba(255,255,255,.4)}
+.svc-body{padding:1.5rem 1.5rem 1.6rem}
+.svc-body .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;color:var(--gold);margin-bottom:.55rem}
+.svc-body h3{margin-bottom:.5rem}
+.svc-body p{font-size:.88rem;margin:0 0 .9rem}
+.svc-body .more{font-family:var(--f-m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:inline-block}
+.svc-card:hover .more{color:var(--gold)}
 
-/* what we are */
-.about-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:3rem;align-items:center}
-.about-split .sec-head{max-width:none}
-.about-pic{margin:0}
-.about-pic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
-@media(max-width:900px){.about-split{grid-template-columns:1fr;gap:1.8rem}.about-pic{max-width:30rem}}
-
-/* contact tiles */
-.direct{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:2rem}
-.direct div{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.3rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.direct dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem}
-.direct dd{margin:0;font-size:1rem;color:var(--ink);overflow-wrap:anywhere;word-break:break-word}
-.direct dd a{text-decoration:none;border-bottom:1px solid var(--line)}
-.direct dd a:hover{border-color:var(--ink)}
-.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
-
-/* back to top */
-.back-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;background:var(--glass-2);border:1px solid var(--line);color:var(--ink);font-family:var(--f-m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.05rem;border-radius:999px;text-decoration:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.back-top:hover{background:rgba(255,255,255,.16)}
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.1rem;margin-top:2.6rem}
+.pcard{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem 1.55rem;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.pcard.feat{border-color:var(--gold)}
+.pcard h3{margin-bottom:.3rem}
+.pcard .psub{font-size:.83rem;color:var(--ink-3);margin:0 0 1.1rem}
+.ptab{width:100%;border-collapse:collapse;font-size:.92rem}
+.ptab td{padding:.55rem 0;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
+.ptab td:last-child{text-align:right;font-family:var(--f-m);font-size:.86rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ptab tr:last-child td{border-bottom:none}
+.ptab .from{display:block;font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);line-height:1.3}
+.pcard .foot{margin-top:1.2rem}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
 .foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -178,13 +173,20 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       "sameAs": ["https://www.instagram.com/sevenitysports/"]
     },
     {
-      "@type": "Person",
-      "@id": "https://sevenitysportsgroup.com/#chase",
-      "name": "Chase Clemmons",
-      "jobTitle": "Founder",
-      "worksFor": {"@id": "https://sevenitysportsgroup.com/#org"},
-      "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kennesaw State University"},
-      "sameAs": ["https://www.instagram.com/chaseclemmons_/"]
+      "@type": "Service",
+      "name": "Player Development",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "areaServed": "Atlanta, GA"
+    },
+    {
+      "@type": "Service",
+      "name": "Content Creation",
+      "provider": {"@id": "https://sevenitysportsgroup.com/#org"},
+      "offers": [
+        {"@type": "Offer", "name": "Videography", "price": "120", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Photography", "price": "50", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Video and photography bundle", "price": "150", "priceCurrency": "USD"}
+      ]
     }
   ]
 }
@@ -212,62 +214,48 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   </div>
 </nav>
 
-<div id="top" class="wrap hero">
-  <span class="lab">About Sevenity</span>
-  <h1>The person behind Sevenity Sports Group.</h1>
+<div class="wrap hero">
+  <span class="lab">Pricing</span>
+  <h1>Packages and pricing.</h1>
 </div>
 
-<section id="about">
+<section id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <span class="lab">The Founder</span>
-      <h2 style="margin-top:.7rem">About &amp; Contact</h2>
+      <p>Content is rate-carded. Player development pricing comes with your invoice once you request a session.</p>
     </div>
-    <div class="founder">
-      <figure class="fpic">
-        <img src="/img/chase-suit-hd.webp" alt="Chase Clemmons in a black tuxedo" width="1150" height="1560" loading="lazy" decoding="async">
-      </figure>
-      <div>
-        <h3 style="font-size:1.4rem">Chase Clemmons</h3>
-        <p style="margin-top:.8rem">Chase Clemmons is the founder of Sevenity Sports Group, an athlete development and advisory firm focused on performance and strategy. He's a former Kennesaw State collegiate athlete and Sports Management graduate who built Sevenity around the thing he could not find as a player: one person responsible for the whole picture.</p>
-        <p>He has been the athlete trying to hold a trainer, a content creator, and a recruiting timeline together at the same time, and he knows which of those actually moves a career forward. Sevenity works across high school, college, transfer-portal, and emerging athletes, with player development, positioning, and brand strategy handled by one team instead of three.</p>
-        <div class="creed">
-          <span>Develop the athlete.</span>
-          <span>Build the brand.</span>
-          <span>Create the opportunity.</span>
-        </div>
 
-        <dl class="direct">
-          <div><dt>Email</dt><dd><a href="mailto:chase@sevenitysportsgroup.com">sevenitysportsgroup@gmail.com</a></dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:+14706012934">470-601-2934</a></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/sevenitysports/" target="_blank" rel="noopener">@sevenitysports</a></dd></div>
-        </dl>
-        <div class="cta-row">
-          <a class="btn" href="contact.html">Send a message</a>
-          <a class="btn ghost" href="https://www.instagram.com/chaseclemmons_/" target="_blank" rel="noopener">@chaseclemmons_ on Instagram</a>
-        </div>
+    <div class="price-grid">
+      <div class="pcard">
+        <h3>Player Development</h3>
+        <p class="psub">Individual and recurring</p>
+        <table class="ptab">
+          <tbody>
+            <tr><td>Individual session</td><td><small class="from">Starting at</small>$65</td></tr>
+            <tr><td>5-session package</td><td><small class="from">Starting at</small>$250</td></tr>
+            <tr><td>Sevenity Pro Session</td><td><small class="from">Starting at</small>$130&#8202;/&#8202;session</td></tr>
+            <tr><td>Unlimited player development / month</td><td><small class="from">Starting at</small>$500&#8202;/&#8202;mo</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Request a package and your pricing arrives with your invoice email.</p>
+        <p style="font-size:.82rem;color:var(--ink-3);margin:.9rem 0 0">Sevenity Pro Session: professional-level player development with live defenders and rebounders.</p>
+        <div class="foot"><a class="btn ghost sm" href="book-training.html">Book player development</a></div>
+      </div>
+      <div class="pcard feat">
+        <h3>Content Creation</h3>
+        <p class="psub">Per session, on location</p>
+        <table class="ptab">
+          <tbody>
+            <tr><td>Videography</td><td><small class="from">Starting at</small>$120&#8202;/&#8202;session</td></tr>
+            <tr><td>Photography</td><td><small class="from">Starting at</small>$50&#8202;/&#8202;session</td></tr>
+            <tr><td>Video + photography bundle</td><td><small class="from">Starting at</small>$150&#8202;/&#8202;session</td></tr>
+          </tbody>
+        </table>
+        <div class="foot"><a class="btn sm" href="book-content.html">Book a shoot</a></div>
       </div>
     </div>
   </div>
 </section>
-
-<section id="about-sevenity">
-  <div class="wrap">
-    <div class="about-split">
-      <div class="sec-head" style="margin-bottom:0">
-        <span class="lab">What We Are</span>
-        <h2 style="margin-top:.7rem">One firm for the whole picture.</h2>
-        <p>Sevenity Sports Group brings on-court player development, personal development plans, athlete consulting and advisory, and content creation together under one roof, backed by a nationwide coaching and scouting network. An athlete's player development, opportunities, and brand shouldn't be handled by three different people who never talk to each other. At Sevenity, they're handled by one.</p>
-        <p>From high school and college athletes to those navigating the transfer portal, Sevenity builds the plan, does the work, and stays in the room for what comes next.</p>
-      </div>
-      <figure class="about-pic">
-        <img src="/img/training-session.webp" srcset="/img/training-session.webp 700w, /img/training-session-hd.webp 1100w" sizes="(max-width:900px) 100vw, 40vw" alt="A Sevenity trainer coaching an athlete through a two-ball dribbling drill in the gym" width="700" height="1050" loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<a class="back-top" href="#top">&uarr; Top</a>
 
 <footer>
   <div class="wrap foot-in">
