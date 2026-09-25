@@ -1,0 +1,16 @@
+{
+  "name": "Sevenity Sports Group",
+  "short_name": "Sevenity",
+  "description": "Athlete development and advisory: player development, athlete consulting, and content creation.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#13263f",
+  "theme_color": "#5b8ee7",
+  "icons": [
+    { "src": "/img/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
