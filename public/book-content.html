@@ -104,6 +104,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .pcard .psub{font-size:.83rem;color:var(--ink-3);margin:0 0 1.1rem}
 .pcard .price{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);margin:0 0 .3rem;font-variant-numeric:tabular-nums}
 .pcard .price small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.pcard .price .from{display:block;margin-bottom:.15rem}
 .pcard .foot{margin-top:auto;padding-top:1.2rem}
 
 footer{border-top:1px solid var(--line-soft);padding:2.5rem 0 5rem;font-size:.83rem;color:var(--ink-3)}
@@ -335,19 +336,19 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <div class="pcard">
         <h3>Videography</h3>
         <p class="psub">Per session, on location</p>
-        <p class="price">$120 <small>/ session</small></p>
+        <p class="price"><small class="from">Starting at</small>$120 <small>/ session</small></p>
         <div class="foot"><button class="btn block book-btn" type="button" data-package-id="content-video">Book and pay</button></div>
       </div>
       <div class="pcard">
         <h3>Photography</h3>
         <p class="psub">Per session, on location</p>
-        <p class="price">$50 <small>/ session</small></p>
+        <p class="price"><small class="from">Starting at</small>$50 <small>/ session</small></p>
         <div class="foot"><button class="btn block book-btn" type="button" data-package-id="content-photo">Book and pay</button></div>
       </div>
       <div class="pcard feat">
         <h3>Video + Photography Bundle</h3>
         <p class="psub">Per session, on location</p>
-        <p class="price">$150 <small>/ session</small></p>
+        <p class="price"><small class="from">Starting at</small>$150 <small>/ session</small></p>
         <div class="foot"><button class="btn block book-btn" type="button" data-package-id="content-bundle">Book and pay</button></div>
       </div>
     </div>
@@ -386,9 +387,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       </div>
       <label for="package">Package</label>
       <select id="package" name="package">
-        <option value="content-video">Videography · $120/session</option>
-        <option value="content-photo">Photography · $50/session</option>
-        <option value="content-bundle">Video + photography bundle · $150/session</option>
+        <option value="content-video">Videography · Starting at $120/session</option>
+        <option value="content-photo">Photography · Starting at $50/session</option>
+        <option value="content-bundle">Video + photography bundle · Starting at $150/session</option>
       </select>
       <label for="req-creator">Who do you want to book?</label>
       <select id="req-creator" name="creator" required>
