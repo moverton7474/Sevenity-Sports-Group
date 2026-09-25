@@ -155,10 +155,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .act{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .act-photo{position:relative;aspect-ratio:4/3;background:#0d131b}
 .act-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:13px 13px 0 0}
-.act-logo{position:absolute;z-index:2;left:1rem;bottom:-1.6rem;width:4.2rem;height:4.2rem;border-radius:12px;background:#fff;border:3px solid #0d131b;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)}
-.act-logo img{width:100%;height:100%;object-fit:contain}
-.act-logo.dark{background:#000}
-.act-logo.wide{width:6.6rem;padding:.3rem}
+.act-logo{position:absolute;z-index:2;left:1rem;bottom:-1.6rem;width:4.2rem;height:4.2rem;display:flex;align-items:center;justify-content:center}
+/* logo on its own, no tile or outline; the shadow keeps it readable over the photo */
+.act-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.7)) drop-shadow(0 6px 16px rgba(0,0,0,.45))}
+.act-logo.mark{width:3.4rem;height:3.4rem}
+.act-logo.wide{width:6.6rem}
 .act-photo.fit::before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;background-position:center;filter:blur(16px) brightness(.55);clip-path:inset(0 round 13px 13px 0 0)}
 .act-photo.fit>img{object-fit:contain}
 .act-body{padding:2.3rem 1.3rem 1.5rem}
@@ -166,6 +167,13 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .act-body h3{font-size:1.08rem;line-height:1.35;margin:0}
 .act-body p{font-size:.86rem;color:var(--ink-2);margin:.6rem 0 0}
 @media(max-width:900px){.acts{grid-template-columns:1fr;max-width:32rem}}
+/* small phones: keep the nav bar inside the screen (no sideways scroll) */
+@media(max-width:400px){
+  .nav-in{padding:.75rem 1rem;gap:.6rem}
+  .nav-brand{gap:.45rem}
+  .nav-toggle{padding:.5rem .75rem}
+}
+@media(max-width:359px){.nav-toggle .nav-label{display:none}}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -197,9 +205,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <nav>
   <div class="nav-in">
     <a class="nav-brand" href="index.html"><img src="/img/mark.webp" width="26" height="26" loading="eager" decoding="async" alt="">Sevenity Sports Group</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
       <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      Menu
+      <span class="nav-label">Menu</span>
     </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
@@ -264,7 +272,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <article class="act">
         <div class="act-photo">
           <img src="/img/act-jersey-mikes-clinic.webp" alt="Youth basketball clinic group photo at the Marietta Community Center" width="900" height="506" loading="lazy" decoding="async">
-          <div class="act-logo"><img src="/img/logo-jersey-mikes.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy"></div>
+          <div class="act-logo"><img src="/img/logo-jersey-mikes-transparent.webp" alt="Jersey Mike's Subs" width="300" height="300" loading="lazy"></div>
         </div>
         <div class="act-body">
           <span class="lab">Jersey Mike&rsquo;s</span>
@@ -275,7 +283,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <article class="act">
         <div class="act-photo">
           <img src="/img/act-1st-phorm-camp.webp" alt="College players in 1st Phorm uniforms gathered on the court during a camp" width="692" height="598" loading="lazy" decoding="async">
-          <div class="act-logo dark"><img src="/img/logo-1st-phorm.webp" alt="1st Phorm" width="300" height="300" loading="lazy"></div>
+          <div class="act-logo mark"><img src="/img/logo-1st-phorm-transparent.webp" alt="1st Phorm" width="161" height="179" loading="lazy"></div>
         </div>
         <div class="act-body">
           <span class="lab">1st Phorm</span>
@@ -286,7 +294,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <article class="act">
         <div class="act-photo fit" style="background-image:url('/img/act-clean-energy.webp')">
           <img src="/img/act-clean-energy.webp" alt="Athlete shooting a jump shot behind a Clean Energy product box" width="546" height="820" loading="lazy" decoding="async">
-          <div class="act-logo wide"><img src="/img/logo-clean-energy.webp" alt="Clean Energy" width="420" height="210" loading="lazy"></div>
+          <div class="act-logo wide"><img src="/img/logo-clean-energy-transparent.webp" alt="Clean Energy" width="400" height="196" loading="lazy"></div>
         </div>
         <div class="act-body">
           <span class="lab">Clean Energy</span>
