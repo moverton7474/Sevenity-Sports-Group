@@ -33,7 +33,11 @@ The differentiator, and the only interactive part of the page. A visitor enters
 their audience metrics — followers, comments, sends, DM shares — and the engine
 ranks sponsor categories by how that audience actually behaves rather than by
 how large it is. Sends per comment is the signal that drives most of the
-ranking. It runs entirely client-side; nothing is transmitted.
+ranking. Scoring runs in the browser. The visitor sees the four headline tiles
+and their single top category, with a "Take it further with Sevenity" button;
+each real scan (not "Load example") also posts the full result, every ranked
+category plus the "flags before you sign", to `api/scan.js`, which emails it to
+chase@sevenitysportsgroup.com and stores nothing.
 
 ## Brand palette
 
