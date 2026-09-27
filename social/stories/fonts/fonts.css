@@ -1,0 +1,7 @@
+/* Local copies of the site fonts so stories render without network access.
+   Libre Baskerville and JetBrains Mono are variable fonts (one file, weight range). */
+@font-face{font-family:'Libre Baskerville';font-style:normal;font-weight:400 700;font-display:block;src:url(../fonts/LibreBaskerville.woff2) format('woff2')}
+@font-face{font-family:'Libre Baskerville';font-style:italic;font-weight:400 700;font-display:block;src:url(../fonts/LibreBaskerville-Italic.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:block;src:url(../fonts/JetBrainsMono.woff2) format('woff2')}
+@font-face{font-family:'Graduate';font-style:normal;font-weight:400;font-display:block;src:url(../fonts/Graduate-400.woff2) format('woff2')}
+@font-face{font-family:'Archivo Black';font-style:normal;font-weight:400;font-display:block;src:url(../fonts/ArchivoBlack-400.woff2) format('woff2')}
