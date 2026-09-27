@@ -19,8 +19,10 @@ body{
   width:1080px;height:1920px;overflow:hidden;position:relative;
   color:var(--ink);font-family:var(--f-serif);
   -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;
-  background-color:#2e2c2d;
-  background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);
+  background-color:#1c1b1f;
+  /* The darker lower band of the site gradient, stretched over the whole story:
+     muted brand blue in the middle fading out to charcoal-black at the edges. */
+  background-image:radial-gradient(ellipse 75% 60% at 50% 52%, #4d68ad 0%, #3c4f86 30%, #3c4356 58%, #2e2c2d 82%, #1c1b1f 100%);
 }
 .top{position:absolute;top:104px;left:0;right:0;text-align:center;text-shadow:0 2px 0 rgba(20,30,55,.35)}
 .brand{display:inline-flex;align-items:center;gap:18px;font-style:italic;font-weight:700;font-size:32px;letter-spacing:.08em;text-transform:uppercase}
@@ -54,7 +56,7 @@ h1 .amp{color:var(--gold)}
 </head>
 <body>
   <div class="top">
-    <div class="brand"><img src="mark.png" alt="">Sevenity Sports Group</div>
+    <div class="brand"><img src="mark-light.png" alt="">Sevenity Sports Group</div>
     <div><span class="tag">Interview</span></div>
     <h1>Strategy <span class="amp">&amp;</span> Opportunities</h1>
   </div>
