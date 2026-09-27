@@ -20,37 +20,40 @@
 html,body{margin:0;padding:0}
 body{
   width:1080px;height:1920px;overflow:hidden;position:relative;
-  color:var(--ink);font-family:var(--f-serif);-webkit-font-smoothing:antialiased;
+  color:var(--ink);font-family:var(--f-serif);
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;
   background-color:#2e2c2d;
   background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);
-  text-shadow:0 1px 2px rgba(0,0,0,.6),0 3px 10px rgba(0,0,0,.35);
 }
-.top{position:absolute;top:110px;left:0;right:0;text-align:center}
-.brand{display:inline-flex;align-items:center;gap:18px;font-style:italic;font-weight:700;font-size:30px;letter-spacing:.08em;text-transform:uppercase}
-.brand img{width:64px;height:64px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
-.lab{margin-top:54px;font-family:var(--f-m);font-weight:500;font-size:24px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-h1{margin:22px auto 0;max-width:940px;font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.1;font-size:84px}
+/* Tight, hard-edged shadow only: keeps white type legible on the light top
+   of the gradient without the soft halo that read as blur. */
+/* Header and tiles are one centered column; the footer is pinned below. */
+.main{position:absolute;top:0;left:0;right:0;bottom:120px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.top{text-align:center;text-shadow:0 2px 0 rgba(20,30,55,.35)}
+.brand{display:inline-flex;align-items:center;gap:18px;font-style:italic;font-weight:700;font-size:32px;letter-spacing:.08em;text-transform:uppercase}
+.brand img{width:64px;height:64px}
+h1{margin:36px auto 0;max-width:980px;font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.03em;line-height:1.08;font-size:88px}
 h1 .amp{color:var(--gold)}
-.rule{width:120px;height:3px;background:var(--gold);margin:34px auto 0;border-radius:2px}
-.card{
-  position:absolute;left:50%;top:590px;transform:translateX(-50%);
-  width:720px;height:1185px;border-radius:28px;overflow:hidden;
-  border:1px solid var(--line);background:var(--glass);
-  box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 8px rgba(255,255,255,.06);
-}
-.card img{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block}
-.foot{position:absolute;bottom:62px;left:0;right:0;text-align:center;font-family:var(--f-m);font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
-.foot b{color:var(--gold);font-weight:500}
+.rule{width:120px;height:4px;background:var(--gold);margin:32px auto 0}
+.tiles{display:flex;gap:24px;margin-top:80px}
+.tile{width:490px;height:820px;border-radius:24px;overflow:hidden;border:2px solid var(--line);background:#0b0b0d}
+.tile img{width:100%;height:100%;display:block}
+.foot{position:absolute;bottom:52px;left:0;right:0;text-align:center;font-family:var(--f-m);font-weight:500;font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.foot b{color:var(--gold)}
 </style>
 </head>
 <body>
-  <div class="top">
-    <div class="brand"><img src="mark.png" alt="">Sevenity Sports Group</div>
-    <div class="lab">Behind the scenes · Athlete call</div>
-    <h1>Strategy <span class="amp">&amp;</span> Opportunities</h1>
-    <div class="rule"></div>
+  <div class="main">
+    <div class="top">
+      <div class="brand"><img src="mark.png" alt="">Sevenity Sports Group</div>
+      <h1>Strategy <span class="amp">&amp;</span> Opportunities</h1>
+      <div class="rule"></div>
+    </div>
+    <div class="tiles">
+      <div class="tile"><img src="tile-sosuke.png" alt="Sosuke Watanabe on the video call"></div>
+      <div class="tile"><img src="tile-jahmar.png" alt="Jahmar on the video call"></div>
+    </div>
   </div>
-  <div class="card"><img src="call.jpg" alt="Video call with Chase Clemmons, Sosuke Watanabe and Jahmar"></div>
   <div class="foot">sevenitysportsgroup.com <b>·</b> Atlanta</div>
 </body>
 </html>
