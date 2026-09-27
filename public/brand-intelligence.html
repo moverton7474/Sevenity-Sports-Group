@@ -156,22 +156,10 @@ input::placeholder{color:var(--ink-3)}
 .t-nat{color:var(--ink-3);border-color:var(--line)}
 .t-loc{color:var(--amber);border-color:var(--amber)}
 .flagbox{border:1px solid var(--line);border-left:3px solid var(--amber);background:var(--surface-2);border-radius:var(--r);padding:.75rem .9rem;margin-bottom:.55rem;font-size:.85rem;color:var(--ink-2)}
-.flagbox.hot{border-left-color:var(--rose)}
 .flagbox b{color:var(--ink);font-weight:600;display:block;margin-bottom:.2rem;font-size:.8rem}
-.flagbox .ic{font-family:var(--f-m);font-weight:700;color:var(--amber);margin-right:.3rem}
-.flagbox.hot .ic{color:var(--rose)}
 .res-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line)}
 .disc{font-size:.74rem;color:var(--ink-3);margin:.9rem 0 0;line-height:1.5}
 
-.lmsg{margin-top:.9rem;font-size:.9rem;border-radius:var(--r);padding:.7rem .85rem;display:none}
-.lmsg.ok{display:block;background:var(--accent-quiet);color:var(--ink);border:1px solid var(--accent)}
-.lmsg.err{display:block;background:var(--surface-2);color:var(--ink);border:1px solid var(--rose)}
-.capture{margin-top:1.4rem;border:1px solid var(--accent);border-radius:var(--r);background:var(--accent-quiet);padding:1.1rem 1.2rem}
-.capture h4{margin:0 0 .3rem;font-family:var(--f-d);font-weight:700;font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
-.capture p{margin:0 0 .9rem;font-size:.88rem;color:var(--ink-2)}
-.capture .crow{display:flex;flex-wrap:wrap;gap:.6rem}
-.capture input{flex:1 1 11rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .9rem/1.5 var(--f-b);padding:.55rem .7rem}
-.capture input:focus{outline:2px solid var(--accent);outline-offset:1px}
 
 /* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
    Mobile/tablet (below 1024px) is untouched on purpose. */
@@ -258,7 +246,7 @@ input::placeholder{color:var(--ink-3)}
     <div class="tool-bar">
       <span class="dot" aria-hidden="true"></span>
       <span class="ttl">Brand Intelligence Engine &middot; v1</span>
-      <span class="hint">Runs in your browser. Your numbers never leave this page.</span>
+      <span class="hint">Your scan is shared with the Sevenity team so we can follow up.</span>
     </div>
     <div class="tool-grid">
       <form class="panel-in" id="scanForm" autocomplete="off">
@@ -269,7 +257,7 @@ input::placeholder{color:var(--ink-3)}
         <div class="fld row2">
           <div>
             <label for="followers">Followers</label>
-            <input type="number" id="followers" min="0" step="100" value="12000">
+            <input type="number" id="followers" min="0" step="1" inputmode="numeric" value="12000">
           </div>
           <div>
             <label for="level">Level</label>
@@ -310,7 +298,7 @@ input::placeholder{color:var(--ink-3)}
       </form>
 
       <div class="panel-out" id="out" aria-live="polite">
-        <div class="empty">Pick your pillars and run the scan.<br>You'll get an audience read, ranked sponsor categories, and the conflicts to watch for.</div>
+        <div class="empty">Pick your pillars and run the scan.<br>You'll get your audience numbers and your top-ranked sponsor category.</div>
       </div>
     </div>
   </div>
@@ -345,77 +333,6 @@ input::placeholder{color:var(--ink-3)}
     });
   }
 
-  /* ---------- lead capture ----------
-     Posts to /api/lead, which emails Sevenity and stores nothing. */
-  var __t0 = Date.now();
-
-  function scanPayload(){
-    var d = null;
-    try { d = JSON.parse(localStorage.getItem('sevenityScan') || 'null'); } catch(e){}
-    if(!d) return null;
-    var o = {};
-    if(d.handle)            o['Handle']         = d.handle;
-    if(d.followers != null) o['Followers']      = String(d.followers);
-    if(d.likes != null)     o['Avg likes']      = String(d.likes);
-    if(d.comments != null)  o['Avg comments']   = String(d.comments);
-    if(d.sends != null)     o['Avg sends']      = String(d.sends);
-    if(d.level)             o['Tier']           = d.level;
-    if(d.market)            o['Market']         = d.market;
-    if(d.ownsMerch != null) o['Own merch line'] = d.ownsMerch ? 'Yes' : 'No';
-    if(d.pillars && d.pillars.join) o['Pillars'] = d.pillars.join(', ');
-    if(d.otherPillar)       o['Other content']  = d.otherPillar;
-    return Object.keys(o).length ? o : null;
-  }
-
-  function say(el, text, ok){
-    if(!el) return;
-    el.textContent = text;
-    el.className = 'lmsg ' + (ok ? 'ok' : 'err');
-  }
-
-  function send(payload, btn, msgEl, okText){
-    var label = btn ? btn.textContent : '';
-    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
-    return fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(function(r){
-      return r.json().catch(function(){ return {}; }).then(function(j){
-        if(r.ok && j.ok){
-          say(msgEl, okText, true);
-          if(window.va){ try { window.va('event', { name: 'lead_sent' }); } catch(e){} }
-          return true;
-        }
-        say(msgEl, j.error || "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up.", false);
-        return false;
-      });
-    }).catch(function(){
-      say(msgEl, "That didn't send. You may be offline. Email sevenitysportsgroup@gmail.com directly.", false);
-      return false;
-    }).then(function(done){
-      if(btn){ btn.disabled = false; btn.textContent = label; }
-      return done;
-    });
-  }
-  /* the post-scan capture form is rendered after a scan, so bind by delegation */
-  document.addEventListener('submit', function(e){
-    if(!e.target || e.target.id !== 'capForm') return;
-    e.preventDefault();
-    var msgEl = document.getElementById('cap-msg');
-    var name  = document.getElementById('cap-name').value.trim();
-    var email = document.getElementById('cap-email').value.trim();
-    if(!name || !email){ say(msgEl, 'Name and email, then it goes straight to the Sevenity team.', false); return; }
-    send({
-      name: name,
-      email: email,
-      interest: 'Brand Intelligence report',
-      message: 'Sent from the Brand Intelligence Engine result.',
-      elapsed: Date.now() - __t0,
-      scan: scanPayload()
-    }, document.getElementById('cap-submit'), msgEl,
-       "Sent! The Sevenity team has your scan and will come back to you.");
-  });
 })();
 </script>
 
@@ -547,6 +464,7 @@ input::placeholder{color:var(--ink-3)}
      ex:'Foundations, ministries, youth orgs'}
   ];
 
+  var LEVELS = { hs:'High school', college:'College', portal:'Transfer portal', pro:'Pro / overseas' };
   var fmt = function(n){ return n.toLocaleString('en-US'); };
   var money = function(n){
     if(n >= 1000) return '$' + (Math.round(n/50)*50).toLocaleString('en-US');
@@ -607,7 +525,7 @@ input::placeholder{color:var(--ink-3)}
       out.innerHTML = '<div class="empty">Pick at least one content pillar. The read is built on what you actually post.</div>';
       return;
     }
-    var top = a.scored.slice(0, 6);
+    var top = a.scored;
     var h = '';
 
     h += '<dl class="tiles">';
@@ -617,97 +535,84 @@ input::placeholder{color:var(--ink-3)}
     h += '<div class="tile"><dt>Indicative rate / Reel</dt><dd class="sm">' + money(a.rateLow) + ' to ' + money(a.rateHigh) + '</dd><div class="cap">Negotiation benchmark</div></div>';
     h += '</dl>';
 
-    h += '<div class="flagbox"><b>The read</b>' + a.bRead + '</div>';
-
-    h += '<div class="res-h">Ranked sponsor categories</div>';
-    if(!top.length) h += '<div class="flagbox"><b>Tell us more</b>Your content does not line up with the listed categories yet' + (d.otherPillar ? ' (' + esc(d.otherPillar) + ')' : '') + '. Send this scan to the Sevenity team below and we will read it with you personally.</div>';
-    top.forEach(function(r){
-      var scope = r.c.scope === 'local'
-        ? '<span class="tagline t-loc">Local' + (d.market ? ' &middot; ' + esc(d.market) : '') + '</span>'
-        : '<span class="tagline t-nat">' + (r.c.scope === 'both' ? 'Local + national' : 'National') + '</span>';
+    h += '<div class="res-h">Your top sponsor category</div>';
+    if(!top.length) h += '<div class="flagbox"><b>Tell us more</b>Your content does not line up with the listed categories yet' + (d.otherPillar ? ' (' + esc(d.otherPillar) + ')' : '') + '. Take it further with Sevenity and we will read it with you personally.</div>';
+    top.slice(0, 1).forEach(function(r){
       h += '<div class="match">';
-      h += '<div class="match-top"><span class="match-name">' + esc(r.c.n) + '</span>' + scope + '<span class="match-score">' + r.score + '</span></div>';
+      h += '<div class="match-top"><span class="match-name">' + esc(r.c.n) + '</span>' + scopeTag(r, d) + '<span class="match-score">' + r.score + '</span></div>';
       h += '<div class="meter"><i style="width:' + r.score + '%"></i></div>';
       h += '<p class="match-why">' + esc(r.c.why) + '</p>';
       h += '<p class="match-ex">' + esc(r.c.ex) + '</p>';
       h += '</div>';
     });
 
-    var flags = [];
-    if(d.ownsMerch && a.scored.some(function(r){ return r.flagged && r.score > 45; })){
-      flags.push(['hot','Merch conflict','You sell your own apparel. Every apparel sponsor above competes with that revenue and will ask for the exclusivity that shuts it down. Structure these as co-branded capsule drops with a revenue share, never as an open-ended ambassadorship.']);
-    }
-    if(d.level === 'college' || d.level === 'portal'){
-      flags.push(['','School outfitter &amp; disclosure','Your athletic department’s footwear and apparel contract may restrict competing brand deals when you appear in team gear. Confirm the restrictions and your school’s NIL disclosure thresholds with compliance before any term sheet circulates.']);
-    }
-    if(a.sendRatio >= 5){
-      flags.push(['','Do not buy comment activations','With this profile, tag-a-friend contests, comment-to-enter giveaways, and AMA formats will underperform and make the reporting look worse than the account really is.']);
-    }
-    if(a.eng > 0.10){
-      flags.push(['hot','Check for spike concentration','That engagement rate is high enough that it is probably carried by one or two outlier posts. Price off your median with a bonus tied to the ceiling. An inflated headline rate collapses in a brand’s audit.']);
-    }
-    if(d.followers < 3000){
-      flags.push(['','Lead with local','At this follower level, national categories will not take the meeting yet. Local and community partners build the case studies that unlock them.']);
-    }
-    if(flags.length){
-      h += '<div class="res-h">Flags before you sign</div>';
-      flags.forEach(function(f){
-        h += '<div class="flagbox' + (f[0] ? ' ' + f[0] : '') + '"><b><span class="ic">!</span>' + f[1] + '</b>' + f[2] + '</div>';
-      });
-    }
-
     h += '<div class="res-actions">';
-    h += '<button class="btn" type="button" id="copyBtn">Copy this report</button>';
-    h += '<a class="btn ghost" href="contact.html?interest=Brand%20Intelligence%20report">Take it further with Sevenity</a>';
+    h += '<a class="btn" href="contact.html?interest=Brand%20Intelligence%20report">Take it further with Sevenity</a>';
     h += '</div>';
     h += '<p class="disc">Scores rank sponsor <em>categories</em> by fit, not named brands by availability. Named examples are illustrations of each category, not existing Sevenity relationships or endorsements. Rate ranges are negotiation benchmarks, not quotes.</p>';
 
-    h += '<div class="capture"><h4>Want the Sevenity team to read this with you?</h4>'
-       + '<p>Send this scan straight to us. We’ll reply with what we’d actually do about it: the target list, the conflicts, and what your rate should be.</p>'
-       + '<form class="crow" id="capForm"><input type="email" id="cap-email" placeholder="you@email.com" aria-label="Your email" required>'
-       + '<input type="text" id="cap-name" placeholder="Your name" aria-label="Your name" required>'
-       + '<button class="btn" type="submit" id="cap-submit">Send my scan</button></form>'
-       + '<div class="lmsg" id="cap-msg" role="status" aria-live="polite"></div></div>';
-
     out.innerHTML = h;
-    window.__lastScan = d;
+    /* The contact page attaches these inputs when they take it further. */
     try { localStorage.setItem('sevenityScan', JSON.stringify(d)); } catch(e){}
+  }
 
-    document.getElementById('copyBtn').addEventListener('click', function(){
-      var t = 'BRAND INTELLIGENCE SCAN | Sevenity Sports Group\n';
-      t += (d.handle ? d.handle + '\n' : '');
-      t += fmt(d.followers) + ' followers · ' + d.level + (d.market ? ' · ' + d.market : '') + '\n';
-      t += 'Pillars: ' + d.pillars.join(', ') + (d.otherPillar ? ' (other: ' + d.otherPillar + ')' : '') + '\n\n';
-      t += 'Engagement rate: ' + (a.eng * 100).toFixed(1) + '%\n';
-      t += 'Sends per comment: ' + (a.sendRatio >= 99 ? 'n/a' : a.sendRatio.toFixed(1) + ':1') + '\n';
-      t += 'Audience type: ' + a.bLabel + '\n';
-      t += 'Indicative rate per Reel: ' + money(a.rateLow) + ' to ' + money(a.rateHigh) + '\n\n';
-      t += 'THE READ\n' + a.bRead + '\n\nRANKED CATEGORIES\n';
-      top.forEach(function(r, i){ t += (i + 1) + '. ' + r.c.n + ' (' + r.score + '): ' + r.c.ex + '\n'; });
-      if(flags.length){
-        t += '\nFLAGS\n';
-        flags.forEach(function(f){ t += '- ' + f[1].replace(/&amp;/g,'&') + ': ' + f[2].replace(/’/g,"'") + '\n'; });
-      }
-      t += '\nIndicative only. Confirm NIL terms with your compliance office.';
-      var btn = this;
-      var done = function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy this report'; }, 1800); };
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(t).then(done, function(){ fallback(t, done); });
-      } else { fallback(t, done); }
-    });
+  function scopeText(r, d){
+    return r.c.scope === 'local' ? 'Local' + (d.market ? ' · ' + d.market : '')
+         : r.c.scope === 'both' ? 'Local + national' : 'National';
+  }
+  function scopeTag(r, d){
+    return '<span class="tagline ' + (r.c.scope === 'local' ? 't-loc' : 't-nat') + '">' + esc(scopeText(r, d)) + '</span>';
+  }
 
-    function fallback(t, done){
-      var ta = document.createElement('textarea');
-      ta.value = t; ta.setAttribute('readonly','');
-      ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); done(); } catch(e){ btnFail(); }
-      document.body.removeChild(ta);
+  function flagsFor(d, a){
+    var flags = [];
+    if(d.ownsMerch && a.scored.some(function(r){ return r.flagged && r.score > 45; })){
+      flags.push(['Merch conflict','You sell your own apparel. Every apparel sponsor competes with that revenue and will ask for the exclusivity that shuts it down. Structure these as co-branded capsule drops with a revenue share, never as an open-ended ambassadorship.']);
     }
-    function btnFail(){
-      var b = document.getElementById('copyBtn');
-      if(b) b.textContent = 'Select and copy manually';
+    if(d.level === 'college' || d.level === 'portal'){
+      flags.push(['School outfitter & disclosure','The athletic department’s footwear and apparel contract may restrict competing brand deals in team gear. Confirm the restrictions and the school’s NIL disclosure thresholds with compliance before any term sheet circulates.']);
     }
+    if(a.sendRatio >= 5){
+      flags.push(['Do not buy comment activations','With this profile, tag-a-friend contests, comment-to-enter giveaways, and AMA formats will underperform and make the reporting look worse than the account really is.']);
+    }
+    if(a.eng > 0.10){
+      flags.push(['Check for spike concentration','That engagement rate is high enough that it is probably carried by one or two outlier posts. Price off the median with a bonus tied to the ceiling. An inflated headline rate collapses in a brand’s audit.']);
+    }
+    if(d.followers < 3000){
+      flags.push(['Lead with local','At this follower level, national categories will not take the meeting yet. Local and community partners build the case studies that unlock them.']);
+    }
+    return flags;
+  }
+
+  /* Full report (every ranked category + flags) is emailed to Sevenity only.
+     Identical re-runs are not re-sent. Failures are silent to the visitor. */
+  var t0 = Date.now(), lastSent = '';
+  function report(d, a){
+    var payload = {
+      elapsed: Date.now() - t0,
+      inputs: {
+        handle: d.handle, followers: fmt(d.followers), level: LEVELS[d.level] || d.level,
+        likes: fmt(d.likes), comments: fmt(d.comments), sends: fmt(d.sends),
+        market: d.market, pillars: d.pillars.join(', '), otherPillar: d.otherPillar,
+        ownsMerch: d.ownsMerch ? 'Yes' : 'No'
+      },
+      metrics: {
+        engagement: (a.eng * 100).toFixed(1) + '%',
+        sendRatio: a.sendRatio >= 99 ? 'n/a (no comments)' : a.sendRatio.toFixed(1) + ':1',
+        audience: a.bLabel,
+        rate: money(a.rateLow) + ' to ' + money(a.rateHigh)
+      },
+      read: a.bRead,
+      ranked: a.scored.map(function(r){ return { name: r.c.n, score: r.score, scope: scopeText(r, d), ex: r.c.ex, why: r.c.why }; }),
+      flags: flagsFor(d, a).map(function(f){ return { title: f[0], text: f[1] }; })
+    };
+    var key = JSON.stringify(d);
+    if(key === lastSent) return;
+    lastSent = key;
+    try {
+      fetch('/api/scan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true })
+        .catch(function(){});
+    } catch(e){}
   }
 
   function collect(){
@@ -737,8 +642,10 @@ input::placeholder{color:var(--ink-3)}
       document.getElementById('out').innerHTML = '<div class="empty">Add a follower count to run the scan.</div>';
       return;
     }
-    render(d, analyze(d));
-    /* Counts that a scan happened. No field values are read or transmitted. */
+    var a = analyze(d);
+    render(d, a);
+    if(d.pillars.length) report(d, a);
+    /* Analytics counts that a scan happened; field values are not sent to analytics. */
     if (window.va) { try { window.va('event', { name: 'scan_run' }); } catch (err) {} }
   });
 
