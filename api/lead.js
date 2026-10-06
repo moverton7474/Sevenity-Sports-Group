@@ -31,6 +31,25 @@ const PACKAGES = {
   'content-photo': { name: 'Photography', price: '$50/session' },
   'content-bundle': { name: 'Video + photography bundle', price: '$150/session' },
 };
+// In Season Tune Up "build your own": per-item monthly rates and limits. These
+// match public/js/tuneup-builder.js; the price is recomputed here from the
+// picked counts, so the invoice never uses a number sent by the browser.
+const TUNEUP_ITEMS = [
+  { key: 'pd', min: 1, max: 8, rate: 65, one: 'player development session', many: 'player development sessions' },
+  { key: 'vid', min: 1, max: 4, rate: 85, one: 'game with videography', many: 'games with videography' },
+  { key: 'film', min: 1, max: 4, rate: 35, one: 'film breakdown session', many: 'film breakdown sessions' },
+];
+
+function customTuneUp(pick) {
+  const p = pick && typeof pick === 'object' ? pick : {};
+  let total = 0;
+  const parts = TUNEUP_ITEMS.map((it) => {
+    const n = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || it.min));
+    total += n * it.rate;
+    return `${n} ${n === 1 ? it.one : it.many}`;
+  });
+  return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
+}
 const MAX_BODY = 16 * 1024;
 
 // Best-effort throttle. Serverless is stateless, so this only holds within a warm
@@ -93,14 +112,16 @@ module.exports = async function handler(req, res) {
   const message = clean(body.message, 4000);
   const scan = body.scan && typeof body.scan === 'object' ? body.scan : null;
   const wantsInvoice = body.invoice === true;
-  const known = PACKAGES[clean(body.packageId, 40)];
+  const packageId = clean(body.packageId, 40);
+  const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
   const athlete = clean(body.athlete, 120);
   const grade = clean(body.grade, 40);
   const prefDate = clean(body.date, 60);
   const prefTime = clean(body.time, 60);
-  const notes = clean(body.notes, 1000);
+  // A custom tune up lists what was picked under the line item on the invoice.
+  const notes = [known && known.detail, clean(body.notes, 1000)].filter(Boolean).join('. ');
   const location = clean(body.location, 200);
 
   if (!name) return res.status(400).json({ error: "Add your name so we know who we're replying to." });
