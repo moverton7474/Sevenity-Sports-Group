@@ -155,6 +155,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .tu-body{padding:1.2rem 1.4rem 1.4rem;display:flex;flex-direction:column;flex:1}
 .tu-body .per{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .25rem}
 .tu-body .price{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);margin:0 0 .8rem;font-variant-numeric:tabular-nums}
+.tu-body .price .from{display:block;margin-bottom:.15rem}
 .tu-body .price small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
 .tu-list{list-style:none;margin:0;padding:0;font-size:.88rem;color:var(--ink-2)}
 .tu-list li{padding:.45rem 0;border-top:1px solid var(--line-soft);display:flex;gap:.6rem;align-items:baseline}
@@ -290,11 +291,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <div class="tu-photo"><img src="/img/tuneup-starter.webp" alt="Player working on a two ball dribbling drill" loading="lazy" style="object-position:50% 45%"><h3>Starter</h3></div>
         <div class="tu-body">
           <p class="per">Monthly package</p>
-          <p class="price">$250 <small>/ month</small></p>
+          <p class="price"><small class="from">Starting at</small>$250 <small>/ month</small></p>
           <ul class="tu-list">
             <li><b>2</b>Player development sessions</li>
             <li><b>1</b>Game with videography &amp; photography</li>
-            <li><b>&#10003;</b>Film breakdown included</li>
+            <li><b>1</b>Film breakdown session</li>
           </ul>
           <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-starter">Book and pay</button></div>
         </div>
@@ -303,11 +304,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <div class="tu-photo"><img src="/img/tuneup-pro.webp" alt="Player in a game" loading="lazy" style="object-position:50% 12%"><h3>Pro</h3></div>
         <div class="tu-body">
           <p class="per">Monthly package</p>
-          <p class="price">$500 <small>/ month</small></p>
+          <p class="price"><small class="from">Starting at</small>$500 <small>/ month</small></p>
           <ul class="tu-list">
             <li><b>4</b>Player development sessions</li>
             <li><b>2</b>Games with videography &amp; photography</li>
-            <li><b>&#10003;</b>Film breakdown included</li>
+            <li><b>2</b>Film breakdown sessions</li>
           </ul>
           <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-pro">Book and pay</button></div>
         </div>
@@ -316,11 +317,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <div class="tu-photo"><img src="/img/tuneup-elite.webp" alt="Player on the court during a game" loading="lazy" style="object-position:50% 14%"><h3>Elite</h3></div>
         <div class="tu-body">
           <p class="per">Monthly package</p>
-          <p class="price">$750 <small>/ month</small></p>
+          <p class="price"><small class="from">Starting at</small>$750 <small>/ month</small></p>
           <ul class="tu-list">
             <li><b>8</b>Player development sessions</li>
             <li><b>3</b>Games with videography &amp; photography</li>
-            <li><b>&#10003;</b>Film breakdown included</li>
+            <li><b>4</b>Film breakdown sessions</li>
           </ul>
           <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-elite">Book and pay</button></div>
         </div>
@@ -601,9 +602,9 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
    shows the selected package's price and what it includes. */
 (function(){
   var TU = {
-    'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: '$250 / month', items: ['2 player development sessions', 'Videography & photography at 1 game', 'Film breakdown included', 'Monthly plan, billed each month'] },
-    'tuneup-pro':     { name: 'In Season Tune Up: Pro (monthly)',     price: '$500 / month', items: ['4 player development sessions', 'Videography & photography at 2 games', 'Film breakdown included', 'Monthly plan, billed each month'] },
-    'tuneup-elite':   { name: 'In Season Tune Up: Elite (monthly)',   price: '$750 / month', items: ['8 player development sessions', 'Videography & photography at 3 games', 'Film breakdown included', 'Monthly plan, billed each month'] }
+    'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: 'Starting at $250 / month', items: ['2 player development sessions', 'Videography & photography at 1 game', '1 film breakdown session', 'Monthly plan, billed each month'] },
+    'tuneup-pro':     { name: 'In Season Tune Up: Pro (monthly)',     price: 'Starting at $500 / month', items: ['4 player development sessions', 'Videography & photography at 2 games', '2 film breakdown sessions', 'Monthly plan, billed each month'] },
+    'tuneup-elite':   { name: 'In Season Tune Up: Elite (monthly)',   price: 'Starting at $750 / month', items: ['8 player development sessions', 'Videography & photography at 3 games', '4 film breakdown sessions', 'Monthly plan, billed each month'] }
   };
   var sel = document.getElementById('package'), box = document.getElementById('pkg-sum');
   if (!sel || !box) return;
