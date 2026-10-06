@@ -217,6 +217,15 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .tu-card{position:relative}
 .tu-card a.stretch{text-shadow:none;line-height:normal;transform:none!important}
 .tu-card a.stretch::after{content:"";position:absolute;inset:0;z-index:2}
+/* build your own tune up */
+.tub-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2.6rem;align-items:start}
+@media(max-width:860px){.tub-wrap{grid-template-columns:minmax(0,1fr);gap:1.6rem}}
+.tub-card{border:1px solid #fff;border-radius:var(--r);background:var(--glass);padding:1.3rem 1.5rem 1.5rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.tub-card .btn{margin-top:1.2rem;text-shadow:none;line-height:normal}
+.tub-rates{list-style:none;margin:1.2rem 0 0;padding:0;font-size:.88rem;color:var(--ink-2)}
+.tub-rates li{padding:.45rem 0;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:1rem}
+@media(max-width:480px){.tub-card{padding:1rem 1.1rem 1.2rem}}
+.tub-rates b{font-family:var(--f-m);color:#fff;font-weight:700;white-space:nowrap}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -265,7 +274,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <div class="wrap hero">
   <span class="lab">In Season &middot; Monthly</span>
   <h1>Monthly Tune Up Packages</h1>
-  <p style="margin-top:.9rem;max-width:40rem">Stay sharp all season with player development, film breakdown, and game day media coverage. Every package is a monthly plan, billed each month. Pick a package to request it, and your invoice arrives by email.</p>
+  <p style="margin-top:.9rem;max-width:40rem">Stay sharp all season with player development, film breakdown, and game day media coverage. Every package is a monthly plan, billed each month. Pick a package or build your own, and your invoice arrives by email.</p>
   <p style="margin:0"><a href="book-training.html" style="font-size:.88rem">&larr; All player development packages</a></p>
 </div>
 
@@ -315,6 +324,26 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   </div>
 </section>
 
+<section id="build">
+  <div class="wrap tub-wrap">
+    <div>
+      <span class="lab">Build Your Own</span>
+      <h2 style="margin-top:.7rem">Customize Your Tune Up</h2>
+      <p style="margin-top:.9rem">Need more film and fewer sessions, or extra games on camera? Pick exactly what your player needs this month and see your price as you go.</p>
+      <ul class="tub-rates">
+        <li><span>Player development session</span><b>$65 each</b></li>
+        <li><span>Game with videography</span><b>$85 each</b></li>
+        <li><span>Film breakdown session</span><b>$35 each</b></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--ink-3)">Monthly plan, billed each month. Pick 1 to 8 sessions, 1 to 4 games and 1 to 4 film breakdowns.</p>
+    </div>
+    <div class="tub-card">
+      <div id="tub"></div>
+      <a class="btn block" id="tub-go" href="book-training.html?package=tuneup-custom">Request my custom package</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap foot-in">
     <div style="flex:1;min-width:14rem">
@@ -341,6 +370,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       a.addEventListener('click', function(){ links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
     });
   }
+})();
+</script>
+<script src="/js/tuneup-builder.js"></script>
+<script>
+(function(){
+  var el = document.getElementById('tub'), go = document.getElementById('tub-go');
+  if (!el || !window.SevenityTuneUp) return;
+  window.SevenityTuneUp.mount(el, window.SevenityTuneUp.fromQuery(), function(c){
+    go.href = 'book-training.html?package=tuneup-custom&' + window.SevenityTuneUp.query(c);
+  }, { tipLink: function(p){ return 'book-training.html?package=' + p.id; } });
 })();
 </script>
 </body>

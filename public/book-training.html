@@ -278,7 +278,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       </div>
       <div class="pcard tu-link">
         <h3>In Season Tune Up / Month</h3>
-        <p class="psub">Player development, game day videography and film breakdown. Starter, Pro or Elite</p>
+        <p class="psub">Player development, game day videography and film breakdown. Starter, Pro, Elite or build your own</p>
         <p class="price"><small class="from">Starting at</small>$250 <small>/ month</small></p>
         <div class="foot"><a class="btn block" href="tune-up.html">See Tune Up packages</a></div>
       </div>
@@ -348,6 +348,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
           <option value="tuneup-starter">In Season Tune Up: Starter (monthly)</option>
           <option value="tuneup-pro">In Season Tune Up: Pro (monthly)</option>
           <option value="tuneup-elite">In Season Tune Up: Elite (monthly)</option>
+          <option value="tuneup-custom">In Season Tune Up: Build your own (monthly)</option>
         </optgroup>
       </select>
       <div class="pkg-sum" id="pkg-sum" aria-live="polite"></div>
@@ -508,6 +509,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       var packageLabel = packageSel.options[packageSel.selectedIndex].text;
       var packageId = packageSel.value;
       var packageName = packageLabel;
+      var customPick = null;
+      if(packageId === 'tuneup-custom' && window.SevenityTuneUp){
+        customPick = window.SevenityTuneUp.normalize(window.__tuneupPick);
+        packageName = 'In Season Tune Up: Custom (monthly): ' + window.SevenityTuneUp.lines(customPick).join(', ');
+        packageLabel = packageName + ' ($' + window.SevenityTuneUp.total(customPick) + ' / month)';
+      }
       var athleteVal = document.getElementById('req-athlete').value.trim() || name;
       var gradeVal = document.getElementById('req-grade').value;
       if(!gradeVal) { say(msgEl, "Pick the athlete's grade or level.", false); return; }
@@ -540,6 +547,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         invoice: true,
         package: packageName,
         packageId: packageId,
+        custom: customPick,
         athlete: athleteVal,
         grade: gradeVal,
         date: dateVal,
@@ -553,6 +561,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   }
 })();
 </script>
+<script src="/js/tuneup-builder.js"></script>
 <script>
 /* In Season Tune Up: the request form shows the selected package's price and
    what it includes (packages are picked on tune-up.html or in the dropdown). */
@@ -564,7 +573,21 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   };
   var sel = document.getElementById('package'), box = document.getElementById('pkg-sum');
   if (!sel || !box) return;
+  /* Build your own: the same steppers as tune-up.html, starting from the counts
+     in the link (?pd=&vid=&film=). The form's submit handler reads __tuneupPick. */
+  var TUB = window.SevenityTuneUp;
+  if (TUB) window.__tuneupPick = TUB.fromQuery();
+  var customOn = false;
   function render(){
+    if (sel.value === 'tuneup-custom' && TUB) {
+      if (customOn) return;
+      customOn = true;
+      box.innerHTML = '<div class="ps-top"><span class="ps-name">In Season Tune Up: Build your own (monthly)</span></div><div class="ps-build"></div><ul><li>Monthly plan, billed each month</li></ul>';
+      TUB.mount(box.querySelector('.ps-build'), window.__tuneupPick, function(c){ window.__tuneupPick = c; });
+      box.className = 'pkg-sum on';
+      return;
+    }
+    customOn = false;
     var p = TU[sel.value];
     if (!p) { box.className = 'pkg-sum'; box.innerHTML = ''; return; }
     box.innerHTML = '<div class="ps-top"><span class="ps-name"></span><span class="ps-price"></span></div><ul></ul>';
@@ -577,7 +600,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   sel.addEventListener('change', render);
   /* booking.js sets the select without firing change, so re-check after any book button click */
   [].forEach.call(document.querySelectorAll('.book-btn'), function(b){ b.addEventListener('click', function(){ setTimeout(render, 0); }); });
-  if (sel.form) sel.form.addEventListener('reset', function(){ setTimeout(render, 0); });
+  if (sel.form) sel.form.addEventListener('reset', function(){
+    if (TUB) window.__tuneupPick = TUB.normalize({});
+    customOn = false;
+    setTimeout(render, 0);
+  });
   setTimeout(render, 400);
 })();
 </script>
