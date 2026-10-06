@@ -120,7 +120,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 a.pcard2{display:block;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s,background .15s}
 a.pcard2:hover{border-color:rgba(255,255,255,.6);background:rgba(8,10,15,.45);transform:translateY(-2px)}
 .pcard2 .pmore{display:inline-block;margin-top:.8rem;font-size:.78rem;color:var(--gold);font-weight:600}
-@media(max-width:900px){.pdev-cards{grid-template-columns:1fr}}
+@media(max-width:900px){.pdev-cards{grid-template-columns:minmax(0,1fr)}}
 
 /* proven brand activations */
 .acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
@@ -137,14 +137,14 @@ a.pcard2:hover{border-color:rgba(255,255,255,.6);background:rgba(8,10,15,.45);tr
 .act-body .lab{display:block;margin-bottom:.45rem}
 .act-body h3{font-size:1.08rem;line-height:1.35;margin:0}
 .act-body p{font-size:.86rem;color:var(--ink-2);margin:.6rem 0 0}
-@media(max-width:900px){.acts{grid-template-columns:1fr;max-width:32rem}}
+@media(max-width:900px){.acts{grid-template-columns:minmax(0,1fr);max-width:32rem}}
 
 /* what we are */
 .about-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:3rem;align-items:center}
 .about-split .sec-head{max-width:none}
 .about-pic{margin:0}
 .about-pic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
-@media(max-width:900px){.about-split{grid-template-columns:1fr;gap:1.8rem}.about-pic{max-width:30rem}}
+@media(max-width:900px){.about-split{grid-template-columns:minmax(0,1fr);gap:1.8rem}.about-pic{max-width:30rem}}
 
 
 /* back to top */
@@ -186,6 +186,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* phones: shrink the brand name so the Menu button always fits on screen */
+@media(max-width:480px){
+  .nav-in{padding:.75rem .8rem;gap:.5rem}
+  .nav-brand{font-size:clamp(.5rem,3.25vw,.768rem);letter-spacing:0;min-width:0}
+  .nav-toggle{padding:.45rem .7rem;font-size:.75rem}
+  /* long words, emails, headings and buttons wrap instead of pushing the page sideways */
+  body{overflow-wrap:break-word}
+  h2{font-size:min(1.9rem,8.6vw)}
+  .btn{white-space:normal;text-align:center}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script defer src="/_vercel/insights/script.js"></script>

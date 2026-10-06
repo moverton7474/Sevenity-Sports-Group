@@ -107,14 +107,14 @@ footer .brand img{width:22px;height:22px;border-radius:50%}
 .hero{padding-top:4.5rem;padding-bottom:3.5rem}
 .hero .lab{color:var(--accent-ink)}
 .hero h1{font-size:clamp(2.5rem,7vw,4.6rem);font-weight:800;margin:1rem 0 0;max-width:20ch}
-@media(max-width:420px){.hero h1{font-size:8.2vw}}
+@media(max-width:480px){.hero h1{font-size:8.2vw}}
 .hero h1 em{font-style:normal;color:var(--accent-ink)}
 .hero .lede{font-size:1.18rem;color:var(--ink-2);max-width:42rem;margin:1.4rem 0 0}
 .hero .lede b{color:var(--ink);font-weight:600}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.9rem}
 
 /* comparison-style grid reused for community pillars */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(17rem,100%),1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
 .svc-card{background:var(--surface);padding:1.4rem 1.45rem;display:flex;flex-direction:column}
 .svc-card .n{font-family:var(--f-m);font-size:.62rem;letter-spacing:.13em;color:var(--accent-ink);margin-bottom:.7rem}
 .svc-card ul{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-direction:column;gap:.35rem}
@@ -123,7 +123,7 @@ footer .brand img{width:22px;height:22px;border-radius:50%}
 .svc-card p{font-size:.9rem;color:var(--ink-2);margin:.55rem 0 0}
 
 /* proof */
-.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(13rem,100%),1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
 .proof div{background:var(--surface);padding:1.15rem 1.25rem}
 .proof dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.45rem}
 .proof dd{margin:0;font-size:.9rem;color:var(--ink-2);line-height:1.5}
@@ -151,12 +151,12 @@ footer a{color:var(--ink-3)}
 .port img{aspect-ratio:3/4;object-fit:cover;object-position:top center}
 .shoe-gallery{margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem}
 .shoe-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
-@media(max-width:620px){.shoe-pair{grid-template-columns:1fr}}
+@media(max-width:620px){.shoe-pair{grid-template-columns:minmax(0,1fr)}}
 .band{margin-top:2rem;position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .band img{display:block;width:100%;height:auto}
 .band figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.5rem .9rem;background:linear-gradient(to top,rgba(6,10,16,.88),rgba(6,10,16,0));color:#F2F4F7;font-family:var(--f-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
-@media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:1fr}}
-@media(max-width:620px){.figs.c2{grid-template-columns:1fr}}
+@media(max-width:900px){.figs.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.figs.c3{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:620px){.figs.c2{grid-template-columns:minmax(0,1fr)}}
 
 /* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
    Mobile/tablet (below 1024px) is untouched on purpose. */
@@ -186,6 +186,16 @@ footer a{color:var(--ink-3)}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* phones: shrink the brand name so the Menu button always fits on screen */
+@media(max-width:480px){
+  .nav-in{padding:.75rem .8rem;gap:.5rem}
+  .nav-brand{font-size:clamp(.5rem,3.25vw,.768rem);letter-spacing:0;min-width:0}
+  .nav-toggle{padding:.45rem .7rem;font-size:.75rem}
+  /* long words, emails, headings and buttons wrap instead of pushing the page sideways */
+  body{overflow-wrap:break-word}
+  h2{font-size:min(1.9rem,8.6vw)}
+  .btn{white-space:normal;text-align:center}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">

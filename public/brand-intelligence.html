@@ -92,7 +92,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .hero{padding-top:4rem;padding-bottom:1rem}
 .hero .lab{display:block;margin-bottom:.9rem}
 .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);max-width:26ch}
-@media(max-width:420px){.hero h1{font-size:8.2vw}}
+@media(max-width:480px){.hero h1{font-size:8.2vw}}
 .hero .lede{font-size:1.1rem;color:var(--ink-2);max-width:42rem;margin:1.3rem 0 0}
 .hero .lede b{color:var(--ink);font-weight:600}
 
@@ -116,7 +116,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .tool-bar .ttl{font-family:var(--f-m);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
 .tool-bar .hint{font-size:.78rem;color:var(--ink-3);margin-left:auto}
 .tool-grid{display:grid;grid-template-columns:minmax(0,20rem) minmax(0,1fr)}
-@media(max-width:900px){.tool-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.tool-grid{grid-template-columns:minmax(0,1fr)}}
 .panel-in{padding:1.35rem 1.35rem 1.5rem;border-right:1px solid var(--line)}
 @media(max-width:900px){.panel-in{border-right:none;border-bottom:1px solid var(--line)}}
 .panel-out{padding:1.35rem 1.35rem 1.6rem;min-width:0}
@@ -136,7 +136,7 @@ input::placeholder{color:var(--ink-3)}
 
 /* results */
 .empty{color:var(--ink-3);font-size:.9rem;display:flex;align-items:center;justify-content:center;min-height:16rem;text-align:center;padding:2rem;border:1px dashed var(--line);border-radius:var(--r)}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(8.5rem,100%),1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
 .tile{background:var(--surface-2);padding:.8rem .9rem}
 .tile dt{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.3rem}
 .tile dd{margin:0;font-family:var(--f-d);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -189,6 +189,16 @@ input::placeholder{color:var(--ink-3)}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* phones: shrink the brand name so the Menu button always fits on screen */
+@media(max-width:480px){
+  .nav-in{padding:.75rem .8rem;gap:.5rem}
+  .nav-brand{font-size:clamp(.5rem,3.25vw,.768rem);letter-spacing:0;min-width:0}
+  .nav-toggle{padding:.45rem .7rem;font-size:.75rem}
+  /* long words, emails, headings and buttons wrap instead of pushing the page sideways */
+  body{overflow-wrap:break-word}
+  h2{font-size:min(1.9rem,8.6vw)}
+  .btn{white-space:normal;text-align:center}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">

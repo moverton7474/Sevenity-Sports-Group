@@ -92,7 +92,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .hero{padding-top:4rem;padding-bottom:1rem}
 .hero .lab{display:block;margin-bottom:.9rem}
 .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);max-width:26ch}
-@media(max-width:420px){.hero h1{font-size:8.2vw}}
+@media(max-width:480px){.hero h1{font-size:8.2vw}}
 
 .btn{font-family:var(--f-b);font-weight:600;font-size:.88rem;padding:.65rem 1.35rem;border-radius:999px;border:1px solid #fff;background:#fff;color:#161a22;text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity .15s,transform .15s;display:inline-block}
 .btn:hover{opacity:.85;transform:translateY(-1px)}
@@ -102,7 +102,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .btn.block{width:100%;text-align:center;border-width:1px}
 
 /* pricing / package cards */
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.1rem}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(15.5rem,100%),1fr));gap:1.1rem}
 .pcard{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem 1.55rem;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .pcard.feat{border-color:var(--gold)}
 .pcard h3{margin-bottom:.3rem}
@@ -122,7 +122,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 /* ---------- request form ---------- */
 .lead{max-width:36rem}
 .lead .lrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-@media(max-width:560px){.lead .lrow{grid-template-columns:1fr}}
+@media(max-width:560px){.lead .lrow{grid-template-columns:minmax(0,1fr)}}
 .lead label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
 .lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .lead textarea{min-height:5.5rem;resize:vertical}
@@ -161,9 +161,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   body{font-size:28px}
 }
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
-.partners{display:grid;gap:1.4rem}
+.partners{display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem}
 .partner{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:grid;grid-template-columns:minmax(0,19rem) minmax(0,1fr);gap:1.8rem}
 .p-head{display:flex;gap:1rem;align-items:center}
+.p-head>div{min-width:0}
+.p-ig{max-width:100%}
 .p-avatar{flex:none;width:4.2rem;height:4.2rem;border-radius:50%;object-fit:fill;border:2px solid var(--gold);background:#000}
 .partner h3{margin:0}
 .p-ig{display:inline-block;font-family:var(--f-m);font-size:.8rem;color:var(--gold);margin-top:.2rem;text-decoration:none}
@@ -186,8 +188,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .p-shot img{display:block;width:100%;height:auto}
 .p-shot figcaption{font-size:.78rem;color:var(--ink-3);padding:.55rem .75rem;background:var(--glass-2)}
 .p-note{font-size:.72rem;color:var(--ink-3);margin-top:.9rem}
-@media(max-width:980px){.partner{grid-template-columns:1fr}}
-@media(max-width:620px){.p-grid{grid-template-columns:1fr}}
+@media(max-width:980px){.partner{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:620px){.p-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* small phones: keep the nav bar inside the screen (no sideways scroll) */
 @media(max-width:400px){
@@ -196,6 +198,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* phones: shrink the brand name so the Menu button always fits on screen */
+@media(max-width:480px){
+  .nav-in{padding:.75rem .8rem;gap:.5rem}
+  .nav-brand{font-size:clamp(.5rem,3.25vw,.768rem);letter-spacing:0;min-width:0}
+  .nav-toggle{padding:.45rem .7rem;font-size:.75rem}
+  /* long words, emails, headings and buttons wrap instead of pushing the page sideways */
+  body{overflow-wrap:break-word}
+  h2{font-size:min(1.9rem,8.6vw)}
+  .btn{white-space:normal;text-align:center}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
