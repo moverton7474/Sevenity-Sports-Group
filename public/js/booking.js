@@ -43,10 +43,15 @@
   // that package (request form preselected, or its pay button if it has a link).
   var wanted = (window.location.search.match(/[?&]package=([\w-]+)/) || [])[1];
   var wantedBtn = wanted && document.querySelector('.book-btn[data-package-id="' + wanted + '"]');
+  var wantedOpt = wanted && document.querySelector('#package option[value="' + wanted + '"]');
   if(wantedBtn){
     setTimeout(function(){
       if((links[wanted] || '').trim()){ wantedBtn.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       else { requestPackage(wanted); }
     }, 300);
+  } else if(wantedOpt){
+    // A package with no card on this page (e.g. the tune up plans, picked on
+    // tune-up.html) still opens the request form with it preselected.
+    setTimeout(function(){ requestPackage(wanted); }, 300);
   }
 })();

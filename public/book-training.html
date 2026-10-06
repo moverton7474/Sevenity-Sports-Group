@@ -115,6 +115,10 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 .pcard .price{margin-top:auto}
 .pcard .foot{margin-top:0}
 .pcard a.btn{text-shadow:none;line-height:normal}
+/* the whole In Season Tune Up card opens the tune up page */
+.pcard.tu-link{position:relative}
+.pcard.tu-link a.btn{transform:none!important}
+.pcard.tu-link a.btn::after{content:"";position:absolute;inset:0}
 /* desktop: five cards as three on top and two centered below */
 @media(min-width:1024px){#packages .price-grid{grid-template-columns:repeat(6,minmax(0,1fr))}#packages .pcard{grid-column:span 2}#packages .pcard:nth-child(4){grid-column:2/span 2}}
 
@@ -147,26 +151,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .lmsg.err{display:block;background:var(--surface-2);color:var(--ink);border:1px solid var(--rose)}
 
 
-/* in season tune up packages */
-.tu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr));gap:1.1rem}
-@media(min-width:900px){.tu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tu-list{font-size:.8rem}}
-.tu-card{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);overflow:hidden;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);cursor:pointer;transition:border-color .15s,transform .15s}
-.tu-card:hover{border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
-.tu-card.feat{border-color:#fff}
-.tu-card.sel{border-color:#fff;box-shadow:0 0 0 2px #fff}
-.tu-photo{position:relative;aspect-ratio:16/11;overflow:hidden;background:#0c1630}
-.tu-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.tu-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,48,0) 45%,rgba(8,10,15,.85) 100%)}
-.tu-photo h3{position:absolute;z-index:1;left:1.3rem;bottom:.9rem;font-size:1.6rem}
-.tu-body{padding:1.2rem 1.4rem 1.4rem;display:flex;flex-direction:column;flex:1}
-.tu-body .per{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .25rem}
-.tu-body .price{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);margin:0 0 .8rem;font-variant-numeric:tabular-nums}
-.tu-body .price .from{display:block;margin-bottom:.15rem}
-.tu-body .price small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.tu-list{list-style:none;margin:0;padding:0;font-size:.88rem;color:var(--ink-2)}
-.tu-list li{padding:.45rem 0;border-top:1px solid var(--line-soft);display:flex;gap:.6rem;align-items:baseline}
-.tu-list b{font-family:var(--f-m);color:#fff;min-width:1.2rem}
-.tu-body .foot{margin-top:auto;padding-top:1.2rem}
+/* selected package summary in the request form */
 .pkg-sum{display:none;margin-top:.8rem;border:1px solid #fff;border-radius:var(--r);background:var(--glass-2);padding:1rem 1.1rem}
 .pkg-sum.on{display:block}
 .pkg-sum .ps-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
@@ -291,63 +276,12 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <p class="price"><small class="from">Starting at</small>$130 <small>/ session</small></p>
         <div class="foot"><button class="btn block book-btn" type="button" data-package-id="training-pro">Book and pay</button></div>
       </div>
-      <div class="pcard">
+      <div class="pcard tu-link">
         <h3>In Season Tune Up / Month</h3>
         <p class="psub">Player development, game day videography &amp; photography and film breakdown. Starter, Pro or Elite</p>
         <p class="price"><small class="from">Starting at</small>$250 <small>/ month</small></p>
-        <div class="foot"><a class="btn block" href="#tune-up">See Tune Up packages</a></div>
+        <div class="foot"><a class="btn block" href="tune-up.html">See Tune Up packages</a></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="tune-up">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="lab">In Season &middot; Monthly</span>
-      <h2 style="margin-top:.7rem">Monthly Tune Up Packages</h2>
-      <p>Stay sharp all season with player development, film breakdown, and game day media coverage. Every package is a monthly plan, billed each month. Pick a package to see what's included and request it.</p>
-    </div>
-    <div class="tu-grid">
-      <article class="tu-card" data-package-id="tuneup-starter">
-        <div class="tu-photo"><img src="/img/tuneup-starter.webp" alt="Player working on a two ball dribbling drill" loading="lazy" style="object-position:50% 45%"><h3>Starter</h3></div>
-        <div class="tu-body">
-          <p class="per">Monthly package</p>
-          <p class="price"><small class="from">Starting at</small>$250 <small>/ month</small></p>
-          <ul class="tu-list">
-            <li><b>2</b>Player development sessions</li>
-            <li><b>1</b>Game with videography &amp; photography</li>
-            <li><b>1</b>Film breakdown session</li>
-          </ul>
-          <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-starter">Book and pay</button></div>
-        </div>
-      </article>
-      <article class="tu-card" data-package-id="tuneup-pro">
-        <div class="tu-photo"><img src="/img/tuneup-pro.webp" alt="Player in a game" loading="lazy" style="object-position:50% 12%"><h3>Pro</h3></div>
-        <div class="tu-body">
-          <p class="per">Monthly package</p>
-          <p class="price"><small class="from">Starting at</small>$500 <small>/ month</small></p>
-          <ul class="tu-list">
-            <li><b>4</b>Player development sessions</li>
-            <li><b>2</b>Games with videography &amp; photography</li>
-            <li><b>2</b>Film breakdown sessions</li>
-          </ul>
-          <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-pro">Book and pay</button></div>
-        </div>
-      </article>
-      <article class="tu-card feat" data-package-id="tuneup-elite">
-        <div class="tu-photo"><img src="/img/tuneup-elite.webp" alt="Player on the court during a game" loading="lazy" style="object-position:50% 14%"><h3>Elite</h3></div>
-        <div class="tu-body">
-          <p class="per">Monthly package</p>
-          <p class="price"><small class="from">Starting at</small>$750 <small>/ month</small></p>
-          <ul class="tu-list">
-            <li><b>8</b>Player development sessions</li>
-            <li><b>3</b>Games with videography &amp; photography</li>
-            <li><b>4</b>Film breakdown sessions</li>
-          </ul>
-          <div class="foot"><button class="btn block book-btn" type="button" data-package-id="tuneup-elite">Book and pay</button></div>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -620,8 +554,8 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 })();
 </script>
 <script>
-/* In Season Tune Up: clicking a card picks that package, and the request form
-   shows the selected package's price and what it includes. */
+/* In Season Tune Up: the request form shows the selected package's price and
+   what it includes (packages are picked on tune-up.html or in the dropdown). */
 (function(){
   var TU = {
     'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: 'Starting at $250 / month', items: ['2 player development sessions', 'Videography & photography at 1 game', '1 film breakdown session', 'Monthly plan, billed each month'] },
@@ -632,7 +566,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   if (!sel || !box) return;
   function render(){
     var p = TU[sel.value];
-    [].forEach.call(document.querySelectorAll('.tu-card'), function(c){ c.classList.toggle('sel', c.getAttribute('data-package-id') === sel.value); });
     if (!p) { box.className = 'pkg-sum'; box.innerHTML = ''; return; }
     box.innerHTML = '<div class="ps-top"><span class="ps-name"></span><span class="ps-price"></span></div><ul></ul>';
     box.querySelector('.ps-name').textContent = p.name;
@@ -644,12 +577,6 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   sel.addEventListener('change', render);
   /* booking.js sets the select without firing change, so re-check after any book button click */
   [].forEach.call(document.querySelectorAll('.book-btn'), function(b){ b.addEventListener('click', function(){ setTimeout(render, 0); }); });
-  [].forEach.call(document.querySelectorAll('.tu-card'), function(card){
-    card.addEventListener('click', function(e){
-      if (e.target.closest('.book-btn')) return;
-      var b = card.querySelector('.book-btn'); if (b) b.click();
-    });
-  });
   if (sel.form) sel.form.addEventListener('reset', function(){ setTimeout(render, 0); });
   setTimeout(render, 400);
 })();
