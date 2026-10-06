@@ -86,7 +86,8 @@ window.SevenityTuneUp = (function(){
 
   /* Renders the steppers + running total into el. onChange(counts, total) runs on
      every change (and once at start). opts.tipLink(pkg) returns an href for the
-     "a package covers this" tip, or omit it for plain text. */
+     "a package covers this" tip, or omit it for plain text. opts.hidePrice drops
+     the running total and the tip, for a pick-first, see-the-total-after flow. */
   function mount(el, start, onChange, opts){
     addStyles();
     opts = opts || {};
@@ -115,6 +116,7 @@ window.SevenityTuneUp = (function(){
     el.appendChild(rows);
 
     var tot = document.createElement('div'); tot.className = 'tub-total';
+    if (opts.hidePrice) tot.style.display = 'none';
     tot.innerHTML = '<span class="lbl">Your monthly total</span><span class="amt"></span>';
     el.appendChild(tot);
     var tip = document.createElement('p'); tip.className = 'tub-tip';
@@ -123,7 +125,7 @@ window.SevenityTuneUp = (function(){
     function update(){
       var t = total(c), b = better(c);
       tot.querySelector('.amt').innerHTML = '$' + t + ' <small>/ month</small>';
-      if (b) {
+      if (b && !opts.hidePrice) {
         var nm = opts.tipLink ? '<a href="' + opts.tipLink(b) + '">' + b.name + ' package</a>' : 'the ' + b.name + ' package';
         tip.innerHTML = b.price < t
           ? 'The ' + nm + ' covers all of this for $' + b.price + ' / month. That saves you $' + (t - b.price) + '.'

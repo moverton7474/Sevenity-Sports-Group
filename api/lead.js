@@ -48,7 +48,7 @@ function customTuneUp(pick) {
     total += n * it.rate;
     return `${n} ${n === 1 ? it.one : it.many}`;
   });
-  return { name: `In Season Tune Up: Custom (monthly): ${parts.join(', ')}`, price: `$${total}/mo` };
+  return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
 }
 const MAX_BODY = 16 * 1024;
 
@@ -120,7 +120,8 @@ module.exports = async function handler(req, res) {
   const grade = clean(body.grade, 40);
   const prefDate = clean(body.date, 60);
   const prefTime = clean(body.time, 60);
-  const notes = clean(body.notes, 1000);
+  // A custom tune up lists what was picked under the line item on the invoice.
+  const notes = [known && known.detail, clean(body.notes, 1000)].filter(Boolean).join('. ');
   const location = clean(body.location, 200);
 
   if (!name) return res.status(400).json({ error: "Add your name so we know who we're replying to." });

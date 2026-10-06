@@ -222,10 +222,22 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 @media(max-width:860px){.tub-wrap{grid-template-columns:minmax(0,1fr);gap:1.6rem}}
 .tub-card{border:1px solid #fff;border-radius:var(--r);background:var(--glass);padding:1.3rem 1.5rem 1.5rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .tub-card .btn{margin-top:1.2rem;text-shadow:none;line-height:normal}
-.tub-rates{list-style:none;margin:1.2rem 0 0;padding:0;font-size:.88rem;color:var(--ink-2)}
-.tub-rates li{padding:.45rem 0;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:1rem}
 @media(max-width:480px){.tub-card{padding:1rem 1.1rem 1.2rem}}
-.tub-rates b{font-family:var(--f-m);color:#fff;font-weight:700;white-space:nowrap}
+.tub-sum{list-style:none;margin:.8rem 0 0;padding:0;font-size:.92rem;color:var(--ink)}
+.tub-sum li{padding:.5rem 0;border-top:1px solid var(--line-soft);display:flex;gap:.7rem;align-items:baseline}
+.tub-sum b{font-family:var(--f-m);min-width:1.2rem}
+.tub-confirm .tub-total{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:.2rem;padding-top:1rem}
+.tub-confirm .tub-total .lbl{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.tub-confirm .tub-total .amt{font-family:var(--f-m);font-size:1.8rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.tub-confirm .tub-total .amt small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.tub-note{font-size:.8rem;color:var(--ink-3);margin:.3rem 0 .4rem}
+.tub-confirm label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
+.tub-confirm input{width:100%;box-sizing:border-box;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
+.tub-confirm input:focus{outline:none;border-color:#fff}
+.tub-back{display:block;margin:.9rem auto 0;background:none;border:0;color:var(--ink-2);font:400 .85rem var(--f-b);cursor:pointer;text-decoration:underline;text-shadow:none}
+.tub-msg{display:none;margin:.9rem 0 0;font-size:.85rem;border-radius:var(--r);padding:.6rem .8rem}
+.tub-msg.err{display:block;border:1px solid var(--rose,#f19a9a);color:var(--ink)}
+.tub-done p{color:var(--ink-2)}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
@@ -329,12 +341,38 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     <div>
       <span class="lab">Build Your Own</span>
       <h2 style="margin-top:.7rem">Customize Your Tune Up</h2>
-      <p style="margin-top:.9rem">Need more film and fewer sessions, or extra games on camera? Pick exactly what your player needs this month and see your price as you go.</p>
+      <p style="margin-top:.9rem">Need more film and fewer sessions, or extra games on camera? Pick exactly what your player needs this month, see your total, and confirm to get your invoice by email.</p>
       <p style="margin-top:.4rem;font-size:.85rem;color:var(--ink-3)">Monthly plan, billed each month. Pick 1 to 8 sessions, 1 to 4 games and 1 to 4 film breakdowns.</p>
     </div>
     <div class="tub-card">
-      <div id="tub"></div>
-      <a class="btn block" id="tub-go" href="book-training.html?package=tuneup-custom">Request my custom package</a>
+      <div id="tub-pick">
+        <div id="tub"></div>
+        <button class="btn block" type="button" id="tub-next">See my total</button>
+      </div>
+      <form id="tub-confirm" class="tub-confirm" hidden novalidate>
+        <span class="lab">Your custom tune up</span>
+        <ul class="tub-sum" id="tub-sum"></ul>
+        <div class="tub-total"><span class="lbl">Total</span><span class="amt" id="tub-amt"></span></div>
+        <p class="tub-note">Monthly plan, billed each month.</p>
+        <label for="tub-name">Your name</label>
+        <input id="tub-name" name="name" type="text" autocomplete="name" required>
+        <label for="tub-email">Email (your invoice goes here)</label>
+        <input id="tub-email" name="email" type="email" autocomplete="email" required>
+        <label for="tub-phone">Phone (optional)</label>
+        <input id="tub-phone" name="phone" type="tel" autocomplete="tel">
+        <label for="tub-athlete">Athlete name (if different from you)</label>
+        <input id="tub-athlete" name="athlete" type="text">
+        <input type="text" name="company" id="tub-company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button class="btn block" type="submit" id="tub-send">Confirm and send my invoice</button>
+        <button class="tub-back" type="button" id="tub-back">&larr; Change my picks</button>
+        <p class="tub-msg" id="tub-msg" role="status"></p>
+      </form>
+      <div id="tub-done" class="tub-done" hidden>
+        <span class="lab">Invoice sent</span>
+        <h3 style="margin:.6rem 0 .5rem">You're all set</h3>
+        <p id="tub-done-text"></p>
+        <button class="btn block ghost" type="button" id="tub-again">Build another package</button>
+      </div>
     </div>
   </div>
 </section>
@@ -369,12 +407,69 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 </script>
 <script src="/js/tuneup-builder.js"></script>
 <script>
+/* Build your own: pick (no prices shown), then "See my total" shows the picks and
+   the monthly total, and "Confirm" posts to /api/lead, which recomputes the price
+   on the server and emails the invoice. */
 (function(){
-  var el = document.getElementById('tub'), go = document.getElementById('tub-go');
-  if (!el || !window.SevenityTuneUp) return;
-  window.SevenityTuneUp.mount(el, window.SevenityTuneUp.fromQuery(), function(c){
-    go.href = 'book-training.html?package=tuneup-custom&' + window.SevenityTuneUp.query(c);
-  }, { tipLink: function(p){ return 'book-training.html?package=' + p.id; } });
+  var TUB = window.SevenityTuneUp, el = document.getElementById('tub');
+  if (!el || !TUB) return;
+  var t0 = Date.now(), pick = TUB.fromQuery();
+  var $ = function(id){ return document.getElementById(id); };
+  var stepPick = $('tub-pick'), stepConfirm = $('tub-confirm'), stepDone = $('tub-done'), msg = $('tub-msg');
+
+  function mountPicker(){ TUB.mount(el, pick, function(c){ pick = c; }, { hidePrice: true }); }
+  function show(step){
+    [stepPick, stepConfirm, stepDone].forEach(function(s){ s.hidden = s !== step; });
+    var card = step.closest('.tub-card'); if (card && card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: 'start' });
+  }
+  function err(t){ msg.textContent = t; msg.className = 'tub-msg err'; }
+
+  mountPicker();
+
+  $('tub-next').addEventListener('click', function(){
+    var ul = $('tub-sum'); ul.innerHTML = '';
+    TUB.ITEMS.forEach(function(it){
+      var n = pick[it.key], li = document.createElement('li'), b = document.createElement('b');
+      b.textContent = n; li.appendChild(b); li.appendChild(document.createTextNode(n === 1 ? it.one : it.many)); ul.appendChild(li);
+    });
+    $('tub-amt').innerHTML = '$' + TUB.total(pick) + ' <small>/ month</small>';
+    msg.className = 'tub-msg'; msg.textContent = '';
+    show(stepConfirm);
+    $('tub-name').focus({ preventScroll: true });
+  });
+  $('tub-back').addEventListener('click', function(){ mountPicker(); show(stepPick); });
+  $('tub-again').addEventListener('click', function(){ stepConfirm.reset(); mountPicker(); show(stepPick); });
+
+  stepConfirm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = $('tub-name').value.trim(), email = $('tub-email').value.trim();
+    if (!name) { err("Add your name so we know who the invoice is for."); $('tub-name').focus(); return; }
+    if (!/^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/.test(email)) { err('Add a valid email so we can send your invoice.'); $('tub-email').focus(); return; }
+    var c = TUB.normalize(pick), summary = 'In Season Tune Up: Custom (monthly): ' + TUB.lines(c).join(', ');
+    var btn = $('tub-send'), label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name, email: email, phone: $('tub-phone').value.trim(),
+        athlete: $('tub-athlete').value.trim() || name,
+        interest: 'In Season Tune Up (build your own)',
+        message: 'Package: ' + summary + ' ($' + TUB.total(c) + ' / month)',
+        company: $('tub-company').value, elapsed: Date.now() - t0,
+        invoice: true, package: summary, packageId: 'tuneup-custom', custom: c
+      })
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if (r.ok && j.ok) {
+          $('tub-done-text').textContent = 'Your invoice for $' + TUB.total(c) + ' / month is on its way to ' + email + '. The Sevenity team will follow up to schedule your sessions.';
+          show(stepDone);
+          if (window.va) { try { window.va('event', { name: 'lead_sent' }); } catch (x) {} }
+        } else err(j.error || "That didn't send. Email sevenitysportsgroup@gmail.com directly and we'll pick it up.");
+      });
+    }).catch(function(){ err("That didn't send. You may be offline. Email sevenitysportsgroup@gmail.com directly."); })
+      .then(function(){ btn.disabled = false; btn.textContent = label; });
+  });
 })();
 </script>
 </body>
