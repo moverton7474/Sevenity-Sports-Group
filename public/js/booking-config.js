@@ -23,6 +23,9 @@ window.SEVENITY_BOOKING_LINKS = {
   'training-5session': '',
   'training-unlimited': '', // recurring monthly price in Stripe
   'training-pro': '',
+  'tuneup-starter': '',
+  'tuneup-pro': '',
+  'tuneup-elite': '',
 
   // Content creation, book-content.html
   'content-video': '',
