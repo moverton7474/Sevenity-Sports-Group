@@ -98,7 +98,7 @@ window.SevenityTuneUp = (function(){
       var row = document.createElement('div'); row.className = 'tub-row';
       row.innerHTML = '<div class="tub-name"></div><div class="tub-step">'
         + '<button type="button" data-d="-1"></button><output aria-live="polite"></output><button type="button" data-d="1"></button></div>';
-      row.querySelector('.tub-name').innerHTML = it.many + '<small>Pick ' + it.min + '&ndash;' + it.max + '</small>';
+      row.querySelector('.tub-name').textContent = it.many;
       var minus = row.querySelectorAll('button')[0], plus = row.querySelectorAll('button')[1], out = row.querySelector('output');
       minus.textContent = '−'; plus.textContent = '+';
       minus.setAttribute('aria-label', 'Fewer ' + it.many.toLowerCase());
