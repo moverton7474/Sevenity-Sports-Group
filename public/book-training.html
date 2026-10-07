@@ -50,8 +50,8 @@ html{font-size:126%;scroll-behavior:smooth;scroll-padding-top:5.5rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{
   margin:0;color:var(--ink);font-family:var(--f-b);font-size:20.16px;line-height:1.65;-webkit-font-smoothing:antialiased;
-  background-color:#2e2c2d;
-  background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);
+  background-color:#4672d2;
+  background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #4f7fdc 72%, #4672d2 100%);
   background-attachment:fixed;
   background-size:cover;
   text-shadow:0 1px 2px rgba(0,0,0,.6),0 3px 10px rgba(0,0,0,.35);
@@ -132,7 +132,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 /* ---------- request form ---------- */
 .lead{max-width:36rem}
 .lead .lrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-@media(max-width:560px){.lead .lrow{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:359px){.lead .lrow{grid-template-columns:minmax(0,1fr)}}
 .lead label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
 .lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .lead textarea{min-height:5.5rem;resize:vertical}
@@ -188,6 +188,53 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* compact layout: less scrolling to reach the packages and the form */
+section{padding:3rem 0}
+.hero{padding-top:2.4rem;padding-bottom:.4rem}
+.sec-head{margin-bottom:1.6rem}
+.pcard{padding:1.2rem 1.3rem}
+.pcard .psub{margin-bottom:.8rem}
+.pcard .foot{padding-top:.9rem}
+.pcard .btn{white-space:normal}
+.tu-photo{aspect-ratio:16/9}
+.tu-body{padding:1rem 1.2rem 1.2rem}
+.tu-list li{padding:.35rem 0}
+.tu-body .foot{padding-top:.9rem}
+.swipe-hint{display:none;margin:.5rem 0 0;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* even more compact on phones: smaller gaps, shorter footer */
+@media(max-width:699px){
+  section{padding:2.2rem 0}
+  .hero{padding-top:1.6rem}
+  .hero .lab{margin-bottom:.6rem}
+  .sec-head{margin-bottom:1.1rem}
+  .sec-head p{margin-top:.6rem}
+  footer{padding:1.6rem 0 2rem}
+  footer .foot-in{gap:.5rem 1.5rem}
+}
+@media(max-width:699px){
+  .lead label{margin:.55rem 0 .25rem}
+  .lead input,.lead select,.lead textarea{padding:.5rem .6rem;font-size:.88rem}
+  .lead textarea{min-height:3.6rem}
+  .lead .lrow{gap:.5rem}
+  .lead .lrow-sel{grid-template-columns:minmax(0,1fr);gap:0}
+  .lead .lfoot{margin-top:.9rem}
+}
+/* phones: swipe through the package cards side to side instead of scrolling past each one */
+@media(max-width:699px){
+  .price-grid,.tu-grid{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;margin:0 -1.5rem;padding:0 1.5rem .5rem;scroll-padding:0 1.5rem;scrollbar-width:none}
+  .price-grid::-webkit-scrollbar,.tu-grid::-webkit-scrollbar{display:none}
+  .price-grid>.pcard,.tu-grid>.tu-card{flex:0 0 82%;scroll-snap-align:start}
+  .swipe-hint{display:block}
+}
+/* desktop: the form sits beside its heading */
+@media(min-width:1024px){
+  #request-form .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:3rem;align-items:start}
+  #request-form .lead{max-width:none}
+}
+/* keep the blue glow behind every screen on phones too: iPhones ignore
+   background-attachment:fixed and stretch the glow down the whole page (gray below) */
+body{background-image:none}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:100lvh;z-index:-1;pointer-events:none;background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #4f7fdc 72%, #4672d2 100%);background-size:cover}
 /* phones: shrink the brand name so the Menu button always fits on screen */
 @media(max-width:480px){
   .nav-in{padding:.75rem .8rem;gap:.5rem}
@@ -246,7 +293,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 <div class="wrap hero">
   <span class="lab">Player Development</span>
   <h1>Book Player Development</h1>
-  <p style="margin-top:.9rem;max-width:38rem">Pick a package below and send a request. Your pricing and invoice arrive by email, and the Sevenity team will follow up to schedule your session.</p>
+  <p style="margin-top:.9rem;max-width:38rem">Pick a package, send a request, and your invoice arrives by email.</p>
 </div>
 
 <section id="packages">
@@ -279,10 +326,11 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
       <div class="pcard tu-link">
         <h3>In Season Tune Up / Month</h3>
         <p class="psub">Player development, game day videography and film breakdown. Starter, Pro, Elite or build your own</p>
-        <p class="price"><small class="from">Starting at</small>$250 <small>/ month</small></p>
-        <div class="foot"><a class="btn block" href="tune-up.html">See Tune Up packages</a></div>
+        <p class="price"><small class="from">Starting at</small>$300 <small>/ month</small></p>
+        <div class="foot"><a class="btn block" href="tune-up.html">See packages</a></div>
       </div>
     </div>
+    <p class="swipe-hint" aria-hidden="true">Swipe to see all packages &rarr;</p>
   </div>
 </section>
 
@@ -291,7 +339,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
     <div class="sec-head">
       <span class="lab">Request a Package</span>
       <h2 style="margin-top:.7rem">Ready to book a session?</h2>
-      <p>Tell Sevenity what you're looking for and we'll follow up with an invoice to confirm your session.</p>
+      <p>Send your request and we'll email your invoice to confirm.</p>
     </div>
 
     <form class="lead" id="leadForm" autocomplete="off">
@@ -302,7 +350,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         </div>
         <div>
           <label for="req-email">Email</label>
-          <input type="email" id="req-email" name="email" required placeholder="you@example.com">
+          <input type="email" id="req-email" name="email" required placeholder="Your email">
         </div>
       </div>
       <div class="lrow">
@@ -312,44 +360,50 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         </div>
         <div>
           <label for="req-athlete">Athlete name</label>
-          <input type="text" id="req-athlete" name="athlete" placeholder="If different from you">
+          <input type="text" id="req-athlete" name="athlete" placeholder="Optional">
         </div>
       </div>
-      <label for="req-grade">Athlete grade / level</label>
-      <select id="req-grade" name="grade" required>
-        <option value="">Pick grade or level</option>
-        <optgroup label="K-12">
-          <option value="Kindergarten">Kindergarten</option>
-          <option value="1st grade">1st grade</option>
-          <option value="2nd grade">2nd grade</option>
-          <option value="3rd grade">3rd grade</option>
-          <option value="4th grade">4th grade</option>
-          <option value="5th grade">5th grade</option>
-          <option value="6th grade">6th grade</option>
-          <option value="7th grade">7th grade</option>
-          <option value="8th grade">8th grade</option>
-          <option value="9th grade">9th grade</option>
-          <option value="10th grade">10th grade</option>
-          <option value="11th grade">11th grade</option>
-          <option value="12th grade">12th grade</option>
-        </optgroup>
-        <optgroup label="Beyond high school">
-          <option value="College">College</option>
-          <option value="Pro">Pro</option>
-        </optgroup>
-      </select>
-      <label for="package">Package</label>
-      <select id="package" name="package">
-        <option value="training-1session">Individual session</option>
-        <option value="training-5session">5-session package</option>
-        <option value="training-unlimited">Unlimited player development / month</option>
-        <option value="training-pro">Sevenity Pro Session</option>
-        <optgroup label="In Season Tune Up (monthly)">
-          <option value="tuneup-starter">In Season Tune Up: Starter (monthly)</option>
-          <option value="tuneup-pro">In Season Tune Up: Pro (monthly)</option>
-          <option value="tuneup-elite">In Season Tune Up: Elite (monthly)</option>
-        </optgroup>
-      </select>
+      <div class="lrow lrow-sel">
+        <div>
+          <label for="req-grade">Athlete grade / level</label>
+          <select id="req-grade" name="grade" required>
+            <option value="">Pick grade or level</option>
+            <optgroup label="K-12">
+              <option value="Kindergarten">Kindergarten</option>
+              <option value="1st grade">1st grade</option>
+              <option value="2nd grade">2nd grade</option>
+              <option value="3rd grade">3rd grade</option>
+              <option value="4th grade">4th grade</option>
+              <option value="5th grade">5th grade</option>
+              <option value="6th grade">6th grade</option>
+              <option value="7th grade">7th grade</option>
+              <option value="8th grade">8th grade</option>
+              <option value="9th grade">9th grade</option>
+              <option value="10th grade">10th grade</option>
+              <option value="11th grade">11th grade</option>
+              <option value="12th grade">12th grade</option>
+            </optgroup>
+            <optgroup label="Beyond high school">
+              <option value="College">College</option>
+              <option value="Pro">Pro</option>
+            </optgroup>
+          </select>
+        </div>
+        <div>
+          <label for="package">Package</label>
+          <select id="package" name="package">
+            <option value="training-1session">Individual session</option>
+            <option value="training-5session">5-session package</option>
+            <option value="training-unlimited">Unlimited player development / month</option>
+            <option value="training-pro">Sevenity Pro Session</option>
+            <optgroup label="In Season Tune Up (monthly)">
+              <option value="tuneup-starter">In Season Tune Up: Starter (monthly)</option>
+              <option value="tuneup-pro">In Season Tune Up: Pro (monthly)</option>
+              <option value="tuneup-elite">In Season Tune Up: Elite (monthly)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
       <div class="pkg-sum" id="pkg-sum" aria-live="polite"></div>
       <div class="lrow">
         <div>
@@ -558,7 +612,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
    what it includes (packages are picked on tune-up.html or in the dropdown). */
 (function(){
   var TU = {
-    'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: 'Starting at $250 / month', items: ['2 player development sessions', 'Videography at 1 game', '1 film breakdown session', 'Monthly plan, billed each month'] },
+    'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: 'Starting at $300 / month', items: ['2 player development sessions', 'Videography at 1 game', '1 film breakdown session', 'Monthly plan, billed each month'] },
     'tuneup-pro':     { name: 'In Season Tune Up: Pro (monthly)',     price: 'Starting at $500 / month', items: ['4 player development sessions', 'Videography at 2 games', '2 film breakdown sessions', 'Monthly plan, billed each month'] },
     'tuneup-elite':   { name: 'In Season Tune Up: Elite (monthly)',   price: 'Starting at $750 / month', items: ['8 player development sessions', 'Videography at 3 games', '4 film breakdown sessions', 'Monthly plan, billed each month'] }
   };
