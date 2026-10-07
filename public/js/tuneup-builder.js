@@ -17,8 +17,10 @@ window.SevenityTuneUp = (function(){
     { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
-    // Film breakdown is $35 on its own, a $20 add-on when player development or videography is picked too.
-    { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 20 }, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
+    // Film breakdown is $35 on its own. With player development or videography it's an
+    // add-on that gets cheaper the bigger the package: $25 with 1 session/game, $1 less
+    // for each one added, down to $15 (26 - sessions - games, never below 15).
+    { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], start: 26, floor: 15 }, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
   ];
   var PACKAGES = [
     { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, film: 1, price: 300 },
@@ -40,7 +42,10 @@ window.SevenityTuneUp = (function(){
   function itemCost(it, n, c){
     if (!n) return 0;
     var r = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
-    if (it.addOn && it.addOn.with.some(function(k){ return c[k] > 0; })) r = it.addOn.rate;
+    if (it.addOn) {
+      var others = it.addOn.with.reduce(function(s, k){ return s + (c[k] || 0); }, 0);
+      if (others > 0) r = Math.max(it.addOn.floor, it.addOn.start - others);
+    }
     return n * r;
   }
   function total(c){

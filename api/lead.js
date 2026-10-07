@@ -39,8 +39,9 @@ const TUNEUP_ITEMS = [
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
-  // $35 on its own, a $20 add-on when player development or videography is picked too.
-  { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 20 }, one: 'film breakdown session', many: 'film breakdown sessions' },
+  // $35 on its own. With player development or videography: an add-on of
+  // 26 - (sessions + games), never below $15 (so $25 down to $15).
+  { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], start: 26, floor: 15 }, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
 
 function customTuneUp(pick) {
@@ -52,7 +53,10 @@ function customTuneUp(pick) {
   for (const it of TUNEUP_ITEMS) {
     const n = counts[it.key];
     let rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
-    if (it.addOn && it.addOn.with.some((k) => counts[k] > 0)) rate = it.addOn.rate;
+    if (it.addOn) {
+      const others = it.addOn.with.reduce((s, k) => s + counts[k], 0);
+      if (others > 0) rate = Math.max(it.addOn.floor, it.addOn.start - others);
+    }
     total += n ? n * rate : 0;
     if (n > 0) parts.push(`${n} ${n === 1 ? it.one : it.many}`);
   }
