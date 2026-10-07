@@ -215,6 +215,10 @@ section{padding:3rem 0}
 .tu-list li{padding:.35rem 0}
 .tu-body .foot{padding-top:.9rem}
 .tu-card .btn,.tub-card .btn{white-space:normal}
+.tu-format{margin-top:1.4rem;border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:.9rem 1.2rem;display:flex;gap:.6rem 1.4rem;align-items:baseline;flex-wrap:wrap;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.tu-format .lab{flex:none}
+.tu-format p{margin:0;flex:1 1 20rem;font-size:.92rem;color:var(--ink-2)}
+.tu-format b{color:var(--ink)}
 .swipe-hint{display:none;margin:.5rem 0 0;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 /* even more compact on phones: smaller gaps, shorter footer */
 @media(max-width:699px){
@@ -364,6 +368,10 @@ section{padding:3rem 0}
       </article>
     </div>
     <p class="swipe-hint" aria-hidden="true">Swipe to see all packages &rarr;</p>
+    <div class="tu-format">
+      <span class="lab">Session format</span>
+      <p><b>Every session is 90 minutes.</b> When film breakdown is included, it's the first 30 minutes, followed by 60 minutes of on-court development.</p>
+    </div>
   </div>
 </section>
 
