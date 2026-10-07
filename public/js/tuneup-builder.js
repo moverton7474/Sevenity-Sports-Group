@@ -15,9 +15,10 @@ window.SevenityTuneUp = (function(){
     // Player development gets cheaper per session the more are picked:
     // perSession[n-1] is the per-session rate when n sessions are picked.
     { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'Player development session', many: 'Player development sessions' },
-    { key: 'vid',  min: 0, max: 4, rate: 100, one: 'Game with videography',      many: 'Games with videography' },
-    // Film breakdown is $35 on its own, a $15 add-on when player development or videography is picked too.
-    { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 15 }, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
+    // Videography also gets cheaper per game the more games are picked.
+    { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
+    // Film breakdown is $35 on its own, a $20 add-on when player development or videography is picked too.
+    { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 20 }, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
   ];
   var PACKAGES = [
     { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, film: 1, price: 300 },
