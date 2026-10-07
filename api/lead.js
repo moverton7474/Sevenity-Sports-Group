@@ -24,7 +24,7 @@ const PACKAGES = {
   'training-5session': { name: '5-session package', price: '$250' },
   'training-unlimited': { name: 'Unlimited player development (monthly)', price: '$500/mo' },
   'training-pro': { name: 'Sevenity Pro Session', price: '$130/session' },
-  'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: '$250/mo' },
+  'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: '$300/mo' },
   'tuneup-pro': { name: 'In Season Tune Up: Pro (monthly)', price: '$500/mo' },
   'tuneup-elite': { name: 'In Season Tune Up: Elite (monthly)', price: '$750/mo' },
   'content-video': { name: 'Videography', price: '$120/session' },
@@ -35,19 +35,21 @@ const PACKAGES = {
 // match public/js/tuneup-builder.js; the price is recomputed here from the
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
-  { key: 'pd', min: 1, max: 8, rate: 65, one: 'player development session', many: 'player development sessions' },
-  { key: 'vid', min: 1, max: 4, rate: 85, one: 'game with videography', many: 'games with videography' },
-  { key: 'film', min: 1, max: 4, rate: 35, one: 'film breakdown session', many: 'film breakdown sessions' },
+  { key: 'pd', min: 0, max: 8, rate: 65, one: 'player development session', many: 'player development sessions' },
+  { key: 'vid', min: 0, max: 4, rate: 85, one: 'game with videography', many: 'games with videography' },
+  { key: 'film', min: 0, max: 4, rate: 35, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
 
 function customTuneUp(pick) {
   const p = pick && typeof pick === 'object' ? pick : {};
   let total = 0;
-  const parts = TUNEUP_ITEMS.map((it) => {
-    const n = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || it.min));
+  const parts = [];
+  for (const it of TUNEUP_ITEMS) {
+    const n = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
     total += n * it.rate;
-    return `${n} ${n === 1 ? it.one : it.many}`;
-  });
+    if (n > 0) parts.push(`${n} ${n === 1 ? it.one : it.many}`);
+  }
+  if (!total) return null; // nothing picked
   return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
 }
 const MAX_BODY = 16 * 1024;
@@ -114,6 +116,9 @@ module.exports = async function handler(req, res) {
   const wantsInvoice = body.invoice === true;
   const packageId = clean(body.packageId, 40);
   const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
+  if (packageId === 'tuneup-custom' && !known) {
+    return res.status(400).json({ error: 'Pick at least one session, game or film breakdown first.' });
+  }
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
   const athlete = clean(body.athlete, 120);

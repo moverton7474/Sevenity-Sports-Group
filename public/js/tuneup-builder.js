@@ -1,29 +1,27 @@
 /**
  * In Season Tune Up: build your own monthly package.
  *
- * Players pick 1-8 player development sessions, 1-4 games of videography and
- * 1-4 film breakdowns. Per-item rates are set so the Starter (2/1/1 = $250) and
- * Pro (4/2/2 = $500) packages cost the same built by hand; Elite (8/3/4) is a
- * discount at $750. api/lead.js holds the same rates and recomputes the price,
- * so the invoice never trusts a number sent from the browser.
+ * Players pick 0-8 player development sessions, 0-4 games of videography and
+ * 0-4 film breakdowns (at least one item overall). Prices are never shown per
+ * item, only the monthly total at the end. api/lead.js holds the same rates and
+ * recomputes the price, so the invoice never trusts a number sent from the browser.
  *
- * Used on tune-up.html (the builder section) and book-training.html (inside the
- * request form's package summary).
+ * Used on tune-up.html (the build your own section).
  */
 window.SevenityTuneUp = (function(){
   "use strict";
 
   var ITEMS = [
-    { key: 'pd',   min: 1, max: 8, rate: 65, one: 'Player development session', many: 'Player development sessions' },
-    { key: 'vid',  min: 1, max: 4, rate: 85, one: 'Game with videography',      many: 'Games with videography' },
-    { key: 'film', min: 1, max: 4, rate: 35, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
+    { key: 'pd',   min: 0, max: 8, rate: 65, one: 'Player development session', many: 'Player development sessions' },
+    { key: 'vid',  min: 0, max: 4, rate: 85, one: 'Game with videography',      many: 'Games with videography' },
+    { key: 'film', min: 0, max: 4, rate: 35, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
   ];
   var PACKAGES = [
-    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, film: 1, price: 250 },
+    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, film: 1, price: 300 },
     { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, film: 2, price: 500 },
     { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, film: 4, price: 750 }
   ];
-  var DEFAULTS = { pd: 2, vid: 1, film: 1 };
+  var DEFAULTS = { pd: 0, vid: 0, film: 0 };
 
   function clamp(item, v){
     v = parseInt(v, 10);
@@ -39,7 +37,7 @@ window.SevenityTuneUp = (function(){
     return ITEMS.reduce(function(sum, it){ return sum + c[it.key] * it.rate; }, 0);
   }
   function lines(c){
-    return ITEMS.map(function(it){ return c[it.key] + ' ' + (c[it.key] === 1 ? it.one : it.many).toLowerCase(); });
+    return ITEMS.filter(function(it){ return c[it.key] > 0; }).map(function(it){ return c[it.key] + ' ' + (c[it.key] === 1 ? it.one : it.many).toLowerCase(); });
   }
   /* The cheapest ready-made package that covers everything picked, if it costs
      the same or less than the custom build. */
