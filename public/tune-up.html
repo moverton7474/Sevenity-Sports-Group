@@ -216,6 +216,16 @@ section{padding:3rem 0}
 .tu-body .foot{padding-top:.9rem}
 .tu-card .btn,.tub-card .btn{white-space:normal}
 .swipe-hint{display:none;margin:.5rem 0 0;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* even more compact on phones: smaller gaps, shorter footer */
+@media(max-width:699px){
+  section{padding:2.2rem 0}
+  .hero{padding-top:1.6rem}
+  .hero .lab{margin-bottom:.6rem}
+  .sec-head{margin-bottom:1.1rem}
+  .sec-head p{margin-top:.6rem}
+  footer{padding:1.6rem 0 2rem}
+  footer .foot-in{gap:.5rem 1.5rem}
+}
 /* phones: swipe through the package cards side to side instead of scrolling past each one */
 @media(max-width:699px){
   .price-grid,.tu-grid{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;margin:0 -1.5rem;padding:0 1.5rem .5rem;scroll-padding:0 1.5rem;scrollbar-width:none}
@@ -223,6 +233,10 @@ section{padding:3rem 0}
   .price-grid>.pcard,.tu-grid>.tu-card{flex:0 0 82%;scroll-snap-align:start}
   .swipe-hint{display:block}
 }
+/* keep the blue glow behind every screen on phones too: iPhones ignore
+   background-attachment:fixed and stretch the glow down the whole page (gray below) */
+body{background-image:none}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:100lvh;z-index:-1;pointer-events:none;background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);background-size:cover}
 /* phones: shrink the brand name so the Menu button always fits on screen */
 @media(max-width:480px){
   .nav-in{padding:.75rem .8rem;gap:.5rem}
@@ -253,7 +267,7 @@ section{padding:3rem 0}
 .tub-confirm label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
 .tub-confirm input{width:100%;box-sizing:border-box;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .tub-confirm input:focus{outline:none;border-color:#fff}
-.tub-card #tub-next:disabled{opacity:.45;cursor:default;transform:none}
+.tub-pick-hint{margin:.7rem 0 0;font-size:.85rem;color:var(--ink-2);text-align:center}
 .tub-back{display:block;margin:.9rem auto 0;background:none;border:0;color:var(--ink-2);font:400 .85rem var(--f-b);cursor:pointer;text-decoration:underline;text-shadow:none}
 .tub-msg{display:none;margin:.9rem 0 0;font-size:.85rem;border-radius:var(--r);padding:.6rem .8rem}
 .tub-msg.err{display:block;border:1px solid var(--rose,#f19a9a);color:var(--ink)}
@@ -306,7 +320,7 @@ section{padding:3rem 0}
 <div class="wrap hero">
   <span class="lab">In Season &middot; Monthly</span>
   <h1>Monthly Tune Up Packages</h1>
-  <p style="margin-top:.9rem;max-width:40rem">Stay sharp all season with player development, film breakdown, and game day media coverage. Every package is a monthly plan, billed each month. Pick a package or build your own, and your invoice arrives by email.</p>
+  <p style="margin-top:.9rem;max-width:40rem">Monthly plans to keep your player sharp all season. Pick a package or build your own, and your invoice comes by email.</p>
   <p style="margin:0"><a href="book-training.html" style="font-size:.88rem">&larr; All player development packages</a></p>
 </div>
 
@@ -362,12 +376,13 @@ section{padding:3rem 0}
     <div>
       <span class="lab">Build Your Own</span>
       <h2 style="margin-top:.7rem">Customize Your Tune Up</h2>
-      <p style="margin-top:.9rem">Need more film and fewer sessions, or extra games on camera? Pick exactly what your player needs this month, see your total, and confirm to get your invoice by email.</p>
+      <p style="margin-top:.9rem">Pick what your player needs, see your total, and get your invoice by email.</p>
     </div>
     <div class="tub-card">
       <div id="tub-pick">
         <div id="tub"></div>
         <button class="btn block" type="button" id="tub-next">See my total</button>
+        <p class="tub-pick-hint" id="tub-pick-hint" hidden>Tap + to add at least one session, game or film breakdown.</p>
       </div>
       <form id="tub-confirm" class="tub-confirm" hidden novalidate>
         <span class="lab">Your custom tune up</span>
@@ -436,13 +451,11 @@ section{padding:3rem 0}
   var $ = function(id){ return document.getElementById(id); };
   var stepPick = $('tub-pick'), stepConfirm = $('tub-confirm'), stepDone = $('tub-done'), msg = $('tub-msg');
 
-  var next = $('tub-next');
+  var next = $('tub-next'), pickHint = $('tub-pick-hint');
   function mountPicker(){
     TUB.mount(el, pick, function(c){
       pick = c;
-      var any = TUB.total(c) > 0;
-      next.disabled = !any;
-      next.textContent = any ? 'See my total' : 'Pick what you need to see your total';
+      if (TUB.total(c) > 0) pickHint.hidden = true;
     }, { hidePrice: true });
   }
   function show(step){
@@ -455,7 +468,7 @@ section{padding:3rem 0}
 
   $('tub-next').addEventListener('click', function(){
     var ul = $('tub-sum'); ul.innerHTML = '';
-    if (!(TUB.total(pick) > 0)) return;
+    if (!(TUB.total(pick) > 0)) { pickHint.hidden = false; return; }
     TUB.ITEMS.forEach(function(it){
       if (!pick[it.key]) return;
       var n = pick[it.key], li = document.createElement('li'), b = document.createElement('b');

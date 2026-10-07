@@ -160,6 +160,10 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .nav-toggle{padding:.5rem .75rem}
 }
 @media(max-width:359px){.nav-toggle .nav-label{display:none}}
+/* keep the blue glow behind every screen on phones too: iPhones ignore
+   background-attachment:fixed and stretch the glow down the whole page (gray below) */
+body{background-image:none}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:100lvh;z-index:-1;pointer-events:none;background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);background-size:cover}
 /* phones: shrink the brand name so the Menu button always fits on screen */
 @media(max-width:480px){
   .nav-in{padding:.75rem .8rem;gap:.5rem}

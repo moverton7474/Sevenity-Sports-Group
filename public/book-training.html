@@ -132,7 +132,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 /* ---------- request form ---------- */
 .lead{max-width:36rem}
 .lead .lrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-@media(max-width:560px){.lead .lrow{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:359px){.lead .lrow{grid-template-columns:minmax(0,1fr)}}
 .lead label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
 .lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .lead textarea{min-height:5.5rem;resize:vertical}
@@ -201,6 +201,24 @@ section{padding:3rem 0}
 .tu-list li{padding:.35rem 0}
 .tu-body .foot{padding-top:.9rem}
 .swipe-hint{display:none;margin:.5rem 0 0;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* even more compact on phones: smaller gaps, shorter footer */
+@media(max-width:699px){
+  section{padding:2.2rem 0}
+  .hero{padding-top:1.6rem}
+  .hero .lab{margin-bottom:.6rem}
+  .sec-head{margin-bottom:1.1rem}
+  .sec-head p{margin-top:.6rem}
+  footer{padding:1.6rem 0 2rem}
+  footer .foot-in{gap:.5rem 1.5rem}
+}
+@media(max-width:699px){
+  .lead label{margin:.55rem 0 .25rem}
+  .lead input,.lead select,.lead textarea{padding:.5rem .6rem;font-size:.88rem}
+  .lead textarea{min-height:3.6rem}
+  .lead .lrow{gap:.5rem}
+  .lead .lrow-sel{grid-template-columns:minmax(0,1fr);gap:0}
+  .lead .lfoot{margin-top:.9rem}
+}
 /* phones: swipe through the package cards side to side instead of scrolling past each one */
 @media(max-width:699px){
   .price-grid,.tu-grid{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;margin:0 -1.5rem;padding:0 1.5rem .5rem;scroll-padding:0 1.5rem;scrollbar-width:none}
@@ -213,6 +231,10 @@ section{padding:3rem 0}
   #request-form .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:3rem;align-items:start}
   #request-form .lead{max-width:none}
 }
+/* keep the blue glow behind every screen on phones too: iPhones ignore
+   background-attachment:fixed and stretch the glow down the whole page (gray below) */
+body{background-image:none}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:100lvh;z-index:-1;pointer-events:none;background-image:radial-gradient(ellipse at 50% 0%, #94d0e8 0%, #5f93e9 26%, #598ce8 44%, #3c4356 72%, #2e2c2d 100%);background-size:cover}
 /* phones: shrink the brand name so the Menu button always fits on screen */
 @media(max-width:480px){
   .nav-in{padding:.75rem .8rem;gap:.5rem}
@@ -271,7 +293,7 @@ section{padding:3rem 0}
 <div class="wrap hero">
   <span class="lab">Player Development</span>
   <h1>Book Player Development</h1>
-  <p style="margin-top:.9rem;max-width:38rem">Pick a package below and send a request. Your pricing and invoice arrive by email, and the Sevenity team will follow up to schedule your session.</p>
+  <p style="margin-top:.9rem;max-width:38rem">Pick a package, send a request, and your invoice arrives by email.</p>
 </div>
 
 <section id="packages">
@@ -317,7 +339,7 @@ section{padding:3rem 0}
     <div class="sec-head">
       <span class="lab">Request a Package</span>
       <h2 style="margin-top:.7rem">Ready to book a session?</h2>
-      <p>Tell Sevenity what you're looking for and we'll follow up with an invoice to confirm your session.</p>
+      <p>Send your request and we'll email your invoice to confirm.</p>
     </div>
 
     <form class="lead" id="leadForm" autocomplete="off">
@@ -328,7 +350,7 @@ section{padding:3rem 0}
         </div>
         <div>
           <label for="req-email">Email</label>
-          <input type="email" id="req-email" name="email" required placeholder="you@example.com">
+          <input type="email" id="req-email" name="email" required placeholder="Your email">
         </div>
       </div>
       <div class="lrow">
@@ -338,10 +360,10 @@ section{padding:3rem 0}
         </div>
         <div>
           <label for="req-athlete">Athlete name</label>
-          <input type="text" id="req-athlete" name="athlete" placeholder="If different from you">
+          <input type="text" id="req-athlete" name="athlete" placeholder="Optional">
         </div>
       </div>
-      <div class="lrow">
+      <div class="lrow lrow-sel">
         <div>
           <label for="req-grade">Athlete grade / level</label>
           <select id="req-grade" name="grade" required>
