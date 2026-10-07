@@ -35,7 +35,8 @@ const PACKAGES = {
 // match public/js/tuneup-builder.js; the price is recomputed here from the
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
-  { key: 'pd', min: 0, max: 8, rate: 65, one: 'player development session', many: 'player development sessions' },
+  // Per-session rate drops the more sessions are picked: perSession[n-1] for n sessions.
+  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'player development session', many: 'player development sessions' },
   { key: 'vid', min: 0, max: 4, rate: 100, one: 'game with videography', many: 'games with videography' },
   { key: 'film', min: 0, max: 4, rate: 35, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
@@ -46,7 +47,7 @@ function customTuneUp(pick) {
   const parts = [];
   for (const it of TUNEUP_ITEMS) {
     const n = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
-    total += n * it.rate;
+    total += n ? n * (it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate) : 0;
     if (n > 0) parts.push(`${n} ${n === 1 ? it.one : it.many}`);
   }
   if (!total) return null; // nothing picked
