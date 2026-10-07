@@ -37,9 +37,10 @@ const PACKAGES = {
 const TUNEUP_ITEMS = [
   // Per-session rate drops the more sessions are picked: perSession[n-1] for n sessions.
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'player development session', many: 'player development sessions' },
-  { key: 'vid', min: 0, max: 4, rate: 100, one: 'game with videography', many: 'games with videography' },
-  // $35 on its own, a $15 add-on when player development or videography is picked too.
-  { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 15 }, one: 'film breakdown session', many: 'film breakdown sessions' },
+  // Videography per-game rate also drops the more games are picked.
+  { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
+  // $35 on its own, a $20 add-on when player development or videography is picked too.
+  { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], rate: 20 }, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
 
 function customTuneUp(pick) {
