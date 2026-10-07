@@ -13,7 +13,7 @@ window.SevenityTuneUp = (function(){
 
   var ITEMS = [
     { key: 'pd',   min: 0, max: 8, rate: 65, one: 'Player development session', many: 'Player development sessions' },
-    { key: 'vid',  min: 0, max: 4, rate: 85, one: 'Game with videography',      many: 'Games with videography' },
+    { key: 'vid',  min: 0, max: 4, rate: 100, one: 'Game with videography',      many: 'Games with videography' },
     { key: 'film', min: 0, max: 4, rate: 35, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
   ];
   var PACKAGES = [

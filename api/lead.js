@@ -36,7 +36,7 @@ const PACKAGES = {
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
   { key: 'pd', min: 0, max: 8, rate: 65, one: 'player development session', many: 'player development sessions' },
-  { key: 'vid', min: 0, max: 4, rate: 85, one: 'game with videography', many: 'games with videography' },
+  { key: 'vid', min: 0, max: 4, rate: 100, one: 'game with videography', many: 'games with videography' },
   { key: 'film', min: 0, max: 4, rate: 35, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
 
