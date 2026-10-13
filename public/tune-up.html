@@ -149,7 +149,16 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 /* in season tune up packages */
 .tu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr));gap:1.1rem}
-@media(min-width:900px){.tu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tu-list{font-size:.8rem}}
+@media(min-width:900px){.tu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tu-list{font-size:.8rem}
+  /* Build Your Own: one wide card under the three packages */
+  .tu-card.tu-custom{grid-column:1/-1;flex-direction:row}
+  .tu-card.tu-custom .tu-photo{flex:0 0 40%;aspect-ratio:auto;min-height:14rem}
+  .tu-card.tu-custom .tu-photo img{position:absolute;inset:0}
+  .tu-card.tu-custom .tu-body{justify-content:center}
+  .tu-card.tu-custom .tu-list{display:flex;flex-wrap:wrap;gap:0 1.6rem}
+  .tu-card.tu-custom .tu-list li{border-top:0;padding:.3rem 0}
+  .tu-card.tu-custom .foot{max-width:18rem}
+}
 .tu-card{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);overflow:hidden;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);cursor:pointer;transition:border-color .15s,transform .15s}
 .tu-card:hover{border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
 .tu-card.feat{border-color:#fff}
@@ -251,6 +260,7 @@ section{padding:3rem 0}
 .tu-card{position:relative}
 .tu-card a.stretch{text-shadow:none;line-height:normal;transform:none!important}
 .tu-card a.stretch::after{content:"";position:absolute;inset:0;z-index:2}
+.tu-photo h3{pointer-events:none}
 /* build your own tune up */
 .tub-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2.6rem;align-items:start}
 @media(max-width:860px){.tub-wrap{grid-template-columns:minmax(0,1fr);gap:1.6rem}}
@@ -366,6 +376,19 @@ section{padding:3rem 0}
           <div class="foot"><a class="btn block stretch" href="book-training.html?package=tuneup-elite">Request this package</a></div>
         </div>
       </article>
+      <article class="tu-card tu-custom">
+        <div class="tu-photo"><img src="/img/chase-training.webp" alt="Player working on ball handling in the gym" loading="lazy" style="object-position:50% 20%"><h3>Build Your Own</h3></div>
+        <div class="tu-body">
+          <p class="per">Monthly package</p>
+          <p class="price"><small class="from">Pick what you need</small>Custom</p>
+          <ul class="tu-list">
+            <li><b>&#10003;</b>Player development sessions</li>
+            <li><b>&#10003;</b>Games with videography</li>
+            <li><b>&#10003;</b>Film breakdown sessions</li>
+          </ul>
+          <div class="foot"><a class="btn block stretch" href="#build">Build my package</a></div>
+        </div>
+      </article>
     </div>
     <p class="swipe-hint" aria-hidden="true">Swipe to see all packages &rarr;</p>
     <div class="tu-format">
@@ -442,6 +465,15 @@ section{padding:3rem 0}
     });
   }
 })();
+</script>
+<script>
+/* A tap anywhere on a package card opens that card's link (backup for the stretched link). */
+[].forEach.call(document.querySelectorAll('.tu-card'), function(card){
+  card.addEventListener('click', function(e){
+    if (e.target.closest('a')) return;
+    var a = card.querySelector('a.stretch'); if (a) a.click();
+  });
+});
 </script>
 <script src="/js/tuneup-builder.js"></script>
 <script>
