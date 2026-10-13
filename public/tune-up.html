@@ -149,15 +149,18 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 
 /* in season tune up packages */
 .tu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr));gap:1.1rem}
-@media(min-width:900px){.tu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tu-list{font-size:.8rem}
-  /* Build Your Own: one wide card under the three packages */
-  .tu-card.tu-custom{grid-column:1/-1;flex-direction:row}
-  .tu-card.tu-custom .tu-photo{flex:0 0 40%;aspect-ratio:auto;min-height:14rem}
-  .tu-card.tu-custom .tu-photo img{position:absolute;inset:0}
-  .tu-card.tu-custom .tu-body{justify-content:center}
-  .tu-card.tu-custom .tu-list{display:flex;flex-wrap:wrap;gap:0 1.6rem}
-  .tu-card.tu-custom .tu-list li{border-top:0;padding:.3rem 0}
-  .tu-card.tu-custom .foot{max-width:18rem}
+/* Build Your Own sits next to the three packages: 2 x 2 on tablets, 4 across on wider screens */
+@media(min-width:700px){.tu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){
+  .tu-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.9rem}
+  .tu-grid .tu-photo h3{font-size:1.05rem;left:1rem;bottom:.7rem;right:1rem;line-height:1.05}
+  .tu-grid .tu-body{padding:.9rem 1rem 1rem}
+  .tu-grid .tu-body .per{font-size:.5rem;letter-spacing:.12em}
+  .tu-grid .tu-body .price{font-size:1.2rem;margin-bottom:.6rem}
+  .tu-grid .tu-body .price small{font-size:.5rem}
+  .tu-grid .tu-list{font-size:.66rem}
+  .tu-grid .tu-list li{gap:.45rem;padding:.3rem 0}
+  .tu-grid .tu-card .btn{font-size:.7rem;padding:.5rem .7rem;min-height:calc(2.5em + 1rem);display:flex;align-items:center;justify-content:center}
 }
 .tu-card{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);overflow:hidden;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);cursor:pointer;transition:border-color .15s,transform .15s}
 .tu-card:hover{border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
