@@ -24,9 +24,9 @@ const PACKAGES = {
   'training-5session': { name: '5-session package', price: '$250' },
   'training-unlimited': { name: 'Unlimited player development (monthly)', price: '$500/mo' },
   'training-pro': { name: 'Sevenity Pro Session', price: '$130/session' },
-  'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: '$300/mo' },
-  'tuneup-pro': { name: 'In Season Tune Up: Pro (monthly)', price: '$500/mo' },
-  'tuneup-elite': { name: 'In Season Tune Up: Elite (monthly)', price: '$750/mo' },
+  'tuneup-starter': { name: 'In Season Tune Up: Starter (monthly)', price: '$300/mo', detail: '2 player development sessions, 1 game with videography, 1 recovery boots session' },
+  'tuneup-pro': { name: 'In Season Tune Up: Pro (monthly)', price: '$500/mo', detail: '4 player development sessions, 2 games with videography, 2 recovery boots sessions' },
+  'tuneup-elite': { name: 'In Season Tune Up: Elite (monthly)', price: '$750/mo', detail: '8 player development sessions, 3 games with videography, 4 recovery boots sessions' },
   'content-video': { name: 'Videography', price: '$120/session' },
   'content-photo': { name: 'Photography', price: '$50/session' },
   'content-bundle': { name: 'Video + photography bundle', price: '$150/session' },
@@ -39,10 +39,13 @@ const TUNEUP_ITEMS = [
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
-  // $35 on its own. With player development or videography: an add-on of
-  // 26 - (sessions + games), never below $15 (so $25 down to $15).
-  { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], start: 26, floor: 15 }, one: 'film breakdown session', many: 'film breakdown sessions' },
+  // Recovery boots, 30 min after a player development session: $25 each.
+  { key: 'boots', min: 0, max: 8, rate: 25, one: 'recovery boots session', many: 'recovery boots sessions' },
+  // Film breakdown, 30 min after a player development session: $30 each.
+  { key: 'film', min: 0, max: 4, rate: 30, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
+// Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
+const TUNEUP_COMBO = { a: 'boots', b: 'film', off: 5 };
 
 function customTuneUp(pick) {
   const p = pick && typeof pick === 'object' ? pick : {};
@@ -52,14 +55,11 @@ function customTuneUp(pick) {
   for (const it of TUNEUP_ITEMS) counts[it.key] = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
   for (const it of TUNEUP_ITEMS) {
     const n = counts[it.key];
-    let rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
-    if (it.addOn) {
-      const others = it.addOn.with.reduce((s, k) => s + counts[k], 0);
-      if (others > 0) rate = Math.max(it.addOn.floor, it.addOn.start - others);
-    }
+    const rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
     total += n ? n * rate : 0;
     if (n > 0) parts.push(`${n} ${n === 1 ? it.one : it.many}`);
   }
+  total -= TUNEUP_COMBO.off * Math.min(counts[TUNEUP_COMBO.a], counts[TUNEUP_COMBO.b]);
   if (!total) return null; // nothing picked
   return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
 }
@@ -128,7 +128,7 @@ module.exports = async function handler(req, res) {
   const packageId = clean(body.packageId, 40);
   const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
   if (packageId === 'tuneup-custom' && !known) {
-    return res.status(400).json({ error: 'Pick at least one session, game or film breakdown first.' });
+    return res.status(400).json({ error: 'Pick at least one session, game, recovery boots session or film breakdown first.' });
   }
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);

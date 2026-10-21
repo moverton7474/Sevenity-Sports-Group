@@ -1,8 +1,11 @@
 /**
  * In Season Tune Up: build your own monthly package.
  *
- * Players pick 0-8 player development sessions, 0-4 games of videography and
- * 0-4 film breakdowns (at least one item overall). Prices are never shown per
+ * Players pick 0-8 player development sessions, 0-4 games of videography,
+ * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
+ * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
+ * player development session; each boots + film pair is a $50 combo (boots worn
+ * during film). Prices are never shown per
  * item, only the monthly total at the end. api/lead.js holds the same rates and
  * recomputes the price, so the invoice never trusts a number sent from the browser.
  *
@@ -17,17 +20,19 @@ window.SevenityTuneUp = (function(){
     { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
-    // Film breakdown is $35 on its own. With player development or videography it's an
-    // add-on that gets cheaper the bigger the package: $25 with 1 session/game, $1 less
-    // for each one added, down to $15 (26 - sessions - games, never below 15).
-    { key: 'film', min: 0, max: 4, rate: 35, addOn: { with: ['pd', 'vid'], start: 26, floor: 15 }, one: 'Film breakdown session',     many: 'Film breakdown sessions' }
+    // Recovery boots: 30 minutes right after a player development session, $25 each.
+    { key: 'boots', min: 0, max: 8, rate: 25, one: 'Recovery boots session', many: 'Recovery boots sessions' },
+    // Film breakdown: 30 minutes right after a player development session, $30 each.
+    { key: 'film',  min: 0, max: 4, rate: 30, one: 'Film breakdown session', many: 'Film breakdown sessions' }
   ];
+  // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
+  var COMBO = { a: 'boots', b: 'film', off: 5 };
   var PACKAGES = [
-    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, film: 1, price: 300 },
-    { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, film: 2, price: 500 },
-    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, film: 4, price: 750 }
+    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, film: 0, price: 300 },
+    { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, film: 0, price: 500 },
+    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, film: 0, price: 750 }
   ];
-  var DEFAULTS = { pd: 0, vid: 0, film: 0 };
+  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0 };
 
   function clamp(item, v){
     v = parseInt(v, 10);
@@ -42,14 +47,11 @@ window.SevenityTuneUp = (function(){
   function itemCost(it, n, c){
     if (!n) return 0;
     var r = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
-    if (it.addOn) {
-      var others = it.addOn.with.reduce(function(s, k){ return s + (c[k] || 0); }, 0);
-      if (others > 0) r = Math.max(it.addOn.floor, it.addOn.start - others);
-    }
     return n * r;
   }
   function total(c){
-    return ITEMS.reduce(function(sum, it){ return sum + itemCost(it, c[it.key], c); }, 0);
+    var sum = ITEMS.reduce(function(s, it){ return s + itemCost(it, c[it.key], c); }, 0);
+    return sum - COMBO.off * Math.min(c[COMBO.a] || 0, c[COMBO.b] || 0);
   }
   function lines(c){
     return ITEMS.filter(function(it){ return c[it.key] > 0; }).map(function(it){ return c[it.key] + ' ' + (c[it.key] === 1 ? it.one : it.many).toLowerCase(); });
@@ -59,17 +61,18 @@ window.SevenityTuneUp = (function(){
   function better(c){
     var t = total(c), best = null;
     PACKAGES.forEach(function(p){
-      if (p.pd >= c.pd && p.vid >= c.vid && p.film >= c.film && p.price <= t && (!best || p.price < best.price)) best = p;
+      var covers = ITEMS.every(function(it){ return (p[it.key] || 0) >= c[it.key]; });
+      if (covers && p.price <= t && (!best || p.price < best.price)) best = p;
     });
     return best;
   }
   function fromQuery(){
     var q = {};
-    window.location.search.replace(/[?&](pd|vid|film)=(\d+)/g, function(_, k, v){ q[k] = v; });
+    window.location.search.replace(/[?&](pd|vid|boots|film)=(\d+)/g, function(_, k, v){ q[k] = v; });
     return normalize(q);
   }
   function query(c){
-    return 'pd=' + c.pd + '&vid=' + c.vid + '&film=' + c.film;
+    return 'pd=' + c.pd + '&vid=' + c.vid + '&boots=' + c.boots + '&film=' + c.film;
   }
 
   var styled = false;
