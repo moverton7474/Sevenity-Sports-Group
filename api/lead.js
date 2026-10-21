@@ -53,13 +53,24 @@ function customTuneUp(pick) {
   const parts = [];
   const counts = {};
   for (const it of TUNEUP_ITEMS) counts[it.key] = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
+  // Boots + film pairs are billed as one combo line; leftovers bill on their own.
+  const pairs = Math.min(counts[TUNEUP_COMBO.a], counts[TUNEUP_COMBO.b]);
+  const byKey = {};
+  for (const it of TUNEUP_ITEMS) byKey[it.key] = it;
   for (const it of TUNEUP_ITEMS) {
     const n = counts[it.key];
+    if (!n) continue;
     const rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
-    total += n ? n * rate : 0;
-    if (n > 0) parts.push(`${n} ${n === 1 ? it.one : it.many}`);
+    total += n * rate;
+    // Prices show for the first time here, on the invoice, never on the site.
+    const billed = it.key === TUNEUP_COMBO.a || it.key === TUNEUP_COMBO.b ? n - pairs : n;
+    if (billed > 0) parts.push(`${billed} ${billed === 1 ? it.one : it.many} at $${rate}${billed > 1 ? ' each' : ''}`);
   }
-  total -= TUNEUP_COMBO.off * Math.min(counts[TUNEUP_COMBO.a], counts[TUNEUP_COMBO.b]);
+  if (pairs) {
+    const pairRate = byKey[TUNEUP_COMBO.a].rate + byKey[TUNEUP_COMBO.b].rate - TUNEUP_COMBO.off;
+    parts.push(`${pairs} recovery boots + film breakdown combo${pairs > 1 ? 's' : ''} at $${pairRate}${pairs > 1 ? ' each' : ''}`);
+  }
+  total -= TUNEUP_COMBO.off * pairs;
   if (!total) return null; // nothing picked
   return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
 }
