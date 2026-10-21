@@ -1,0 +1,56 @@
+# Publishes the site to Vercel production on every push to main, and on demand
+# (Actions tab > "Deploy to Vercel" > Run workflow). Backup for Vercel's own
+# GitHub integration, which stopped deploying in October 2026.
+#
+# Needs one repository secret: VERCEL_TOKEN (vercel.com > Account Settings >
+# Tokens). Without it the job skips with a notice instead of failing.
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_SCOPE: gf-accelerate-llcs-projects
+      VERCEL_PROJECT: sevenity-sports-group
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for the Vercel token
+        id: token
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::VERCEL_TOKEN secret is not set, skipping the deploy."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.token.outputs.ok == 'true'
+        with:
+          node-version: 20
+
+      - name: Install the Vercel CLI
+        if: steps.token.outputs.ok == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Link to the Vercel project
+        if: steps.token.outputs.ok == 'true'
+        run: vercel link --yes --project "$VERCEL_PROJECT" --scope "$VERCEL_SCOPE" --token "$VERCEL_TOKEN"
+
+      - name: Deploy to production
+        if: steps.token.outputs.ok == 'true'
+        run: |
+          url=$(vercel deploy --prod --yes --scope "$VERCEL_SCOPE" --token "$VERCEL_TOKEN")
+          echo "Deployed: $url"
+          echo "### Deployed to Vercel production: $url" >> "$GITHUB_STEP_SUMMARY"
