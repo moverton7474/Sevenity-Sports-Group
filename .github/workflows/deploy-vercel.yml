@@ -11,6 +11,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# The job only reads the code; the Vercel token does the deploying.
+permissions:
+  contents: read
+
 concurrency:
   group: vercel-production
   cancel-in-progress: true
