@@ -5,9 +5,9 @@
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
  * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
  * player development session; each boots + film pair is a $50 combo (boots worn
- * during film). Each row shows its starting rate (price) and the monthly total
- * comes at the end. api/lead.js holds the same rates and recomputes the price,
- * so the invoice never trusts a number sent from the browser.
+ * during film). Prices are never shown per
+ * item, only the monthly total at the end. api/lead.js holds the same rates and
+ * recomputes the price, so the invoice never trusts a number sent from the browser.
  *
  * Used on tune-up.html (the build your own section).
  */
@@ -17,13 +17,13 @@ window.SevenityTuneUp = (function(){
   var ITEMS = [
     // Player development gets cheaper per session the more are picked:
     // perSession[n-1] is the per-session rate when n sessions are picked.
-    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], price: 'Starts at $65 / session', one: 'Player development session', many: 'Player development sessions' },
+    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
-    { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], price: 'Starts at $100 / game', one: 'Game with videography',      many: 'Games with videography' },
+    { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
     // Recovery boots: 30 minutes right after a player development session, $25 each.
-    { key: 'boots', min: 0, max: 8, rate: 25, price: '$25 each', one: 'Recovery boots session', many: 'Recovery boots sessions' },
+    { key: 'boots', min: 0, max: 8, rate: 25, one: 'Recovery boots session', many: 'Recovery boots sessions' },
     // Film breakdown: 30 minutes right after a player development session, $30 each.
-    { key: 'film',  min: 0, max: 4, rate: 30, price: '$30 each', one: 'Film breakdown session', many: 'Film breakdown sessions' }
+    { key: 'film',  min: 0, max: 4, rate: 30, one: 'Film breakdown session', many: 'Film breakdown sessions' }
   ];
   // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
   var COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -114,8 +114,7 @@ window.SevenityTuneUp = (function(){
       var row = document.createElement('div'); row.className = 'tub-row';
       row.innerHTML = '<div class="tub-name"></div><div class="tub-step">'
         + '<button type="button" data-d="-1"></button><output aria-live="polite"></output><button type="button" data-d="1"></button></div>';
-      var nm = row.querySelector('.tub-name'), sm = document.createElement('small');
-      nm.textContent = it.many; sm.textContent = it.price; nm.appendChild(sm);
+      row.querySelector('.tub-name').textContent = it.many;
       var minus = row.querySelectorAll('button')[0], plus = row.querySelectorAll('button')[1], out = row.querySelector('output');
       minus.textContent = '−'; plus.textContent = '+';
       minus.setAttribute('aria-label', 'Fewer ' + it.many.toLowerCase());
