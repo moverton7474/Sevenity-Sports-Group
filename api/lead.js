@@ -36,7 +36,7 @@ const PACKAGES = {
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
   // Per-session rate drops the more sessions are picked: perSession[n-1] for n sessions.
-  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 62, 59, 56, 53, 50, 47, 45], one: 'player development session', many: 'player development sessions' },
+  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 45, 45], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
   // Recovery boots, 30 min after a player development session: $25 each.
