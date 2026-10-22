@@ -4,6 +4,8 @@
  * Players pick 0-8 player development sessions, 0-4 games of videography,
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
  * Recovery boots and film breakdown need at least one player development session.
+ * Sports massage (with Core Sports Massage, recovery boots included) comes in 60
+ * minute ($135) and 90 minute ($200) sessions, 0-4 of each.
  * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
  * player development session; each boots + film pair is a $50 combo (boots worn
  * during film). Prices are never shown per
@@ -26,7 +28,10 @@ window.SevenityTuneUp = (function(){
     { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
     // Film breakdown: 30 minutes right after a player development session, $30 each.
     // Also needs at least one player development session.
-    { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' }
+    { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
+    // Sports massage + recovery boots with Core Sports Massage.
+    { key: 'm60',   min: 0, max: 4, rate: 135, one: 'Sports massage + recovery boots (60 min)', many: 'Sports massages + recovery boots (60 min)' },
+    { key: 'm90',   min: 0, max: 4, rate: 200, one: 'Sports massage + recovery boots (90 min)', many: 'Sports massages + recovery boots (90 min)' }
   ];
   // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
   var COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -35,7 +40,7 @@ window.SevenityTuneUp = (function(){
     { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, film: 0, price: 500 },
     { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, film: 0, price: 750 }
   ];
-  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0 };
+  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0, m60: 0, m90: 0 };
 
   function clamp(item, v){
     v = parseInt(v, 10);
@@ -72,11 +77,11 @@ window.SevenityTuneUp = (function(){
   }
   function fromQuery(){
     var q = {};
-    window.location.search.replace(/[?&](pd|vid|boots|film)=(\d+)/g, function(_, k, v){ q[k] = v; });
+    window.location.search.replace(/[?&](pd|vid|boots|film|m60|m90)=(\d+)/g, function(_, k, v){ q[k] = v; });
     return normalize(q);
   }
   function query(c){
-    return 'pd=' + c.pd + '&vid=' + c.vid + '&boots=' + c.boots + '&film=' + c.film;
+    return ITEMS.map(function(it){ return it.key + '=' + c[it.key]; }).join('&');
   }
 
   var styled = false;
