@@ -3,6 +3,7 @@
  *
  * Players pick 0-8 player development sessions, 0-4 games of videography,
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
+ * Recovery boots need at least one player development session.
  * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
  * player development session; each boots + film pair is a $50 combo (boots worn
  * during film). Prices are never shown per
@@ -21,7 +22,8 @@ window.SevenityTuneUp = (function(){
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
     // Recovery boots: 30 minutes right after a player development session, $25 each.
-    { key: 'boots', min: 0, max: 8, rate: 25, one: 'Recovery boots session', many: 'Recovery boots sessions' },
+    // needs: only available once at least one player development session is picked.
+    { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
     // Film breakdown: 30 minutes right after a player development session, $30 each.
     { key: 'film',  min: 0, max: 4, rate: 30, one: 'Film breakdown session', many: 'Film breakdown sessions' }
   ];
@@ -42,6 +44,7 @@ window.SevenityTuneUp = (function(){
   function normalize(c){
     var out = {};
     ITEMS.forEach(function(it){ out[it.key] = clamp(it, c && c[it.key]); });
+    ITEMS.forEach(function(it){ if (it.needs && !out[it.needs]) out[it.key] = 0; });
     return out;
   }
   function itemCost(it, n, c){
@@ -96,6 +99,7 @@ window.SevenityTuneUp = (function(){
       + '.tub-tip.on{display:block}'
       + '.tub-tip a{color:var(--gold)}'
       + '@media(max-width:480px){.tub-row{gap:.6rem}.tub-name{font-size:.86rem}.tub-name small{white-space:nowrap;letter-spacing:.05em}'
+      + '.tub-name small.tub-need{white-space:normal}'
       + '.tub-step{gap:.2rem}.tub-step button{width:1.85rem;height:1.85rem;font-size:.95rem}.tub-step output{min-width:1.4rem;font-size:1.05rem}}';
     var s = document.createElement('style'); s.textContent = css; document.head.appendChild(s);
   }
@@ -109,21 +113,28 @@ window.SevenityTuneUp = (function(){
     opts = opts || {};
     var c = normalize(start);
     el.innerHTML = '';
-    var rows = document.createElement('div');
+    var rows = document.createElement('div'), paints = [];
     ITEMS.forEach(function(it){
       var row = document.createElement('div'); row.className = 'tub-row';
       row.innerHTML = '<div class="tub-name"></div><div class="tub-step">'
         + '<button type="button" data-d="-1"></button><output aria-live="polite"></output><button type="button" data-d="1"></button></div>';
-      row.querySelector('.tub-name').textContent = it.many;
+      var nm = row.querySelector('.tub-name'), note = document.createElement('small'); note.className = 'tub-need';
+      nm.textContent = it.many; nm.appendChild(note);
       var minus = row.querySelectorAll('button')[0], plus = row.querySelectorAll('button')[1], out = row.querySelector('output');
       minus.textContent = '−'; plus.textContent = '+';
       minus.setAttribute('aria-label', 'Fewer ' + it.many.toLowerCase());
       plus.setAttribute('aria-label', 'More ' + it.many.toLowerCase());
-      function paint(){ out.textContent = c[it.key]; minus.disabled = c[it.key] <= it.min; plus.disabled = c[it.key] >= it.max; }
+      function paint(){
+        var locked = it.needs && !c[it.needs];
+        out.textContent = c[it.key]; minus.disabled = c[it.key] <= it.min; plus.disabled = locked || c[it.key] >= it.max;
+        note.textContent = locked ? it.needsNote : ''; note.hidden = !locked;
+      }
+      paints.push(paint);
       [minus, plus].forEach(function(b){
         b.addEventListener('click', function(){
           c[it.key] = clamp(it, c[it.key] + parseInt(b.getAttribute('data-d'), 10));
-          paint(); update();
+          c = normalize(c);
+          paints.forEach(function(f){ f(); }); update();
         });
       });
       paint();

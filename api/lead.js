@@ -39,8 +39,9 @@ const TUNEUP_ITEMS = [
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 50, 50], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
-  // Recovery boots, 30 min after a player development session: $25 each.
-  { key: 'boots', min: 0, max: 8, rate: 25, one: 'recovery boots session', many: 'recovery boots sessions' },
+  // Recovery boots, 30 min after a player development session: $25 each. Only
+  // available with at least one player development session (needs: 'pd').
+  { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', one: 'recovery boots session', many: 'recovery boots sessions' },
   // Film breakdown, 30 min after a player development session: $30 each.
   { key: 'film', min: 0, max: 4, rate: 30, one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
@@ -53,6 +54,7 @@ function customTuneUp(pick) {
   const parts = [];
   const counts = {};
   for (const it of TUNEUP_ITEMS) counts[it.key] = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
+  for (const it of TUNEUP_ITEMS) if (it.needs && !counts[it.needs]) counts[it.key] = 0;
   // Boots + film pairs are billed as one combo line; leftovers bill on their own.
   const pairs = Math.min(counts[TUNEUP_COMBO.a], counts[TUNEUP_COMBO.b]);
   const byKey = {};
