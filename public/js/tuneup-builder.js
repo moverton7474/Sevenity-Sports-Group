@@ -30,8 +30,8 @@ window.SevenityTuneUp = (function(){
     // Also needs at least one player development session.
     { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
     // Sports massage + recovery boots with Core Sports Massage.
-    { key: 'm60',   min: 0, max: 4, rate: 135, one: 'Sports massage + recovery boots (60 min)', many: 'Sports massages + recovery boots (60 min)' },
-    { key: 'm90',   min: 0, max: 4, rate: 200, one: 'Sports massage + recovery boots (90 min)', many: 'Sports massages + recovery boots (90 min)' }
+    { key: 'm60',   min: 0, max: 4, rate: 135, tag: 'New · with Core Sports Massage', one: 'Sports massage + recovery boots (60 min)', many: 'Sports massages + recovery boots (60 min)' },
+    { key: 'm90',   min: 0, max: 4, rate: 200, tag: 'New · with Core Sports Massage', one: 'Sports massage + recovery boots (90 min)', many: 'Sports massages + recovery boots (90 min)' }
   ];
   // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
   var COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -101,6 +101,7 @@ window.SevenityTuneUp = (function(){
       + '.tub-total .lbl{font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}'
       + '.tub-total .amt{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}'
       + '.tub-total .amt small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}'
+      + '.tub-name small.tub-tag{color:var(--gold)}'
       + '.tub-tip{display:none;margin:.8rem 0 0;font-size:.85rem;color:var(--ink-2);border-left:2px solid var(--gold);padding:.1rem 0 .1rem .7rem}'
       + '.tub-tip.on{display:block}'
       + '.tub-tip a{color:var(--gold)}'
@@ -133,7 +134,8 @@ window.SevenityTuneUp = (function(){
       function paint(){
         var locked = it.needs && !c[it.needs];
         out.textContent = c[it.key]; minus.disabled = c[it.key] <= it.min; plus.disabled = locked || c[it.key] >= it.max;
-        note.textContent = locked ? it.needsNote : ''; note.hidden = !locked;
+        note.textContent = locked ? it.needsNote : (it.tag || ''); note.hidden = !note.textContent;
+        note.className = locked || !it.tag ? 'tub-need' : 'tub-need tub-tag';
       }
       paints.push(paint);
       [minus, plus].forEach(function(b){
