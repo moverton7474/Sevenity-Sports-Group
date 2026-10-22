@@ -3,7 +3,7 @@
  *
  * Players pick 0-8 player development sessions, 0-4 games of videography,
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
- * Recovery boots need at least one player development session.
+ * Recovery boots and film breakdown need at least one player development session.
  * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
  * player development session; each boots + film pair is a $50 combo (boots worn
  * during film). Prices are never shown per
@@ -25,7 +25,8 @@ window.SevenityTuneUp = (function(){
     // needs: only available once at least one player development session is picked.
     { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
     // Film breakdown: 30 minutes right after a player development session, $30 each.
-    { key: 'film',  min: 0, max: 4, rate: 30, one: 'Film breakdown session', many: 'Film breakdown sessions' }
+    // Also needs at least one player development session.
+    { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' }
   ];
   // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
   var COMBO = { a: 'boots', b: 'film', off: 5 };
