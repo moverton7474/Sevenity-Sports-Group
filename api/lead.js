@@ -42,8 +42,9 @@ const TUNEUP_ITEMS = [
   // Recovery boots, 30 min after a player development session: $25 each. Only
   // available with at least one player development session (needs: 'pd').
   { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', one: 'recovery boots session', many: 'recovery boots sessions' },
-  // Film breakdown, 30 min after a player development session: $30 each.
-  { key: 'film', min: 0, max: 4, rate: 30, one: 'film breakdown session', many: 'film breakdown sessions' },
+  // Film breakdown, 30 min after a player development session: $30 each. Also
+  // needs at least one player development session.
+  { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
 ];
 // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
 const TUNEUP_COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -141,7 +142,7 @@ module.exports = async function handler(req, res) {
   const packageId = clean(body.packageId, 40);
   const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
   if (packageId === 'tuneup-custom' && !known) {
-    return res.status(400).json({ error: 'Pick at least one session, game, recovery boots session or film breakdown first.' });
+    return res.status(400).json({ error: 'Pick at least one player development session or game first. Recovery boots and film breakdown are added on to a player development session.' });
   }
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
