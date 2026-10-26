@@ -4,10 +4,9 @@
  * Players pick 0-8 player development sessions, 0-4 games of videography,
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
  * Recovery boots and film breakdown need at least one player development session.
- * Sports massage (with Core Sports Massage, recovery boots included) comes in 60
- * minute ($85 + $25 boots = $110) and 90 minute ($150 + $25 boots = $175)
- * sessions, 0-4 of each, and also needs at
- * least one player development session.
+ * Sports massage with Core Sports Massage always includes 30 minutes of recovery
+ * boots: 30 min massage + 30 min boots ($99) or 60 min massage + 30 min boots
+ * ($175), 0-4 of each. Also needs at least one player development session.
  * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
  * player development session; each boots + film pair is a $50 combo (boots worn
  * during film). Prices are never shown per
@@ -32,8 +31,8 @@ window.SevenityTuneUp = (function(){
     // Also needs at least one player development session.
     { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
     // Sports massage + recovery boots with Core Sports Massage.
-    { key: 'm60',   min: 0, max: 4, rate: 110, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage + recovery boots (60 min)', many: 'Sports massages + recovery boots (60 min)' },
-    { key: 'm90',   min: 0, max: 4, rate: 175, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage + recovery boots (90 min)', many: 'Sports massages + recovery boots (90 min)' }
+    { key: 'm30',   min: 0, max: 4, rate: 99, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (30 min massage + 30 min recovery boots)', many: 'Sports massages (30 min massage + 30 min recovery boots)' },
+    { key: 'm60',   min: 0, max: 4, rate: 175, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
   ];
   // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
   var COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -42,7 +41,7 @@ window.SevenityTuneUp = (function(){
     { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, film: 0, price: 500 },
     { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, film: 0, price: 750 }
   ];
-  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0, m60: 0, m90: 0 };
+  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0, m30: 0, m60: 0 };
 
   function clamp(item, v){
     v = parseInt(v, 10);
@@ -79,7 +78,7 @@ window.SevenityTuneUp = (function(){
   }
   function fromQuery(){
     var q = {};
-    window.location.search.replace(/[?&](pd|vid|boots|film|m60|m90)=(\d+)/g, function(_, k, v){ q[k] = v; });
+    window.location.search.replace(/[?&](pd|vid|boots|film|m30|m60)=(\d+)/g, function(_, k, v){ q[k] = v; });
     return normalize(q);
   }
   function query(c){

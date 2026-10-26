@@ -45,11 +45,10 @@ const TUNEUP_ITEMS = [
   // Film breakdown, 30 min after a player development session: $30 each. Also
   // needs at least one player development session.
   { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
-  // Sports massage + recovery boots with Core Sports Massage, 60 or 90 min. Also
-  // needs at least one player development session. Each includes recovery boots,
-  // so the rate is the massage plus the $25 boots rate (note shows the split).
-  { key: 'm60', min: 0, max: 4, rate: 110, note: '$85 massage + $25 recovery boots', needs: 'pd', one: 'sports massage + recovery boots (60 min)', many: 'sports massages + recovery boots (60 min)' },
-  { key: 'm90', min: 0, max: 4, rate: 175, note: '$150 massage + $25 recovery boots', needs: 'pd', one: 'sports massage + recovery boots (90 min)', many: 'sports massages + recovery boots (90 min)' },
+  // Sports massage with Core Sports Massage, always with 30 min of recovery boots:
+  // 30 or 60 min massage. Also needs at least one player development session.
+  { key: 'm30', min: 0, max: 4, rate: 99, needs: 'pd', one: 'sports massage (30 min massage + 30 min recovery boots)', many: 'sports massages (30 min massage + 30 min recovery boots)' },
+  { key: 'm60', min: 0, max: 4, rate: 175, needs: 'pd', one: 'sports massage (60 min massage + 30 min recovery boots)', many: 'sports massages (60 min massage + 30 min recovery boots)' },
 ];
 // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
 const TUNEUP_COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -72,7 +71,7 @@ function customTuneUp(pick) {
     total += n * rate;
     // Prices show for the first time here, on the invoice, never on the site.
     const billed = it.key === TUNEUP_COMBO.a || it.key === TUNEUP_COMBO.b ? n - pairs : n;
-    if (billed > 0) parts.push(`${billed} ${billed === 1 ? it.one : it.many} at $${rate}${billed > 1 ? ' each' : ''}${it.note ? ` (${it.note})` : ''}`);
+    if (billed > 0) parts.push(`${billed} ${billed === 1 ? it.one : it.many} at $${rate}${billed > 1 ? ' each' : ''}`);
   }
   if (pairs) {
     const pairRate = byKey[TUNEUP_COMBO.a].rate + byKey[TUNEUP_COMBO.b].rate - TUNEUP_COMBO.off;
