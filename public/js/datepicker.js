@@ -20,7 +20,7 @@
     '.sdp-day:hover:not(:disabled){border-color:#fff}' +
     '.sdp-day:disabled{color:rgba(255,255,255,.25);cursor:default}' +
     '.sdp-day.today{border-color:rgba(255,255,255,.45)}' +
-    '.sdp-day.sel{background:#5d90e9;color:#0D131B;font-weight:700}';
+    '.sdp-day.sel{background:#4d6fae;color:#fff;font-weight:700}';
   document.head.appendChild(css);
 
   input.type = 'text';
