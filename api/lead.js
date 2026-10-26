@@ -39,9 +39,10 @@ const TUNEUP_ITEMS = [
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 50, 50], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
-  // Recovery boots, 30 min after a player development session: $25 each. Only
+  // Recovery boots, 30 min after a player development session. stepped: the 1st
+  // session is free and each one after costs $5 more ($0, $5, $10, ...). Only
   // available with at least one player development session (needs: 'pd').
-  { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', one: 'recovery boots session', many: 'recovery boots sessions' },
+  { key: 'boots', min: 0, max: 8, stepped: 5, needs: 'pd', one: 'recovery boots session', many: 'recovery boots sessions' },
   // Film breakdown, 30 min after a player development session: $30 each. Also
   // needs at least one player development session.
   { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
@@ -50,8 +51,6 @@ const TUNEUP_ITEMS = [
   { key: 'm30', min: 0, max: 4, rate: 99, needs: 'pd', one: 'sports massage (30 min massage + 30 min recovery boots)', many: 'sports massages (30 min massage + 30 min recovery boots)' },
   { key: 'm60', min: 0, max: 4, rate: 175, needs: 'pd', one: 'sports massage (60 min massage + 30 min recovery boots)', many: 'sports massages (60 min massage + 30 min recovery boots)' },
 ];
-// Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
-const TUNEUP_COMBO = { a: 'boots', b: 'film', off: 5 };
 
 function customTuneUp(pick) {
   const p = pick && typeof pick === 'object' ? pick : {};
@@ -60,24 +59,23 @@ function customTuneUp(pick) {
   const counts = {};
   for (const it of TUNEUP_ITEMS) counts[it.key] = Math.max(it.min, Math.min(it.max, parseInt(p[it.key], 10) || 0));
   for (const it of TUNEUP_ITEMS) if (it.needs && !counts[it.needs]) counts[it.key] = 0;
-  // Boots + film pairs are billed as one combo line; leftovers bill on their own.
-  const pairs = Math.min(counts[TUNEUP_COMBO.a], counts[TUNEUP_COMBO.b]);
-  const byKey = {};
-  for (const it of TUNEUP_ITEMS) byKey[it.key] = it;
   for (const it of TUNEUP_ITEMS) {
     const n = counts[it.key];
     if (!n) continue;
+    // Prices show for the first time here, on the invoice, never on the site.
+    if (it.stepped) {
+      const steps = Array.from({ length: n }, (_, i) => i * it.stepped);
+      const sum = steps.reduce((a, b) => a + b, 0);
+      total += sum;
+      parts.push(n === 1
+        ? `1 ${it.one} (free)`
+        : `${n} ${it.many} (1st free, then ${steps.slice(1).map((v) => `$${v}`).join(', ')}: $${sum})`);
+      continue;
+    }
     const rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
     total += n * rate;
-    // Prices show for the first time here, on the invoice, never on the site.
-    const billed = it.key === TUNEUP_COMBO.a || it.key === TUNEUP_COMBO.b ? n - pairs : n;
-    if (billed > 0) parts.push(`${billed} ${billed === 1 ? it.one : it.many} at $${rate}${billed > 1 ? ' each' : ''}`);
+    parts.push(`${n} ${n === 1 ? it.one : it.many} at $${rate}${n > 1 ? ' each' : ''}`);
   }
-  if (pairs) {
-    const pairRate = byKey[TUNEUP_COMBO.a].rate + byKey[TUNEUP_COMBO.b].rate - TUNEUP_COMBO.off;
-    parts.push(`${pairs} recovery boots + film breakdown combo${pairs > 1 ? 's' : ''} at $${pairRate}${pairs > 1 ? ' each' : ''}`);
-  }
-  total -= TUNEUP_COMBO.off * pairs;
   if (!total) return null; // nothing picked
   return { name: 'Custom In Season Tune Up (monthly)', price: `$${total}/mo`, detail: parts.join(', ') };
 }

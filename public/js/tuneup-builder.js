@@ -7,9 +7,9 @@
  * Sports massage with Core Sports Massage always includes 30 minutes of recovery
  * boots: 30 min massage + 30 min boots ($99) or 60 min massage + 30 min boots
  * ($175), 0-4 of each. Also needs at least one player development session.
- * Recovery boots ($25) and film breakdown ($30) are 30 minute add-ons right after a
- * player development session; each boots + film pair is a $50 combo (boots worn
- * during film). Prices are never shown per
+ * Recovery boots and film breakdown ($30) are 30 minute add-ons right after a
+ * player development session (boots can be worn during film). The first recovery
+ * boots session is free and each one after costs $5 more ($0, $5, $10, ...). Prices are never shown per
  * item, only the monthly total at the end. api/lead.js holds the same rates and
  * recomputes the price, so the invoice never trusts a number sent from the browser.
  *
@@ -24,9 +24,10 @@ window.SevenityTuneUp = (function(){
     { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 50, 50], one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
-    // Recovery boots: 30 minutes right after a player development session, $25 each.
+    // Recovery boots: 30 minutes right after a player development session.
+    // stepped: the 1st session is free, each one after costs $5 more than the last.
     // needs: only available once at least one player development session is picked.
-    { key: 'boots', min: 0, max: 8, rate: 25, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
+    { key: 'boots', min: 0, max: 8, stepped: 5, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
     // Film breakdown: 30 minutes right after a player development session, $30 each.
     // Also needs at least one player development session.
     { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
@@ -34,8 +35,6 @@ window.SevenityTuneUp = (function(){
     { key: 'm30',   min: 0, max: 4, rate: 99, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (30 min massage + 30 min recovery boots)', many: 'Sports massages (30 min massage + 30 min recovery boots)' },
     { key: 'm60',   min: 0, max: 4, rate: 175, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
   ];
-  // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
-  var COMBO = { a: 'boots', b: 'film', off: 5 };
   var PACKAGES = [
     { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, film: 0, price: 300 },
     { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, film: 0, price: 500 },
@@ -56,12 +55,12 @@ window.SevenityTuneUp = (function(){
   }
   function itemCost(it, n, c){
     if (!n) return 0;
+    if (it.stepped) return it.stepped * n * (n - 1) / 2; // 0 + 5 + 10 + ...
     var r = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
     return n * r;
   }
   function total(c){
-    var sum = ITEMS.reduce(function(s, it){ return s + itemCost(it, c[it.key], c); }, 0);
-    return sum - COMBO.off * Math.min(c[COMBO.a] || 0, c[COMBO.b] || 0);
+    return ITEMS.reduce(function(s, it){ return s + itemCost(it, c[it.key], c); }, 0);
   }
   function lines(c){
     return ITEMS.filter(function(it){ return c[it.key] > 0; }).map(function(it){ return c[it.key] + ' ' + (c[it.key] === 1 ? it.one : it.many).toLowerCase(); });
