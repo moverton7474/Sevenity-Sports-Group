@@ -34,7 +34,7 @@
 :root{
   --glow:#6ba1e8; --blue:#5b8ee7; --mid:#3c3e50; --char:#2f2e35;
   --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#C3CCDC;
-  --gold:#4f82d6; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(79,130,214,.16);
+  --gold:#4f82d6; --outline:#7db6e9; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(79,130,214,.16);
   --line:rgba(255,255,255,.18); --line-soft:rgba(255,255,255,.10); --line-2:var(--line-soft);
   --glass:rgba(8,10,15,.78); --glass-2:rgba(8,10,15,.88); --glass-light:rgba(255,255,255,.08);
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
@@ -106,7 +106,7 @@ nav{position:sticky;top:0;z-index:90;background:rgba(250,248,253,.92);backdrop-f
 /* pricing / package cards */
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(15.5rem,100%),1fr));gap:1.1rem}
 .pcard{border:1px solid var(--line);border-radius:var(--r);background:var(--glass);padding:1.5rem 1.55rem;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.pcard.feat{border-color:var(--gold)}
+.pcard.feat{border-color:var(--outline)}
 .pcard h3{margin-bottom:.3rem}
 .pcard .psub{font-size:.83rem;color:var(--ink-3);margin:0 0 1.1rem}
 .pcard .price{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);margin:0 0 .3rem;font-variant-numeric:tabular-nums}
@@ -132,7 +132,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .lead label{display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:.75rem 0 .3rem}
 .lead input,.lead select,.lead textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);font:400 .93rem/1.5 var(--f-b);padding:.6rem .7rem}
 .lead textarea{min-height:5.5rem;resize:vertical}
-.lead input:focus,.lead select:focus,.lead textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.lead input:focus,.lead select:focus,.lead textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--outline)}
 #req-date{border-color:#fff;color-scheme:dark}
 .lead .lrow>div{min-width:0}
 .lead input:not([type=checkbox]):not([type=radio]),.lead select{height:calc(1.5em + 1.2rem + 2px);min-width:0;max-width:100%;display:block}
@@ -143,7 +143,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .lead .lfoot{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.1rem}
 .lead .note-sm{font-size:.78rem;color:var(--ink-3);margin:.8rem 0 0;line-height:1.5}
 .lmsg{margin-top:.9rem;font-size:.9rem;border-radius:var(--r);padding:.7rem .85rem;display:none}
-.lmsg.ok{display:block;background:var(--accent-quiet);color:var(--ink);border:1px solid var(--gold)}
+.lmsg.ok{display:block;background:var(--accent-quiet);color:var(--ink);border:1px solid var(--outline)}
 .lmsg.err{display:block;background:var(--surface-2);color:var(--ink);border:1px solid var(--rose)}
 
 /* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
@@ -172,7 +172,7 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
 .p-head{display:flex;gap:1rem;align-items:center}
 .p-head>div{min-width:0}
 .p-ig{max-width:100%}
-.p-avatar{flex:none;width:4.2rem;height:4.2rem;border-radius:50%;object-fit:fill;border:2px solid var(--gold);background:#000}
+.p-avatar{flex:none;width:4.2rem;height:4.2rem;border-radius:50%;object-fit:fill;border:2px solid var(--outline);background:#000}
 .partner h3{margin:0}
 .p-ig{display:inline-block;font-family:var(--f-m);font-size:.8rem;color:var(--gold);margin-top:.2rem;text-decoration:none}
 .p-ig:hover{text-decoration:underline}
