@@ -34,7 +34,7 @@
 :root{
   --glow:#6ba1e8; --blue:#5b8ee7; --mid:#3c3e50; --char:#2f2e35;
   --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#C3CCDC;
-  --gold:#F2C879; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(242,200,121,.16);
+  --gold:#5b8ee7; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(91,142,231,.16);
   --line:rgba(255,255,255,.18); --line-soft:rgba(255,255,255,.10); --line-2:var(--line-soft);
   --glass:rgba(8,10,15,.78); --glass-2:rgba(8,10,15,.88); --glass-light:rgba(255,255,255,.08);
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
@@ -61,6 +61,8 @@ body{
 a{color:var(--ink)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 .lab{font-family:var(--f-m);font-size:.66rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+/* page headers sit on the blue glow, so their label is white */
+.hero .lab{color:#fff}
 h1,h2,h3{font-family:var(--f-serif);font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.15;text-wrap:balance;margin:0;color:var(--ink)}
 h2{font-size:clamp(1.9rem,4.4vw,3.1rem)}
 h3{font-size:1.2rem;letter-spacing:.005em}
