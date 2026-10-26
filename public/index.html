@@ -214,6 +214,14 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
   .btn{white-space:normal;text-align:center}
 }
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* In Season Tune Up highlight under the service tiles */
+.home-tu{display:flex;align-items:center;justify-content:space-between;gap:.5rem 1.2rem;flex-wrap:wrap;margin-top:1rem;text-align:left;background:rgba(8,10,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--gold);border-radius:14px;padding:1rem 1.3rem;text-decoration:none;color:inherit;transition:background .15s,transform .15s}
+.home-tu:hover{background:rgba(8,10,15,.7);transform:translateY(-2px)}
+.home-tu .n{display:block;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.home-tu h3{margin:.25rem 0 .2rem;font-size:1.1rem}
+.home-tu p{margin:0;font-size:.85rem;color:var(--ink-2)}
+.home-tu .go{flex:none;font-size:.85rem;color:var(--gold);font-weight:600}
+@media(max-width:640px){.home-tu{margin-top:.6rem;padding:.85rem .9rem}.home-tu h3{font-size:.95rem}.home-tu p{font-size:.78rem}.home-tu .go{font-size:.75rem}}
 .home-connect{display:flex;justify-content:center;margin-top:1.6rem}
 .home-connect .btn{font-size:.95rem;padding:.8rem 1.7rem}
 @media(max-width:640px){.home-connect{margin-top:1rem}.home-connect .btn{font-size:.82rem;padding:.65rem 1.3rem}}
@@ -312,6 +320,14 @@ footer .brand img{width:24px;height:24px;border-radius:50%}
         <span class="go">Build your brand&nbsp;&rarr;</span>
       </a>
     </div>
+    <a class="home-tu" href="tune-up.html">
+      <div>
+        <span class="n">In Season &middot; Monthly</span>
+        <h3>In Season Tune Up Packages</h3>
+        <p>Player development, game day videography, recovery boots and sports massage, all season. From $300 / month.</p>
+      </div>
+      <span class="go">See packages&nbsp;&rarr;</span>
+    </a>
     <div class="home-connect">
       <a class="btn" href="contact.html">Click here to connect&nbsp;&rarr;</a>
     </div>
