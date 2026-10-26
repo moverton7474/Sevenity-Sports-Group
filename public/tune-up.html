@@ -34,7 +34,7 @@
 :root{
   --glow:#6ba1e8; --blue:#5b8ee7; --mid:#3c3e50; --char:#2f2e35;
   --ink:#F6F8FB; --ink-2:#D9E1EE; --ink-3:#C3CCDC;
-  --gold:#5b8ee7; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(91,142,231,.16);
+  --gold:#5d90e9; --accent:var(--gold); --accent-ink:var(--gold); --accent-mark:var(--gold); --accent-quiet:rgba(93,144,233,.16);
   --line:rgba(255,255,255,.18); --line-soft:rgba(255,255,255,.10); --line-2:var(--line-soft);
   --glass:rgba(8,10,15,.78); --glass-2:rgba(8,10,15,.88); --glass-light:rgba(255,255,255,.08);
   --surface:var(--glass); --surface-2:var(--glass-2); --surface-3:rgba(255,255,255,.16);
@@ -298,6 +298,12 @@ section{padding:3rem 0}
 .csm-cta{display:inline-block;margin-top:.8rem;text-shadow:none;line-height:normal}
 .csm-new{display:inline-block;margin-left:.4rem;padding:.08rem .4rem;border-radius:999px;background:var(--gold);color:#111;font:700 .55rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;vertical-align:middle}
 @media(max-width:600px){.csm{flex-direction:column;align-items:flex-start;gap:.7rem}.csm-logo{width:3.6rem;height:3.6rem}.csm h3{font-size:1rem}}
+/* top bar is Sevenity blue, with the logo, name and Menu button in white */
+nav{background:#5d90e9;border-bottom-color:rgba(255,255,255,.2)}
+.nav-brand{color:#fff}
+.nav-brand img{filter:brightness(0) invert(1)}
+.nav-toggle{border-color:rgba(255,255,255,.65);color:#fff}
+.nav-toggle .bars span{background:#fff}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">
