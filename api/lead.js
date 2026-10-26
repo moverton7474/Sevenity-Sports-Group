@@ -45,9 +45,10 @@ const TUNEUP_ITEMS = [
   // Film breakdown, 30 min after a player development session: $30 each. Also
   // needs at least one player development session.
   { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
-  // Sports massage + recovery boots with Core Sports Massage, 60 or 90 min.
-  { key: 'm60', min: 0, max: 4, rate: 135, one: 'sports massage + recovery boots (60 min)', many: 'sports massages + recovery boots (60 min)' },
-  { key: 'm90', min: 0, max: 4, rate: 200, one: 'sports massage + recovery boots (90 min)', many: 'sports massages + recovery boots (90 min)' },
+  // Sports massage + recovery boots with Core Sports Massage, 60 or 90 min. Also
+  // needs at least one player development session.
+  { key: 'm60', min: 0, max: 4, rate: 85, needs: 'pd', one: 'sports massage + recovery boots (60 min)', many: 'sports massages + recovery boots (60 min)' },
+  { key: 'm90', min: 0, max: 4, rate: 150, needs: 'pd', one: 'sports massage + recovery boots (90 min)', many: 'sports massages + recovery boots (90 min)' },
 ];
 // Each recovery boots + film breakdown pair is a $50 combo ($5 off the two).
 const TUNEUP_COMBO = { a: 'boots', b: 'film', off: 5 };
@@ -145,7 +146,7 @@ module.exports = async function handler(req, res) {
   const packageId = clean(body.packageId, 40);
   const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
   if (packageId === 'tuneup-custom' && !known) {
-    return res.status(400).json({ error: 'Pick at least one player development session, game or sports massage first. Recovery boots and film breakdown are added on to a player development session.' });
+    return res.status(400).json({ error: 'Pick at least one player development session or game first. Recovery boots, film breakdown and sports massage are added on to a player development session.' });
   }
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
