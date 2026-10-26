@@ -102,7 +102,7 @@ window.SevenityTuneUp = (function(){
       + '.tub-total .amt{font-family:var(--f-m);font-size:1.6rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}'
       + '.tub-total .amt small{font-size:.68rem;color:var(--ink-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}'
       + '.tub-name small.tub-tag{color:var(--gold)}'
-      + '.tub-tip{display:none;margin:.8rem 0 0;font-size:.85rem;color:var(--ink-2);border-left:2px solid var(--gold);padding:.1rem 0 .1rem .7rem}'
+      + '.tub-tip{display:none;margin:.8rem 0 0;font-size:.85rem;color:var(--ink-2);border-left:2px solid var(--outline,#7db6e9);padding:.1rem 0 .1rem .7rem}'
       + '.tub-tip.on{display:block}'
       + '.tub-tip a{color:var(--gold)}'
       + '@media(max-width:480px){.tub-row{gap:.6rem}.tub-name{font-size:.86rem}.tub-name small{white-space:nowrap;letter-spacing:.05em}'
