@@ -23,7 +23,7 @@ window.SevenityTuneUp = (function(){
     // perSession[n-1] is the per-session rate when n sessions are picked.
     { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], withAny: ['m30', 'm60'], withRate: 50, one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
-    { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
+    { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 90], one: 'Game with videography',      many: 'Games with videography' },
     // Recovery boots: 30 minutes right after a player development session.
     // stepped: the 1st session is free, each one after costs $5 more than the last.
     // needs: only available once at least one player development session is picked.
