@@ -33,9 +33,9 @@ window.SevenityTuneUp = (function(){
     { key: 'm60',   min: 0, max: 4, rate: 185, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
   ];
   var PACKAGES = [
-    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, price: 300 },
-    { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, price: 500 },
-    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, price: 750 }
+    { id: 'tuneup-starter', name: 'Starter', pd: 4, vid: 1, boots: 2, price: 300 },
+    { id: 'tuneup-pro',     name: 'Pro',     pd: 6, vid: 2, boots: 3, price: 500 },
+    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, m30: 1, price: 750 }
   ];
   var DEFAULTS = { pd: 0, vid: 0, boots: 0, m30: 0, m60: 0 };
 
