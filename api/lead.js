@@ -36,7 +36,8 @@ const PACKAGES = {
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
   // Per-session rate drops the more sessions are picked: perSession[n-1] for n sessions.
-  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], one: 'player development session', many: 'player development sessions' },
+  // withRate: a single session is $50 instead of $65 when booked with a sports massage.
+  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], withAny: ['m30', 'm60'], withRate: 50, one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
   // Recovery boots, 30 min after a player development session. stepped: the 1st
@@ -72,7 +73,8 @@ function customTuneUp(pick) {
         : `${n} ${it.many} (1st free, then ${steps.slice(1).map((v) => `$${v}`).join(', ')}: $${sum})`);
       continue;
     }
-    const rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
+    let rate = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
+    if (it.withAny && it.withAny.some((k) => counts[k] > 0)) rate = Math.min(rate, it.withRate);
     total += n * rate;
     parts.push(`${n} ${n === 1 ? it.one : it.many} at $${rate}${n > 1 ? ' each' : ''}`);
   }

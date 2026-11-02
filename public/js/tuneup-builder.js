@@ -21,7 +21,7 @@ window.SevenityTuneUp = (function(){
   var ITEMS = [
     // Player development gets cheaper per session the more are picked:
     // perSession[n-1] is the per-session rate when n sessions are picked.
-    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], one: 'Player development session', many: 'Player development sessions' },
+    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], withAny: ['m30', 'm60'], withRate: 50, one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
     // Recovery boots: 30 minutes right after a player development session.
@@ -57,6 +57,8 @@ window.SevenityTuneUp = (function(){
     if (!n) return 0;
     if (it.stepped) return it.stepped * n * (n - 1) / 2; // 0 + 5 + 10 + ...
     var r = it.perSession ? it.perSession[Math.min(n, it.perSession.length) - 1] : it.rate;
+    // withRate: cheaper rate when any of the withAny items (a sports massage) is picked.
+    if (it.withAny && it.withAny.some(function(k){ return c && c[k] > 0; })) r = Math.min(r, it.withRate);
     return n * r;
   }
   function total(c){
