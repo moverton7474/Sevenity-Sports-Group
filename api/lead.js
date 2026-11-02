@@ -39,7 +39,7 @@ const TUNEUP_ITEMS = [
   // withRate: a single session is $50 instead of $65 when booked with a sports massage.
   { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], withAny: ['m30', 'm60'], withRate: 50, one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
-  { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
+  { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 90], one: 'game with videography', many: 'games with videography' },
   // Recovery boots, 30 min after a player development session. stepped: the 1st
   // session is free and each one after costs $5 more ($0, $5, $10, ...). Only
   // available with at least one player development session (needs: 'pd').
