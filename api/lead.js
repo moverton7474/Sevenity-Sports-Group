@@ -44,9 +44,6 @@ const TUNEUP_ITEMS = [
   // session is free and each one after costs $5 more ($0, $5, $10, ...). Only
   // available with at least one player development session (needs: 'pd').
   { key: 'boots', min: 0, max: 8, stepped: 5, needs: 'pd', one: 'recovery boots session', many: 'recovery boots sessions' },
-  // Film breakdown, 30 min after a player development session: $30 each. Also
-  // needs at least one player development session.
-  { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
   // Sports massage with Core Sports Massage, always with 30 min of recovery boots:
   // 30 or 60 min massage. Also needs at least one player development session.
   { key: 'm30', min: 0, max: 4, rate: 115, needs: 'pd', one: 'sports massage (30 min massage + 30 min recovery boots)', many: 'sports massages (30 min massage + 30 min recovery boots)' },
@@ -146,7 +143,7 @@ module.exports = async function handler(req, res) {
   const packageId = clean(body.packageId, 40);
   const known = packageId === 'tuneup-custom' ? customTuneUp(body.custom) : PACKAGES[packageId];
   if (packageId === 'tuneup-custom' && !known) {
-    return res.status(400).json({ error: 'Pick at least one player development session or game first. Recovery boots, film breakdown and sports massage are added on to a player development session.' });
+    return res.status(400).json({ error: 'Pick at least one player development session or game first. Recovery boots and sports massage are added on to a player development session.' });
   }
   const pkg = known ? known.name : clean(body.package, 120);
   const price = known ? known.price : clean(body.price, 40);
