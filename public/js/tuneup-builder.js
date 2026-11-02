@@ -5,8 +5,8 @@
  * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
  * Recovery boots and film breakdown need at least one player development session.
  * Sports massage with Core Sports Massage always includes 30 minutes of recovery
- * boots: 30 min massage + 30 min boots ($99) or 60 min massage + 30 min boots
- * ($175), 0-4 of each. Also needs at least one player development session.
+ * boots: 30 min massage + 30 min boots ($115) or 60 min massage + 30 min boots
+ * ($185), 0-4 of each. Also needs at least one player development session.
  * Recovery boots and film breakdown ($30) are 30 minute add-ons right after a
  * player development session (boots can be worn during film). The first recovery
  * boots session is free and each one after costs $5 more ($0, $5, $10, ...). Prices are never shown per
@@ -21,7 +21,7 @@ window.SevenityTuneUp = (function(){
   var ITEMS = [
     // Player development gets cheaper per session the more are picked:
     // perSession[n-1] is the per-session rate when n sessions are picked.
-    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 50, 50], one: 'Player development session', many: 'Player development sessions' },
+    { key: 'pd',   min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], one: 'Player development session', many: 'Player development sessions' },
     // Videography also gets cheaper per game the more games are picked.
     { key: 'vid',  min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'Game with videography',      many: 'Games with videography' },
     // Recovery boots: 30 minutes right after a player development session.
@@ -32,8 +32,8 @@ window.SevenityTuneUp = (function(){
     // Also needs at least one player development session.
     { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
     // Sports massage + recovery boots with Core Sports Massage.
-    { key: 'm30',   min: 0, max: 4, rate: 99, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (30 min massage + 30 min recovery boots)', many: 'Sports massages (30 min massage + 30 min recovery boots)' },
-    { key: 'm60',   min: 0, max: 4, rate: 175, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
+    { key: 'm30',   min: 0, max: 4, rate: 115, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (30 min massage + 30 min recovery boots)', many: 'Sports massages (30 min massage + 30 min recovery boots)' },
+    { key: 'm60',   min: 0, max: 4, rate: 185, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
   ];
   var PACKAGES = [
     { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, film: 0, price: 300 },

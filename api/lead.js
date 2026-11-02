@@ -36,7 +36,7 @@ const PACKAGES = {
 // picked counts, so the invoice never uses a number sent by the browser.
 const TUNEUP_ITEMS = [
   // Per-session rate drops the more sessions are picked: perSession[n-1] for n sessions.
-  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 60, 60, 55, 55, 50, 50, 50], one: 'player development session', many: 'player development sessions' },
+  { key: 'pd', min: 0, max: 8, rate: 65, perSession: [65, 50, 50, 50, 50, 50, 50, 50], one: 'player development session', many: 'player development sessions' },
   // Videography per-game rate also drops the more games are picked.
   { key: 'vid', min: 0, max: 4, rate: 100, perSession: [100, 95, 90, 85], one: 'game with videography', many: 'games with videography' },
   // Recovery boots, 30 min after a player development session. stepped: the 1st
@@ -48,8 +48,8 @@ const TUNEUP_ITEMS = [
   { key: 'film', min: 0, max: 4, rate: 30, needs: 'pd', one: 'film breakdown session', many: 'film breakdown sessions' },
   // Sports massage with Core Sports Massage, always with 30 min of recovery boots:
   // 30 or 60 min massage. Also needs at least one player development session.
-  { key: 'm30', min: 0, max: 4, rate: 99, needs: 'pd', one: 'sports massage (30 min massage + 30 min recovery boots)', many: 'sports massages (30 min massage + 30 min recovery boots)' },
-  { key: 'm60', min: 0, max: 4, rate: 175, needs: 'pd', one: 'sports massage (60 min massage + 30 min recovery boots)', many: 'sports massages (60 min massage + 30 min recovery boots)' },
+  { key: 'm30', min: 0, max: 4, rate: 115, needs: 'pd', one: 'sports massage (30 min massage + 30 min recovery boots)', many: 'sports massages (30 min massage + 30 min recovery boots)' },
+  { key: 'm60', min: 0, max: 4, rate: 185, needs: 'pd', one: 'sports massage (60 min massage + 30 min recovery boots)', many: 'sports massages (60 min massage + 30 min recovery boots)' },
 ];
 
 function customTuneUp(pick) {
