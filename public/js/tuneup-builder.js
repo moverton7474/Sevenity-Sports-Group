@@ -2,13 +2,13 @@
  * In Season Tune Up: build your own monthly package.
  *
  * Players pick 0-8 player development sessions, 0-4 games of videography,
- * 0-8 recovery boots sessions and 0-4 film breakdowns (at least one item overall).
- * Recovery boots and film breakdown need at least one player development session.
+ * 0-8 recovery boots sessions and sports massage (at least one item overall).
+ * Recovery boots need at least one player development session.
  * Sports massage with Core Sports Massage always includes 30 minutes of recovery
  * boots: 30 min massage + 30 min boots ($115) or 60 min massage + 30 min boots
  * ($185), 0-4 of each. Also needs at least one player development session.
- * Recovery boots and film breakdown ($30) are 30 minute add-ons right after a
- * player development session (boots can be worn during film). The first recovery
+ * Recovery boots are a 30 minute add-on right after a player development
+ * session. The first recovery
  * boots session is free and each one after costs $5 more ($0, $5, $10, ...). Prices are never shown per
  * item, only the monthly total at the end. api/lead.js holds the same rates and
  * recomputes the price, so the invoice never trusts a number sent from the browser.
@@ -28,19 +28,16 @@ window.SevenityTuneUp = (function(){
     // stepped: the 1st session is free, each one after costs $5 more than the last.
     // needs: only available once at least one player development session is picked.
     { key: 'boots', min: 0, max: 8, stepped: 5, needs: 'pd', needsNote: 'Add a player development session first', one: 'Recovery boots session', many: 'Recovery boots sessions' },
-    // Film breakdown: 30 minutes right after a player development session, $30 each.
-    // Also needs at least one player development session.
-    { key: 'film',  min: 0, max: 4, rate: 30, needs: 'pd', needsNote: 'Add a player development session first', one: 'Film breakdown session', many: 'Film breakdown sessions' },
     // Sports massage + recovery boots with Core Sports Massage.
     { key: 'm30',   min: 0, max: 4, rate: 115, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (30 min massage + 30 min recovery boots)', many: 'Sports massages (30 min massage + 30 min recovery boots)' },
     { key: 'm60',   min: 0, max: 4, rate: 185, needs: 'pd', needsNote: 'Add a player development session first', tag: 'New · with Core Sports Massage', one: 'Sports massage (60 min massage + 30 min recovery boots)', many: 'Sports massages (60 min massage + 30 min recovery boots)' }
   ];
   var PACKAGES = [
-    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, film: 0, price: 300 },
-    { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, film: 0, price: 500 },
-    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, film: 0, price: 750 }
+    { id: 'tuneup-starter', name: 'Starter', pd: 2, vid: 1, boots: 1, price: 300 },
+    { id: 'tuneup-pro',     name: 'Pro',     pd: 4, vid: 2, boots: 2, price: 500 },
+    { id: 'tuneup-elite',   name: 'Elite',   pd: 8, vid: 3, boots: 4, price: 750 }
   ];
-  var DEFAULTS = { pd: 0, vid: 0, boots: 0, film: 0, m30: 0, m60: 0 };
+  var DEFAULTS = { pd: 0, vid: 0, boots: 0, m30: 0, m60: 0 };
 
   function clamp(item, v){
     v = parseInt(v, 10);
@@ -79,7 +76,7 @@ window.SevenityTuneUp = (function(){
   }
   function fromQuery(){
     var q = {};
-    window.location.search.replace(/[?&](pd|vid|boots|film|m30|m60)=(\d+)/g, function(_, k, v){ q[k] = v; });
+    window.location.search.replace(/[?&](pd|vid|boots|m30|m60)=(\d+)/g, function(_, k, v){ q[k] = v; });
     return normalize(q);
   }
   function query(c){
