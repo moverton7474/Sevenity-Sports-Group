@@ -137,25 +137,26 @@ footer a{color:var(--ink-3)}
 .brand{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:0.938rem;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.55rem}
 footer .brand img{width:24px;height:24px;border-radius:50%}
 
-/* desktop: bump the whole type scale + nav so it reads clearly on a big screen.
+/* desktop: a modest bump to the type scale + nav for laptop and desktop screens
+   (sized so a MacBook does not look zoomed in).
    Mobile/tablet (below 1024px) is untouched on purpose. */
 @media(min-width:1024px){
-  html{font-size:168%}
-  body{font-size:24.64px}
+  html{font-size:112.5%}
+  body{font-size:18px}
   .nav-brand{font-size:1.116rem}
   .nav-toggle{font-size:1.05rem;padding:.7rem 1.4rem}
   .nav-links{min-width:18rem}
   .nav-links a{font-size:.95rem;padding:.95rem 1.7rem}
 }
 @media(min-width:1440px){
-  html{font-size:184.8%}
-  body{font-size:26.88px}
+  html{font-size:118.75%}
+  body{font-size:19px}
   .nav-brand{font-size:1.161rem}
   .nav-links a{font-size:1.02rem}
 }
 @media(min-width:1800px){
-  html{font-size:199.36%}
-  body{font-size:28px}
+  html{font-size:131.25%}
+  body{font-size:21px}
 }
 @media(max-width:360px){h2{font-size:1.35rem!important;letter-spacing:.02em}}
 
