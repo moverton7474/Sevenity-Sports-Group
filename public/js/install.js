@@ -4,13 +4,16 @@
  * - Android / Chrome / Edge: an Install button that opens the browser's install prompt.
  * - iPhone / iPad (Safari has no prompt to open): short steps, Share then
  *   "Add to Home Screen".
- * - Hidden when the site is already open as an installed app, and for 14 days
- *   after someone closes it.
+ * - Shows about a second after any page opens, on every visit until the site is
+ *   installed. Closing it hides it for the rest of that visit only.
+ * - On Android Chrome the browser's own install bar is left on as well (no
+ *   preventDefault), so it can appear by itself too. No browser lets a site
+ *   install without the visitor tapping to confirm.
  * Also registers /sw.js, which browsers need before they offer to install.
  */
 (function(){
   "use strict";
-  var KEY = 'svn-install-dismissed', WAIT_DAYS = 14, DELAY_MS = 3500;
+  var KEY = 'svn-install-closed', DELAY_MS = 1000;
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); });
@@ -18,10 +21,7 @@
 
   var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
   if (standalone) return;
-  try {
-    var t = parseInt(localStorage.getItem(KEY), 10);
-    if (t && Date.now() - t < WAIT_DAYS * 864e5) return;
-  } catch (e) {}
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
 
   var ua = navigator.userAgent || '';
   var ios = /iphone|ipad|ipod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
@@ -45,7 +45,7 @@
 
   function close(remember){
     var el = document.querySelector('.svn-inst'); if (el) el.parentNode.removeChild(el);
-    if (remember) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+    if (remember) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
   }
 
   function show(){
@@ -72,7 +72,7 @@
   }
 
   window.addEventListener('beforeinstallprompt', function(e){
-    e.preventDefault(); deferred = e;
+    deferred = e; // no preventDefault: Chrome's own install bar can show too
     setTimeout(show, DELAY_MS);
   });
   window.addEventListener('appinstalled', function(){ close(true); });
